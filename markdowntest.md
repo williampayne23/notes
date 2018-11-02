@@ -7,6 +7,7 @@
     - [Sub title 2](#sub-title-2)
     - [Sub title 3](#sub-title-3)
 
+Hi
 # Title 1
 We must now discuss the issue of note taking...
 ## Sub title 1
