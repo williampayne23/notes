@@ -17,7 +17,6 @@ This is a question that is not easily answered. Yet it is a question that we mus
 >Hesitancy is shit
 
 Which I do not think is entirely untrue.
-
 Also there's math! With aligned equations and everything which is pretty great!
 
 $$
