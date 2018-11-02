@@ -43,7 +43,11 @@ function draw(){
 ```
 
 ## Sub title 2
+<<<<<<< HEAD
 [Test](./markdowntutorial.md) 
+=======
+![Test](./markdowntutorial.md) 
+>>>>>>> ac865d83ad576d40ada882b13dcae3d923d7755d
 
 
 ## Sub title 3
