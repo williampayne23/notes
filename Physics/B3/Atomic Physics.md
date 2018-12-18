@@ -1,26 +1,32 @@
 # B3 Atomic Physics <!-- omit in toc -->
 - [Moving on from Hydrogen](#moving-on-from-hydrogen)
-    - [Hydrogen, the simple Hamiltonian](#hydrogen-the-simple-hamiltonian)
-        - [Energy](#energy)
-        - [Angular Momentum](#angular-momentum)
-        - [Radial Wavefunctions](#radial-wavefunctions)
-    - [A Complicated Hamiltonian](#a-complicated-hamiltonian)
+  - [Hydrogen, the simple Hamiltonian](#hydrogen-the-simple-hamiltonian)
+    - [Energy](#energy)
+    - [Angular Momentum](#angular-momentum)
+    - [Radial Wavefunctions](#radial-wavefunctions)
+  - [A Complicated Hamiltonian](#a-complicated-hamiltonian)
 - [The Central Field Approximation](#the-central-field-approximation)
-    - [Gross Structure](#gross-structure)
-        - [The Central Field](#the-central-field)
-        - [Form of the Central Field](#form-of-the-central-field)
-        - [Electronic Configurations](#electronic-configurations)
-            - [Spectroscopic Notation](#spectroscopic-notation)
-            - [Constructing a Periodic table](#constructing-a-periodic-table)
-                - [Rare Gases](#rare-gases)
-                - [Alkalis](#alkalis)
-                - [First Ionisation](#first-ionisation)
-        - [Energy of Alkalis, the Quantum Defect](#energy-of-alkalis-the-quantum-defect)
-    - [Residual Electrostatic Interaction](#residual-electrostatic-interaction)
-        - [A Degenerate Perturbation](#a-degenerate-perturbation)
-        - [Symmetry, Antisymmetry and Spin](#symmetry-antisymmetry-and-spin)
-    - [Spin Orbit Interaction (Fine Structure)](#spin-orbit-interaction-fine-structure)
-    - [LS-Coupling](#ls-coupling)
+  - [Gross Structure](#gross-structure)
+    - [The Central Field](#the-central-field)
+    - [Form of the Central Field](#form-of-the-central-field)
+    - [Electronic Configurations](#electronic-configurations)
+      - [Spectroscopic Notation](#spectroscopic-notation)
+      - [Constructing a Periodic table](#constructing-a-periodic-table)
+        - [Rare Gases](#rare-gases)
+        - [Alkalis](#alkalis)
+        - [First Ionisation](#first-ionisation)
+    - [Energy of Alkalis, the Quantum Defect](#energy-of-alkalis-the-quantum-defect)
+  - [Residual Electrostatic Interaction](#residual-electrostatic-interaction)
+    - [A Degenerate Perturbation](#a-degenerate-perturbation)
+    - [Symmetry, Antisymmetry and Spin](#symmetry-antisymmetry-and-spin)
+  - [Spin Orbit Interaction (Fine Structure)](#spin-orbit-interaction-fine-structure)
+    - [The Physics](#the-physics)
+    - [Finding the Spin Orbit Correction](#finding-the-spin-orbit-correction)
+    - [The B Field due to Orbital Motion](#the-b-field-due-to-orbital-motion)
+    - [Finding Our Operator](#finding-our-operator)
+    - [Doing the Work](#doing-the-work)
+    - [Final Result for Spin Orbit](#final-result-for-spin-orbit)
+  - [LS-Coupling](#ls-coupling)
 
 # Moving on from Hydrogen
 ## Hydrogen, the simple Hamiltonian
@@ -251,8 +257,167 @@ The antisymmetric spin states pair with the symmetric wavefunctions and vice ver
 
 ## Spin Orbit Interaction (Fine Structure)
 
+The spin orbit interaction is the hamiltonian term arising from considering magnetic fields, specifically those produced by electron spin and orbit.
+### The Physics
+> If you want to skip to the end of this bit it's just $\Delta E  = -\underline{\mu} \cdot \underline{B}$
 
+The angular momentum of a spinning electron is $I\underline{\omega}=\underline{\lambda}\hbar$ the energy then is $E=\frac{1}{2}I\omega^2$. The magnetic moment of the rotating electron is $\underline{\mu}=-\gamma\underline{\lambda}\hbar$ where the minus sign is for negative charge and $\gamma$ is the *gyromagnetic ratio*. If a constant B field is applied on the z axis then the moment $\mu$ will precess about that axis with some frequency $\omega^\prime$ so angular motion changes like so:
+$$
+\omega \rightarrow \omega + \omega^\prime cos\theta\\
+\text{Or (if $\underline{\lambda}\hbar$ is in the opposite direction)}\\
+\omega \rightarrow \omega - \omega^\prime cos\theta
+$$
+So the new energy is:
+$$
+\begin{aligned}
+    E^\prime &= \frac{1}{2}I(\omega \pm \omega^\prime cos\theta)^2\\
+    &=\frac{1}{2}I\omega^2 + \frac{1}{2}I(\omega^\prime cos\theta)^2 \pm I\omega\omega^\prime cos\theta
+\end{aligned}
+$$
+Assuming precessional motion to be slow compared to origional angular velocity we can say that $\omega^\prime \llless \omega$ which means $(\omega^\prime cos\theta)^2 \llless \omega^2$ this means the energy change $\Delta E = E^\prime - E$ is:
+$$
+\begin{aligned}
+\Delta E &= I\omega\omega^\prime cos\theta\\
+&= \lambda\hbar\omega^\prime cos\theta
+\end{aligned}
+$$
 
+We know from **Lamor's Theorem** that $\omega^\prime = -\gamma B$ so...
+
+$$
+\begin{aligned}
+    \Delta E &= -\gamma\lambda\hbar Bcos\theta\\
+    &=-\underline{\mu} \cdot\underline{B}
+\end{aligned}
+$$
+### Finding the Spin Orbit Correction
+
+Now we can say that 
+$$
+\begin{aligned}
+\hat{H}_2 &=  -\underline{\hat{\mu}} \cdot\underline{B}\\
+\Delta E &= -\big<-\underline{\hat{\mu}} \cdot\underline{B}\big>  
+\end{aligned}
+$$
+
+So we need...
+
+- To find the B Field
+- Have an operator for $-\underline{\hat{\mu}} \cdot\underline{B}$ depending on $r$, $\underline{s}$, and $\underline{l}$
+- Perform some perturbation theory
+
+### The B Field due to Orbital Motion
+
+The field the electrons experience is the one produced by the electronic orbital motion. This is given by...
+$$
+\underline{B} = -\frac{\underline{v}\times \underline{E}}{c^2}
+$$
+
+as $\underline{p} = m\underline{v}$ 
+$$
+\underline{B} = -\frac{1}{mc^2}\underline{p}\times\underline{E}
+$$
+
+Remembering E is purely radial in the central field we can rewrite it $\underline{B}$:
+
+$$
+\underline{B} = -\frac{1}{mc^2}\underline{p}\times\underline{r}\frac{|\underline{E}|}{|\underline{r}|}
+$$
+Luckily $\underline{r}\times\underline{p} = \underline{l}$ so:
+$$
+\underline{B} = \frac{1}{mc^2}\frac{|\underline{E}|}{|\underline{r}|}\underline{\hat{l}}
+$$
+
+$|\underline{E}| = \frac{\partial\phi}{\partial r}$ and $e\phi(r) = U(r)$ so $|\underline{E}| = -\frac{1}{r}\frac{\partial U(r)}{\partial r}$. Putting it all together we have:
+$$
+\underline{B} = \frac{1}{emc^2}\frac{1}{r}\frac{\partial U(r)}{\partial r}\underline{\hat{l}}
+$$
+
+U(r) is the central potential. 
+
+### Finding Our Operator
+
+The operator we need to find is $-\underline{\mu_s} \cdot \underline{B}$. The intrinsic magnetic moment of an electron due to spin is:
+
+$$
+\underline{\mu_s} = -g_s\frac{\mu_B}{\hbar}\underline{\hat{s}}
+$$
+
+So
+
+$$
+-\underline{\mu_s} \cdot \underline{B} = -g_s\frac{\mu_B}{\hbar}\frac{1}{emc^2}\frac{1}{r}\frac{\partial U(r)}{\partial r}\underline{\hat{s}}\cdot\underline{\hat{l}}
+$$
+
+Sadly most of the time we don't know the form of U(r). It is a great tragedy but we must soldier on. We can at least see that the energy operator is proportional to $\frac{1}{r}\frac{\partial U(r)}{\partial r}\underline{\hat{s}}\cdot\underline{\hat{l}}$ which is positive and determined by the relative orientation of $\underline{\hat{s}}$ and $\underline{\hat{l}}$ which is nice. A hydrogen atom has the potential $U(r) = -\frac{Ze^2}{4\pi\epsilon_0r}$ this gives:
+
+$$
+    -\underline{\mu_s} \cdot \underline{B} = \frac{\mu_B}{4\pi}2Zg_s\mu_B^2\frac{1}{r^3}\frac{\underline{\hat{s}}\cdot\underline{\hat{l}}}{\hbar^2}
+$$
+
+Although if you take into account the relativistic correction of **Thomas Precession** which isn't on syllabus we need to divide by 2 so:
+
+$$
+    -\underline{\mu_s} \cdot \underline{B} = \frac{\mu_B}{4\pi}Zg_s\mu_B^2\frac{1}{r^3}\frac{\underline{\hat{s}}\cdot\underline{\hat{l}}}{\hbar^2}
+$$
+
+### Doing the Work
+
+$$
+\Delta E = \frac{\mu_B}{4\pi\hbar^2}Zg_s\mu_B^2\big<\frac{1}{r^3}\big>\big<\underline{\hat{s}}\cdot\underline{\hat{l}}\big>
+$$
+
+The radial part is a standard radial integral using hydrogenic wavefunctions.
+
+$$
+\begin{aligned}
+    \big<\frac{1}{r^3}\big> &= \int_0^{\infin}R^2_{n,l}(r)\frac{1}{r^3}r^2dr\\
+    &=\frac{Z^3}{n^3a_0^3l(l+1/2)(l+1)} 
+\end{aligned}
+$$
+
+the dot product is a bit harder but we can use the power of the vector model.
+
+$$
+\begin{aligned}
+\underline{\hat{j}}\ \ &= \underline{\hat{s}} + \underline{\hat{l}}\\
+\implies\underline{\hat{j}}^2&=\underline{\hat{s}}^2 + \underline{\hat{l}}^2+\underline{\hat{s}}\cdot\underline{\hat{l}}\\
+\therefore\underline{\hat{s}}\cdot\underline{\hat{l}}&=\underline{\hat{j}}^2 - \underline{\hat{s}}^2 + \underline{\hat{l}}^2
+\end{aligned}
+$$
+
+This means that we can write our matrix elements in a different basis as $|n,l,m_l,s,m_s\big>$ is not diagonalised.
+
+$$
+\big<n,l,s,j,m_j|\underline{\hat{s}}\cdot\underline{\hat{l}}|n',l',s',j',m_j'\big> = 0 \text{ unless } j=j'\text{ and } m_j=m_j' 
+$$
+
+The diagonal elements are then:
+
+$$
+\big<n,l,s,j,m_j|\underline{\hat{s}}\cdot\underline{\hat{l}}|n',l',s',j',m_j'\big> = \frac{1}{2}\{j(j+1) - l(l+1) - s(s+1)\}\hbar^2
+$$
+ 
+This is a nice result but what does this mean? We found that we need a new basis when we consider spin orbit. This is because without spin orbit $\underline{\hat{s}}$ and $\underline{\hat{l}}$ are fixed, making their projections in z good quantum numbers. When we consider spin orbit though $\underline{\hat{s}}$ and $\underline{\hat{l}}$ precess around their mutual sum $\underline{\hat{j}}$ which means $m_l$ ans $m_s$ are no longer constants of motion. Clearly it is important to choose a basis which suits the perturbation we're doing.
+
+### Final Result for Spin Orbit
+
+Using
+$$
+\hat{H_2} \propto\frac{1}{r}\frac{\partial U(r)}{\partial r}\underline{\hat{s}}\cdot\underline{\hat{l}}
+$$
+
+We can find perturbed energy:
+
+$$
+\Delta E_{SO} = \big<\hat{H_2}\big> = \beta_{n,l} \frac{1}{2}\{j(j+1) - l(l+1) - s(s+1)\}\hbar^2
+$$
+
+Where for hydrogen molecules:
+$$
+\beta_{nl} = \frac{\mu_0Z^4g_s\mu_b^2}{4\pi}\frac{1}{n^3a_0^3l(l+1/2)(l+1)}
+$$
+For single electron atoms (alkalis) j has twofold degenerac $j =l\pm 1/2$ so energy levels are split in two.  
 ## LS-Coupling
 
 In these notes we assume LS-Coupling because it's super convenient and I like it. In LS coupling $\bold{J}= \bold{L} +\bold{S}$ which in vector model terms means that $\bold{L}$ and $\bold{S}$ couple to precess around $\bold{J}$ which makes $L,S,J,$ and $M_J$ good quantum numbers but $M_L$ and $M_S$ obviously not.
