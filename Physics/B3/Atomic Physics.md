@@ -274,7 +274,7 @@ $$
     &=\frac{1}{2}I\omega^2 + \frac{1}{2}I(\omega^\prime cos\theta)^2 \pm I\omega\omega^\prime cos\theta
 \end{aligned}
 $$
-Assuming precessional motion to be slow compared to origional angular velocity we can say that $\omega^\prime \llless \omega$ which means $(\omega^\prime cos\theta)^2 \llless \omega^2$ this means the energy change $\Delta E = E^\prime - E$ is:
+Assuming speed at which the axis precesses to be slow compared to original angular velocity we can say that $\omega^\prime \llless \omega$ which means $(\omega^\prime cos\theta)^2 \llless \omega^2$ this means the energy change $\Delta E = E^\prime - E$ is:
 $$
 \begin{aligned}
 \Delta E &= I\omega\omega^\prime cos\theta\\
@@ -296,7 +296,7 @@ Now we can say that
 $$
 \begin{aligned}
 \hat{H}_2 &=  -\underline{\hat{\mu}} \cdot\underline{B}\\
-\Delta E &= -\big<-\underline{\hat{\mu}} \cdot\underline{B}\big>  
+\Delta E &= -\big<\underline{\hat{\mu}} \cdot\underline{B}\big>  
 \end{aligned}
 $$
 
@@ -417,7 +417,7 @@ Where for hydrogen molecules:
 $$
 \beta_{nl} = \frac{\mu_0Z^4g_s\mu_b^2}{4\pi}\frac{1}{n^3a_0^3l(l+1/2)(l+1)}
 $$
-For single electron atoms (alkalis) j has twofold degenerac $j =l\pm 1/2$ so energy levels are split in two.  
+For single electron atoms (alkalis) j has twofold degeneracy $j =l\pm 1/2$ so energy levels are split in two.  
 ## LS-Coupling
 
 In these notes we assume LS-Coupling because it's super convenient and I like it. In LS coupling $\bold{J}= \bold{L} +\bold{S}$ which in vector model terms means that $\bold{L}$ and $\bold{S}$ couple to precess around $\bold{J}$ which makes $L,S,J,$ and $M_J$ good quantum numbers but $M_L$ and $M_S$ obviously not.
