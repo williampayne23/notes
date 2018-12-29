@@ -27,6 +27,19 @@
     - [Doing the Work](#doing-the-work)
     - [Final Result for Spin Orbit](#final-result-for-spin-orbit)
   - [LS-Coupling](#ls-coupling)
+  - [Nuclear Effects](#nuclear-effects)
+    - [Hyperfine Structure](#hyperfine-structure)
+      - [Finding I](#finding-i)
+    - [Mass Effects](#mass-effects)
+    - [Field Effects](#field-effects)
+  - [External Magnetic Fields](#external-magnetic-fields)
+    - [Magnetic Effects in Fine Structure](#magnetic-effects-in-fine-structure)
+      - [Weak Field, No Spin, Normal Zeeman Effect](#weak-field-no-spin-normal-zeeman-effect)
+      - [Weak Field with Spin Orbit, Anomalous Zeeman](#weak-field-with-spin-orbit-anomalous-zeeman)
+      - [Strong Fields, Spin and Orbit, Paschen-Back Effect](#strong-fields-spin-and-orbit-paschen-back-effect)
+    - [Magnetic Effects In Hyperfine Structure](#magnetic-effects-in-hyperfine-structure)
+      - [Weak Field](#weak-field)
+      - [Strong Field, Back-Goudsmit](#strong-field-back-goudsmit)
 
 # Moving on from Hydrogen
 ## Hydrogen, the simple Hamiltonian
@@ -420,6 +433,247 @@ $$
 For single electron atoms (alkalis) j has twofold degeneracy $j =l\pm 1/2$ so energy levels are split in two.  
 ## LS-Coupling
 
-In these notes we assume LS-Coupling because it's super convenient and I like it. In LS coupling $\bold{J}= \bold{L} +\bold{S}$ which in vector model terms means that $\bold{L}$ and $\bold{S}$ couple to precess around $\bold{J}$ which makes $L,S,J,$ and $M_J$ good quantum numbers but $M_L$ and $M_S$ obviously not.
+In these notes we assume LS-Coupling because it's super convenient and I like it. In LS coupling $\underline{J}= \underline{L} +\underline{S}$ which in vector model terms means that $\underline{L}$ and $\underline{S}$ couple to precess around $\underline{J}$ which makes $L,S,J,$ and $M_J$ good quantum numbers but $M_L$ and $M_S$ obviously not.
 
 <img src="./Figs/LSCoupling.jpg" alt="Figure Missing"/>
+
+## Nuclear Effects
+
+So far we assume the nucleus is simple, and pointlike with infinite mass, this is obviously not true! The effect of nucleic movement, distributed charge, and spinning leading to a magnetic field leads to corrections to the energy levels of an atom. 
+### Hyperfine Structure
+
+The magnetic affect mentioned is called hyperfine structure and we'll look at it below.
+
+Electronic magnetic moments are described by the equations provided by Quantum Physics.
+$$
+\underline{\mu}_s = -g_s\frac{\mu_B}{\hbar}\underline{s}\\
+\ \\
+\underline{\mu}_l = -g_l\frac{\mu_B}{\hbar}\underline{l}\\
+\ \\
+\underline{\mu}_j = \underline{\mu_s} + \underline{\mu}_l
+$$
+
+$g_s = 2$ adn $g_l = 1$ (with s and l in units of $\hbar$). The coefficient $\mu_B$ is the bohr magneton, $\mu_B = \frac{e\hbar}{2m}$ for the Nuclear moment we have,
+
+$$
+\underline{\mu}_I = g_I\frac{\mu_N}{\hbar}\underline{I}\\
+g_I\sim1\\
+\mu_N = \mu_B \times \frac{m_e}{m_p}\\
+$$
+
+$\underline{I}$ is the vector operator for total nuclear spin. The relationship between $\mu_N$ and $\mu_B$ means that $\underline{\mu}_I \llless \underline{\mu}_s, \underline{\mu}_l$ so the magnetic interaction will be small. This leads to a much slower precession which is great because that means $\underline{I}$ and $\underline{J}$ will remain nice and well defined. We can write the perturbation as:
+
+$$
+\hat{H}_3 = -\underline{\hat{\mu}}_I \cdot \underline{\hat{B}}_{el}
+$$
+
+The magnetic field is proportional to the total angular momentum of electrons $\underline{J}$ and we've seen that $\underline{\mu}_I \propto \underline{I}$ so we get a constant of proportionality $A_J$. 
+
+$$
+\hat{H}_3 = A_J I\cdot J. 
+$$
+
+> Toby derives $A_J$ but the lecturer seems to think it isn't important.
+
+Let's let $\underline{F} = \underline{I} + \underline{J}$ this gives:
+
+$$
+\underline{I}\cdot\underline{J} = \frac{1}{2}(\underline{F}^2 - \underline{I}^2 - \underline{J}^2)\\
+\ \\
+\implies \Delta E_3 = \frac{A_J}{2}\bigg(F(F+1) - I(I+1) - J(J+1)\bigg)
+$$
+
+This leads to the useful interval rule,
+
+$$
+\Delta E_F = \Delta E(F) - \Delta E(F-1) \sim A_J F
+$$
+
+The number of levels produced by hyperfine splitting depends on the values of F, these follow the rule:
+$$
+\text{number of levels}= \bigg\{
+\begin{gathered}
+    2I+1\ \text{ if }\ I<J\\
+    2J+1\ \text{ if }\ J<I
+\end{gathered}
+$$
+
+#### Finding I
+
+To find I we need to examine the hyperfine structure. This structure has the selection rules,
+$$
+\Delta F = 0, \pm1 \text{ but not } 0\rightarrow0
+$$
+
+From there there are three methods:
+
++ **Interval Rule** The interval between $F$ and $F-1$ is proportional to the higher level, ($F$) we can use this to find $I$ if we know $J$
++ **Number of Spectral Lines** using the degeneracy rules above we can find $I$ if we know $I<J$.
++ **Relative Intensities** the realtive intensities of spectral components is proportional to the statistical weight of the $2F+1$ hyperfine structure levels. So we can find $I$ if we know $J$
+
+### Mass Effects
+NOT ON SYLLABUS
+### Field Effects
+NOT ON SYLLABUS
+
+## External Magnetic Fields
+
+A final thing to consider the perturbation provided by a magnetic field and how that affects our previous energy levels. It's clear that the hamiltonian for this perturbation would be:
+
+$$
+\hat{H}_{mag} = \underline{\mu}_{atom} \cdot \underline{B}_{ext}
+$$
+
+Where does this sit on our hierarchy of perturbations? Most laboratory magnets are stronger than the hyperfine perturbation and weaker than the electrostatic (and Central Field), this means we only need to figure out where it sits with regard to the spin orbit (which is annoyingly difficult).
+
+### Magnetic Effects in Fine Structure
+
+#### Weak Field, No Spin, Normal Zeeman Effect
+
+Without spin (and spin orbit) we have $\underline{\mu}_{atom} = \underline{\mu}_L$ so 
+$$
+\Delta E_Z = g_L\mu_B\underline{L}\cdot\underline{B}\\
+\Delta E_Z = g_L\mu_BB_{ext}M_L
+$$
+
+This results from $\underline{L}$ precessing around $\underline{B}$ and is called Larmor precession it results in breaking the degeneracy of $M_L$. This splits the observed spectra up into three because of the selection rules of $\Delta M_L = 0, \pm1$ so we get $\omega \rightarrow \omega, \omega \pm \Delta\omega$ where
+$$
+\Delta\omega = \Delta E_Z/\hbar = \mu_B B_{ext}/\hbar
+$$
+
+This three splitting is called normal zeeman effect.
+
+
+<img src="./Figs/Zeeman.png" alt="Figure Missing"/>
+
+#### Weak Field with Spin Orbit, Anomalous Zeeman
+
+Recall that for spin orbit we needed to use new wavefunctions with different quantum numbers $|n,L,S,J,M_J\big>$. With spin included our perturbation becomes,
+
+$$
+\begin{aligned}
+\Delta E_{AZ} &= \big<-\underline{\mu}_J\cdot\underline{B}_{ext}\big>\\
+&= g_J\mu_B|\underline{B}_{ext}|\big<\hat{J}_z\big>
+\end{aligned}
+$$
+
+With $\underline{B}_{ext}$ oriented in the z direction. BUT WHAT IS $g_J$?
+
+> Supposedly this is a question examiners really like.
+
+To find $g_J$ we can write $\mu_J$ in it's other definition $\mu_J = \mu_S + \mu_L$ this gives us:
+
+$$
+\Delta \hat{H}_{AZ} = g_L\mu_B\underline{L}\cdot\underline{B}_{ext} + g_S\mu_B\underline{S}\cdot\underline{B}_{ext}
+$$
+
+But what do the dot products evaluate to? This isn't so much of a problem as we only want the time average for $\Delta E_{AZ}$ so we actually need to look at the dot products of their projections onto J which average stay constant while other components average to zero.
+
+> This is because the precess around J in spin-orbit.
+
+This gives us...
+
+$$
+\Delta E_{AZ} = g_L\mu_B\bigg<\frac{|\underline{L}\cdot \underline{J}|}{|\underline{J}|^2}\underline{J}\cdot\underline{B}_{ext}\bigg> + g_S\mu_B\bigg<\frac{|\underline{S}\cdot \underline{J}|}{|\underline{J}|^2}\underline{J}\cdot\underline{B}_{ext}\bigg>
+$$
+
+We know how to do the dot products $\underline{L}\cdot \underline{J}$ and $\underline{S}\cdot \underline{J}$ also we know $g_L = 1$ and $g_S = 2$ so we get:
+$$
+\begin{aligned}
+\Delta E_{AZ} &= \mu_B\bigg<\frac{3\underline{J}^2 - \underline{L}^2 + \underline{S}^2}{2\underline{J}^2}J_zB_{ext}\bigg>\\
+\ \\
+&=\frac{3J(J+1) - L(L+1) + S(S+1)}{2J(J+1)}\mu_B B_{ext}M_J
+\end{aligned}
+$$
+
+This is the same as $g_J\mu_BB_{ext}M_J$ which we got before so we have that,
+$$
+\Delta E_{AZ} = g_J\mu_BB_{ext}M_J\\
+\ \\
+g_J = \frac{3J(J+1) - L(L+1) + S(S+1)}{2J(J+1)}
+$$
+
+This breaks the degeneracy in M_J, lines split differently because of the half contribution of spin and the different size due to the complicated $g_J$
+
+
+<img src="./Figs/Anomalous_Zeeman.jpg" alt="Figure Missing"/>
+
+#### Strong Fields, Spin and Orbit, Paschen-Back Effect
+
+A strong field means $\underline{S}$ and $\underline{L}$ precess much faster around $\underline{B}_{ext}$ and are independent which means $\underline{J}$ isn't such a good quantum number. Now it's good to use $|n, L, S, M_L, M_S\big>$ This gives us:
+$$
+\Delta E_{PB} = (M_L + 2M_S)\mu_BB_{ext}
+$$
+
+Which is much simpler tbh. We then need to apply the spin orbit correction onto this which means finding $<\underline{S}\cdot\underline{L}>$ but $\underline{S}$ and $\underline{L}$ are precessing so fast around $\bold{\hat{z}}$ that only the $z$ components matter so we get
+$$
+\xi<\underline{S}\cdot\underline{L}> = \xi M_LM_S
+$$
+
+We have six states for L = 1, ($M_L=1,0,-1, M_S=-1/2,+1/2$) which lead to shifts in spin orbit of ($\xi/2, 0, -\xi/2, -\xi/2, 0, \xi/2$), ignoring the relatively small spin orbit effect we get equally spaced energy levels, the selection rules are $\Delta M_L = 0, \pm1$ and $\Delta S = 0$ since the spin plays no part in the transition we should get a triplet similar to the Normal Zeeman effect and we do!
+
+
+<img src="./Figs/Paschen_Back.png" alt="Figure Missing"/>
+
+Putting this all together we get this diagram:
+
+
+<img src="./Figs/AllTogetherMagnet.jpg" alt="Figure Missing"/>
+
+### Magnetic Effects In Hyperfine Structure
+
+If we add an external field the hyperfine perturbation becomes
+
+$$
+\hat{H}_3^\prime = A_J\underline{I}\cdot\underline{J} + g_J\mu_B\underline{J}\cdot\underline{B}_{ext} - g_I\mu_N\underline{I}\cdot\underline{B}_{ext}
+$$
+As $\mu_I << \mu_J$ we can neglect the third term. If $A_J\underline{I}\cdot\underline{J}>>g_J\mu_B\underline{J}\cdot\underline{B}_{ext}$ we can call B a weak field, and if $A_J\underline{I}\cdot\underline{J}<<g_J\mu_B\underline{J}\cdot\underline{B}_{ext}$ it's a strong field.
+
+#### Weak Field
+In the weak field we have hyperfine effects so F is our good quantum number. This means that
+$$
+\Delta E_F = -\underline{\mu}_F\cdot\underline{B}_{ext}\\
+$$
+
+We can do this the same as the anomalous zeeman effect,
+
+$$
+\underline{\mu}_F = g_F\mu_B\underline{F}\\
+\underline{\mu}_F = g_J\mu_B\frac{\underline{J}\cdot\underline{F}}{|\underline{F}|^2}\underline{F}
+$$
+Here we ignore the $I$ component as it is tiny compared to the $J$ component. Using $F=I+J$ and our vector dot product trick we get,
+
+$$
+g_F = g_J\frac{F(F+1) + J(J+1) - I(I+1)}{2F(F+1)}
+$$
+
+This leads to a hfs term
+
+$$
+\Delta E = \frac{A_F}{2}\bigg(F(F+1)+ J(J+1) - I(I+1)\bigg) + g_F\mu_B\underline{F}\cdot\underline{B}_{ext}
+$$
+
+Which gives a simple degeneracy in $M_F$
+
+
+<img src="./Figs/hyperfinesplittingweak.jpg" alt="Figure Missing"/>
+
+#### Strong Field, Back-Goudsmit
+
+In a strong field $J$ couples more strongly to $B_{ext}$ than to $I$ this means the $F$ isn't a good quantum number but $M_J$ is. 
+>$M_J$ is the component of $J$ in z direction which is chosen as the direction of the field. 
+
+As $\underline{J}$ is precessing around $\underline{B}_{ext}$ and $\underline{I}$ precesses slower around the constant part of $\underline{J}$ we get 
+$$
+\Delta E \propto \big<\underline{I}\cdot\underline{J}_z\big>
+$$
+
+So the strong shifts become:
+
+$$
+\Delta E_{BG} = A_JM_IM_J + g_J\mu_BM_JB_{ext}
+$$
+
+The resulting splitting looks like this with $M_F$ remaining a good quantum number.
+
+<img src="./Figs/hyperfinesplitting.jpg" alt="Figure Missing"/>
