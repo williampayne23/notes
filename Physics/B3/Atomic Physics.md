@@ -49,6 +49,19 @@
     - [Fine Structure](#fine-structure)
     - [X-Ray Absorption](#x-ray-absorption)
     - [Auger Effect](#auger-effect)
+- [Molecules](#molecules)
+  - [Molecular Energy Estimations](#molecular-energy-estimations)
+    - [Electronic Energy](#electronic-energy)
+    - [Vibrational Energy](#vibrational-energy)
+    - [Rotational Energy](#rotational-energy)
+  - [Another Complicated Hamiltonian](#another-complicated-hamiltonian)
+  - [The Born-Oppenheimer Approximation](#the-born-oppenheimer-approximation)
+    - [Rotational and Vibrational Energies](#rotational-and-vibrational-energies)
+    - [Whats the Effective Potential here though](#whats-the-effective-potential-here-though)
+    - [Spectroscopic Notation](#spectroscopic-notation-1)
+    - [Selection Rules](#selection-rules-1)
+      - [With no change in electronic states](#with-no-change-in-electronic-states)
+      - [Transitions with a change of electronic state](#transitions-with-a-change-of-electronic-state)
 
 # Moving on from Hydrogen
 ## Hydrogen, the simple Hamiltonian
@@ -807,7 +820,8 @@ Two things can happen when X-Rays are absorbed, either an electron is moved to a
 
 The creation of a vacancy can have the simple effect of an electron filling empty level but it cal also result in the ejection of another electron as it gains energy from an electron filling the empty level like so:
 
-<img src="./Figs/XRayAuger.jpg" alt="Figure Missing"/>
+<img src="./Figs/XRayAuger.jpg" 
+alt="Figure Missing"/>
 
 The kinetic energy provided is equal to the energy produced by the transition minus the ionation potential of the auger electron, in the above case this gives:
 
@@ -816,3 +830,186 @@ KE = (E_K-E_L) - E_L
 $$
 
 There are now two vacancies in the $L$ shell which could be simply filled or produce more auger effects.
+
+# Molecules
+
+Time to take a dip into the domain of chemistry, diatomic molecules. A diatomic molecule is a useful first step because the is always rotational symmetry around the axis that joins the two.
+
+## Molecular Energy Estimations
+
+It's useful to get an idea about the scale of various contributions to energy with some order of magnitude estimates.
+
+### Electronic Energy
+
+If our valence electron is confined to the region of size $a$ then we can use the uncertainty principle:
+
+$$
+\Delta x\Delta p = \frac{\hbar}{2} \rightarrow p \sim \frac{\hbar}{a}
+$$
+
+We can then estimate electronic energy $E_e$ as it'll be of the same order as the kinetic energy
+
+$$
+E_e \sim \frac{p^2}{2m_e} = \frac{\hbar^2}{2m_ea^2}
+$$
+
+If we have that $a\sim a_0$ then $E_e$ is around $eV$ we can also get a timescale with $\tau_e = \hbar/E_e$.
+
+### Vibrational Energy
+
+We can find vibrational energy by assuming the molecule can be treated as a classical harmonic oscillator. This means
+$$ 
+V_{vib}(x) = \frac{1}{2}\mu\omega_{vib}^2x^2\\
+\text{where}\\
+\mu = \text{reduced mass} = \frac{m_1m_2}{m_1 + m_2}
+$$
+
+At $x\sim a$ all the electronic energy should be vibrational energy so we get
+
+$$
+\frac{1}{2}\mu\omega_{vib}^2x^2 \sim \frac{\hbar^2}{2m_ea^2} \rightarrow \omega_{vib} \sim \bigg(\frac{\hbar^2}{\mu m_ea^4}\bigg)\\
+\implies E_{vib} \sim \sqrt{\frac{m_e}{\mu}}E_e
+$$
+
+So vibrational energy is smaller than electronic energy by around an order of 100.
+
+### Rotational Energy
+
+We can treat the molecule as a rigid rotator and ignore the rotation about the axis of symmetry (the axis joining the atoms) as this is a very small moment of inertia. The moment of inertia of the perpendicular axis is $I=\mu a^2$ since angular momentum ($L$) is around $\hbar$ we can say that
+$$
+L \sim I\omega_{rot} \sim \hbar \rightarrow \omega_{rot} \sim \frac{\hbar}{I} \sim \frac{\hbar}{\mu a^2} 
+$$
+
+This gives a rotational energy of:
+
+$$
+E_{rot} = \frac{1}{2}I\omega_{rot}^2 = \frac{m_e}{\mu}E_e
+$$
+
+So order $10000$ smaller than $E_e$ and $100$ smaller than $E_{vib}$. So
+
+$$
+E_e \gg E_{vib} \gg E_{rot}\\
+\tau_e \ll \tau_{vib} \ll \tau_{rot} 
+$$
+
+## Another Complicated Hamiltonian
+
+Now we can try actually guessing the Hamiltonian,
+
+$$
+H_\text{molecular} = \underbrace{T_n}_\text{KE of nuclei} + \underbrace{T_e}_\text{KE of electrons} + \underbrace{V(\underline{r}_i, \underline{R})}_\text{Potential Energy}
+$$
+
+These terms are
+
+$$
+T_n = -\frac{\hbar^2}{2\mu}\nabla^2_R\\
+T_e = -\sum^N_i\frac{\hbar^2}{2m_e}\nabla^2_{r_i}\\
+V(\underline{r}_i,\underline{R}) = \underbrace{\sum_j^2\sum_i^N\bigg(-\frac{Z_je^2}{4\pi\epsilon_0|\underline{r}_i - \underline{R}_j|}\bigg)}_\text{electron-nuclear interaction} + \underbrace{\sum_{i<j>}^N\frac{e^2}{4\pi\epsilon_0|\underline{r}_i - \underline{r}_j|}}_\text{electron-electron repulsion} + \underbrace{\frac{Z_1Z_2e^2}{4\pi\epsilon_0|\underline{R}|}}_\text{internuclear repulsion}
+$$
+
+Where $\underline{R}_{1,2}$ are the positions of the nuclei relative to center of mass. The origin is on the center of mass. This means that we can write the wavefunction:
+
+$$
+|\psi\big> = |\psi_n\big>|\psi_e\big>
+$$
+
+We can split the electronic energy with $H_e = T_e + V(\underline{r}_i,\underline{R})$ which gives us our TISE:
+
+$$
+[T_n + H_e]|\psi_n\big>|\psi_e\big> = E|\psi_n\big>|\psi_e\big>
+$$
+
+Multiplying by $\big<\psi_e|$ we get:
+
+$$
+\big<\psi_e|T_n + H_e | |\psi_n\big>|\psi_e\big> = E|\psi_n\big>\\
+\implies \bigg\{\big<\psi_e|T_n|\psi_e\big> + E_e(R)\bigg\}|\psi_n\big> = E|\psi_n\big>
+$$
+
+## The Born-Oppenheimer Approximation
+
+We can make the Born-Oppenheimer Approximation
+
+> Born-Oppenheimer Approximation $\implies$ Electronic wavefunction has weak dependence on the magnitude $R$ of internuclear separation so only the angular part of $T_n$ acts on $|\psi_e\big>$
+
+This gives the mathematical mess that is:
+
+$$
+H_e|\psi_e\big> = E_e|\psi_e\big>\\
+\ \\
+\bigg[-\frac{\hbar^2}{2\mu R^2}\frac{\partial}{\partial R}\bigg(R^2\frac{\partial}{\partial R}\bigg) + \frac{\big<\psi_e|\underline{N}^2|\psi_e\big>}{2\mu R^2} + E_e(R)\bigg]|\psi_n\big> = E|\psi_n\big>
+$$
+
+Where $\underline{N}$ is orbital angular momentum operator of the nuclei.
+
+### Rotational and Vibrational Energies
+
+The total angular momentum of electrons and nuclei
+
+$$
+\underline{K} = \underline{N} + \underline{L}
+$$
+
+In closed systems
+
+$$
+K^2|\psi\big> = K(K+1)\hbar^2|\psi\big>\\
+K_z|\psi\big> = M_K\hbar|\psi\big>
+$$
+
+Because of the axis of symmetry about the axis $L_z$ is constant. $\underline{N}\perp\underline{R}$ by definition so we have $K_z = L_z = \Lambda\hbar$ ($M_L = \Lambda$ by convention)
+
+Remember we need to evaluate $\big<\psi_e|\underline{N}^2|\psi_e\big>$ but we have that $\underline{N}^2 = \underline{K}^2 - \underline{L}^2 - 2\underline{N}\cdot\underline{L}$
+
+As L precesses rapidly we can say that only $L_z$ matters in a time average. 
+$$
+\big<\psi_e|\underline{N}\cdot\underline{L}|\psi_e\big> = 0\ \text{ and }\ \big<\psi_e|\underline{L}^2|\psi_e\big> = \big<\psi_e|L_z^2|\psi_e\big> = \Lambda^2\hbar^2
+$$
+
+This and the fact we can split $\psi_n(\underline{R})$ into $\phi_{vib}(R)\psi_{rot}(\theta\phi)$ gives
+
+$$
+\hat{H}_vib = -\frac{\hbar^2}{2\mu}\frac{\partial^2}{\partial R^2} + V_{eff}(R)\\
+V_{eff}(R) = E_e(R) + \frac{[K(K+1) - \Lambda^2]\hbar^2}{2\mu R^2}
+$$
+
+### Whats the Effective Potential here though
+
+I'll be honest, all I have here is toby and I'm not sure how useful what he's saying is so I'll just write the result:
+
+$$
+E = E_e(R_0) + \bigg(\nu + \frac{1}{2}\bigg)\hbar\omega_{vib} + B_rK(K+1)\\
+\ \\
+\text{where}\\
+\ \\
+\omega_{vib} = \bigg(\frac{K_s}{\mu}\bigg)^{1/2}\\
+\ \\
+K_s = \frac{d^2E_e}{dR^2}\bigg|_{R_0}\\
+\ \\
+B_r = \frac{\hbar^2}{2\mu R_0^2} = \frac{\hbar^2}{2I_M}
+$$
+
+### Spectroscopic Notation
+
+Toby writes a bit about spectroscopic notation for molecules but I'm not sure it's needed.
+
+### Selection Rules
+
+#### With no change in electronic states
+
+$$
+\Delta K = 0, \pm1 \text{ except for } \Delta K = \pm1 \text{ for } \Lambda = \Delta\Lambda = 0\\
+\Delta\nu = \pm1  
+$$
+
+#### Transitions with a change of electronic state
+$$
+\Delta S = 0\\
+\Delta \Lambda = 0, \pm1\\
+\Sigma^\pm \rightarrow \Sigma^\pm\\
+g \rightarrow u 
+$$
+
+Where $\Sigma^\pm$ is the symmetry of $\Sigma$ states ($\Lambda$ can be $\Sigma, \Pi, \Delta$) and $g$ and $u$ represent symmetric and antisymmetric states in homonuclear (diatomic molecules with two of the same element) case.
