@@ -54,6 +54,10 @@
   - [Fields of a uniformly moving point charge](#fields-of-a-uniformly-moving-point-charge)
   - [Electromagnetic Potential as a 4-Vector](#electromagnetic-potential-as-a-4-vector)
   - [4-Current](#4-current)
+- [Lagrangians](#lagrangians)
+  - [The Classical Lagrangian](#the-classical-lagrangian)
+  - [Relativistic Lagrangian Density](#relativistic-lagrangian-density)
+  - [Motion of a Charged Particle in an Electromagnetic Field](#motion-of-a-charged-particle-in-an-electromagnetic-field)
 
 # Linear Algebra Returns
 
@@ -1041,3 +1045,98 @@ $$
 \Box^2A &= \frac{-1}{c^2\epsilon_0}J &\text{with } \Box\cdot A = 0
 \end{aligned}
 $$
+
+# Lagrangians
+
+## The Classical Lagrangian
+
+We used to define the classical lagrangian as
+$$
+\mathcal{L}(q_i, \dot{q}_i, t) = T - V
+$$
+
+The path is then the one where the action integral 
+$$
+S[q(t)] = \int_{t_1}^{t^2}\mathcal{L}(q_i, \dot{q}_i, t)dt = \int_{t_1}^{t^2}\gamma\mathcal{L}(q_i, \dot{q}_i, t)d\tau
+$$
+
+is stationary. The maths is complicated but the resulting equations of motion are:
+
+$$
+\frac{d}{dt}\bigg(\frac{\partial \mathcal{L}}{\partial \dot{q}_i}\bigg) = \frac{\partial \mathcal{L}}{\partial q_i}\\
+p_i = \frac{\partial\mathcal{L}}{\partial\dot{q}_i}
+$$
+
+The result of the equations of motion is not a property of the particle but rather a property of the functions themselves, this is nice because it means it doesn't fall apart completely with special relativity so long as we find a Lagrangian which is consistent with it. Currently T-V isn't frame invariant and the Lagrangian gives a special place to time.
+
+A good example would be 
+
+$$
+\mathcal{L} = \frac{1}{2}mg_{ij}\dot{q}^i\dot{q}^j - V(q^i, q^j)
+$$
+
+Here we've written the classical Lagrangian in terms of Lorenz invariant scalars.
+
+## Relativistic Lagrangian Density
+
+For some relativistic field $\Phi$ which could be any rank of tensor the **Lagrangian density** is:
+
+$$
+\mathcal{L} = \mathcal{L}(\Phi, \partial_\mu\Phi, \tau)
+$$
+
+Here the action integral is over all four dimensions
+
+$$
+\mathcal{S} = \int \mathcal{L}(\Phi, \partial_\mu\Phi, \tau)d^4\underline{x}
+$$
+
+This gives the equations of motion:
+
+$$
+\partial_\mu \bigg(\frac{\partial\mathcal{L}}{\partial(\partial^\mu\Phi)}\bigg) = \frac{\partial L}{\partial \Phi}
+$$
+
+## Motion of a Charged Particle in an Electromagnetic Field
+
+The Lagrangian for a free particle is:
+$$
+\mathcal{L}_\text{free} = -\frac{mc^2}{\gamma}
+$$
+
+Chosen as it gives the correct equation of motion
+
+$$
+\frac{d}{dt}(\gamma m\underline{v}) = 0
+$$
+
+The lagrangian for the interaction with an electric field gives:
+
+$$
+\mathcal{L}_\text{int} = q(-\phi + \underline{v}\cdot\underline{A})
+$$
+
+If we have $\mathcal{L} = \mathcal{L}_\text{free} + \mathcal{L}_\text{int}$ then we can get some equations of motion:
+
+$$
+\frac{d}{dt}(\gamma m\underline{v}) = q\bigg(-\nabla\phi + \nabla(\underline{v}\cdot\underline{A} - \frac{d\underline{A}}{dt})\bigg)\\
+\underline{p} = \gamma m \underline{v} + q\underline{A}
+$$
+
+We can say that:
+
+$$
+\frac{d\underline{A}}{dt} = \frac{\partial\underline{A}}{\partial t} + (\underline{v}\cdot\nabla)\underline{A}
+$$
+
+Which in the end (with some vector identities) allows us to write:
+
+$$
+\begin{aligned}
+\underline{F} &= \frac{d}{dt}(\gamma m\underline{v})\\
+&= -q\bigg(\nabla\phi + \frac{\partial \underline{A}}{\partial t}\bigg) + q(\underline{v}\times(\nabla\times\underline{A}))\\
+&= q(E + \underline{v}\times\underline{B})
+\end{aligned}
+$$
+
+So we can get the lorenz force using the Lagrangian!
