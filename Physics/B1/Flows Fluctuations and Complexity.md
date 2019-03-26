@@ -37,6 +37,15 @@
       - [Waves and incompressibility](#waves-and-incompressibility)
       - [Non-Linear Waves](#non-linear-waves)
         - [Physics](#physics)
+  - [Instabilities and Turbulence](#instabilities-and-turbulence)
+    - [Some instabilities](#some-instabilities)
+      - [Convective Instability (Rayleigh-Bernard)](#convective-instability-rayleigh-bernard)
+        - [Rayleigh-Benard convection](#rayleigh-benard-convection)
+      - [Rayleigh-Plateau](#rayleigh-plateau)
+      - [Rayleigh-Taylor](#rayleigh-taylor)
+      - [Kelvin-Helmholtz](#kelvin-helmholtz)
+    - [Turbulence](#turbulence)
+      - [Kolmogorov Scaling](#kolmogorov-scaling)
 - [Dynamical Systems](#dynamical-systems)
   - [Flows in Phase Space](#flows-in-phase-space)
   - [Two Dimensional Phase Space](#two-dimensional-phase-space)
@@ -54,9 +63,12 @@
     - [Hopf Bifurcations](#hopf-bifurcations)
       - [Supercritical Hopf](#supercritical-hopf)
       - [Subcritical Hopf](#subcritical-hopf)
-  - [The Strange Attractor](#the-strange-attractor)
   - [Aperiodicity and Predictability in Simple Chaotic Systems](#aperiodicity-and-predictability-in-simple-chaotic-systems)
   - [Lyapunov Exponents](#lyapunov-exponents)
+  - [The Lorenz attractor](#the-lorenz-attractor)
+    - [Fixed Points and Stability](#fixed-points-and-stability)
+    - [The Strange Attractor](#the-strange-attractor)
+    - [Lyapanov Exponents](#lyapanov-exponents)
 - [Ideal Fluid Examples](#ideal-fluid-examples)
   - [Hydraulic Jumps](#hydraulic-jumps)
   - [Bath Plug Vortex](#bath-plug-vortex)
@@ -75,6 +87,8 @@ Another useful way is to draw *streamlines* which are curves in the direction of
 $$
 \frac{dx}{u_x} = \frac{dy}{u_y} = \frac{dz}{u_z} = dt
 $$
+
+But are obviously drawn very similarly to flow fields.
 
 ### Stream Function
 
@@ -366,7 +380,7 @@ $$
 \frac{\underline{u}\cdot\underline{u}}{2} + \frac{p}{\rho} + gz = B(\psi)
 $$
 
-This is a form of *Bernoulli's theorem* basically along a streamline of constant height (potential enrgy) when pressure is low velocity is high and vice versa. It's basically a statement of conservation of energy:
+This is a form of *Bernoulli's theorem* basically along a streamline of constant height (potential energy) when pressure is low velocity is high and vice versa. It's basically a statement of conservation of energy:
 
 $$
 \underbrace{\overbrace{P_1}^\text{Pressure Energy} + \overbrace{\frac{1}{2}\rho v^2_1}^\text{KE density} + \overbrace{\rho gh_1}^\text{Potential Density}}_\text{Energy Density Before} = \underbrace{\overbrace{P_2}^\text{Pressure Energy} + \overbrace{\frac{1}{2}\rho v^2_2}^\text{KE density} + \overbrace{\rho gh_2}^\text{Potential Density}}_\text{Energy Density After}
@@ -505,11 +519,172 @@ The speed of sound usually increases with increasing pressure so the collapse of
 
 Sound waves can't break (peaks overtake troughs) like with water waves as those move in two dimensions and sound waves move only in one. instead a *wave shock* forms
 
+## Instabilities and Turbulence
+
+### Some instabilities
+
+#### Convective Instability (Rayleigh-Bernard)
+
+Think about an incompressible fluid whose density varies with height. If a fluid parcel is moved a small distance $\delta z$ in the vertical it would have a relative difference in density given by
+
+$$
+\delta\rho = -\frac{\partial\rho}{\partial z}\delta z
+$$
+> Note the difference between $\delta$ and $\partial$.
+
+This would mean the acceleration due to buoyancy is...
+
+$$
+-\frac{g\delta\rho}{\rho} = \frac{g}{\rho}\frac{\partial\rho}{\partial z}\delta z
+$$
+
+If $\partial\rho/\partial z \lt 0$ then the fluid is *stably stratified* a small displacement results in an oscillation of angular frequency... 
+
+$$
+\omega = \sqrt{-\frac{g}{\rho}\frac{\partial\rho}{\partial z}}
+$$
+
+But if $\partial\rho/\partial z \gt 0$ then the fluid is *unstably stratified* buoyancy force increases the displacement! This is what we call **convective instability**. This can be generalised to a compressible fluid but we have to think about the adiabatic expansion.
+
+Boiling a under a grill is stably stratified and on a hob is unstably stratified.
+
+##### Rayleigh-Benard convection
+
+Rayleigh-Benard convection is 2D convection between two isothermal plates at $z=0,H$ with temperatures $T_0, T_0 - \Delta T$ We get the equations of motion below:
+
+$$
+\frac{\partial u}{\partial t} + \bold{u}\cdot\nabla u + \frac{1}{\rho_0}\frac{\partial p}{\partial x} = \nu\nabla^2u,\\
+\frac{\partial\omega}{\partial t} + \bold{u}\cdot\nabla\omega + \frac{1}{\rho_0}\frac{\partial p}{\partial z} + g\frac{\rho-\rho_0}{\rho_0} = \nu\nabla^2\omega,\\
+\frac{\partial u}{\partial x} + \frac{\partial\omega}{\partial z} = 0,\\
+\frac{\partial T}{\partial t} + \bold{u}\cdot\nabla T = \kappa\nabla^2T,\\
+\rho = \rho_0[1-\alpha(T-T_0)]
+$$
+
+$\kappa$ is thermal diffusivity and  $\alpha$ is the thermal expansion coefficient. The *Boussinesq Approximation* is used here and says that all densities can be replaced with a constant reference value except when used in buoyancy.
+
+The equilibrium solution (no convection is)
+
+$$
+T_{eq} = T_0 - \frac{z}{H}\Delta T,\ \ u_{eq} = \omega_{eq} = 0,\ \ p_{eq}(z) = p_0 - \frac{\rho_0g\alpha\Delta Tz^2}{2H}
+$$
+
+Next we would expand around this solution for a general linear solution but I'm not made of time so I won't do that.
+
+The instability is controlled by a dimensionless parameter Ra called the *Reyleigh Number*. We can get an expression for this number by thinking about scaling arguments, if $\alpha=-\frac{1}{\rho_0}\frac{dp}{dT}$ and the length scale is $H$ then for a spherical fluid element of radius $r_0$:
+
++ The thermal relaxation time $\tau_Q$ can be approximated by the heat diffusion equation
+$$
+\kappa\nabla^2T = \frac{\partial T}{\partial t} \rightarrow \tau_Q\sim\frac{r_0^2}{\kappa}
+$$
++ The distance moved over this time is
+$$
+\delta z \sim u_0\tau_Q
+$$
++ The difference in temperature between the fluid particle and the rest of the fluid is
+$$
+\delta T = \frac{\partial T}{\partial z}\delta z \sim \frac{\Delta T}{H}u_0\tau_Q
+$$
++ The corresponding difference in density is
+$$
+\delta\rho = \frac{\partial\rho}{\partial T}\delta T \sim \rho_0\alpha\frac{\Delta T}{H}\frac{u_0r_0^2}{\kappa}
+$$
++ This gives an upthrust of
+$$
+\text{Upthrust} \sim \delta\rho Vg \sim \rho_0 g\alpha\frac{\Delta T}{H}\frac{u_0r_0^5}{\kappa}
+$$
++ The upthrust must be balanced by stokes drag which is
+$$
+D \sim \nu r_0 u_0 \sim \rho_0\nu r_0 u_0
+$$
+
+For Rayleigh-Benard convection we need buoyancy force to be more than stokes drag so...
+
+$$
+\text{Ra} = \frac{\alpha \Delta T gd^3}{\kappa\nu} \gt \bigg(\frac{d}{r_0}\bigg)^4 = \text{Ra}_\text{crit}
+$$
+
+Experimentally $\text{Ra}_\text{crit} \sim 1708$ so there. The Rayleigh number is a measure of convective energy transport.
+
+Actually there is a second non dimensional parameter the *Prandtl Number* this is given by $Pr = \frac{\nu}{\kappa}$. The prandtl number measures relative importance of molecular diffusion of momentum and heat. High $Pr$ means the fluid is viscous and unlikely to form convective rolls.
+
+#### Rayleigh-Plateau
+
+This instability explains why a falling stream of liquid breaks up into droplets and dew forms droplets instead of coating a surface.
+
+<img src="./Figs/Rayleigh-Plateau.jpg"/>
+
+It's due to one wavenumber of the normal modes of oscillations on the surface dominating over the others.
+
+#### Rayleigh-Taylor
+
+For two surfaces of different densities gravity is fighting with surface tension for how they move. For small wavelengths tension wins and a Rayleigh-Taylor instability occurs.
+
+<img src="./Figs/Rayleigh-Taylor.gif"/>
+
+#### Kelvin-Helmholtz
+
+This occurs at the interface between two fluids or sheer across fluids and is tied to momentum transfer. Think wind over the surface of the sea.
+
+<img src="./Figs/Kelvin-Helmholtz.gif"/>
+
+### Turbulence
+
+What is turbulence? There is not a complete theory of turbulence but it can be described by a few qualities:
++ Deterministic Chaos, described by N-S but in a way we can't quite understand.
++ Tied to thermal fluctuations as there is a sensitive dependence on initial conditions.
++ Velocity and vorticity fluctuate in an unpredictable but correlated way (not random)
+
+#### Kolmogorov Scaling
+
+Kolmogorov provides a useful scaling argument for turbulence approximately matches the experiment. Kolmogorov described turbulence in terms of an *energy cascade* energy injected into the system first goes to the largest vortex and then the next largest down to the smallest with no dissipation. Energy is only dissipated by viscosity at the scale of the smallest vortexes. For this scaling argument let:
+
++ $\epsilon$ be the rate of energy per unit mass flowing down the cascade.
++ $l$ be the characteristic vortex size.
++ $v_l$ be the velocity of vortices of size $l$
++ $\implies v_l^2$ is energy per unit mass of a vortex.
+
+We can use dimensional analysis to say
+
+$$
+\epsilon \sim \frac{v^3_l}{l}=\frac{v_l^2}{(l/v_l)}
+$$
+
+The range over $l$ which this works (the *inertial subrange*) is bounded by the length scale at which $\epsilon$ is injected above and the length scale at which dissipation starts to happen below.
+
+Let $\xi$ be the vortex size where dissipation begins to become important. This is where rate of energy flow is comparable to rate of energy dissipation.
+
+$$
+\begin{aligned}
+\text{Rate of energy flow}&\sim\text{Rate of energy dissipation}\\
+\epsilon\sim\frac{v_\xi^3}{\xi}&\sim\nu\frac{v_\xi^2}{\xi^2}
+\end{aligned}
+$$
+Our dissipation value is because we expect it to be proportional to $\nu$ and the rest is just dimensional analysis. This comes together to give...
+$$
+\xi \sim \nu^{3/4}\epsilon^{-1/4}\\
+v_\xi \sim (\nu\epsilon)^{1/4}
+$$
+
+We would expect these to give $Re=1$ and they do! So it's all working great!
+
+<img src="./Figs/Kolmogorov.jpg"/>
+
+The figure above shows the *energy cascade* across this length scale (these are log scales of both). Note that in the diagram $E\sim k^{-5/3}$ this can be explained with Kolomorogov reasoning...
++ $E(k)$ can't depend on $l$ as that doesn't allow energy to flow.
++ $E(k)$ can't depend on $\nu$ because there isn't any dissipation in the inertial range.
++ $\implies E(k)$ can only depend on $\epsilon$ and $k$. 
+
+By dimensional analysis we get...
+$$
+E(k) \sim \epsilon^{2/3} \times k^{-5/3}
+$$
+
+
 # Dynamical Systems
 A dynamical system is a set of equations which describe the time dependence of a point in geometric space. It is typically expressed as a set of differential equations applied to a vector for the state.
 
 ## Flows in Phase Space
-Even when a system can be solved analytically to give $t(x)$ or $x(t)$ it is sometimes easier to visualise it's behavior in *phase space*. This is a plot of $\dot{x}$ by $x$ and can give a better understanding of the stability of the system. Points where $\dot{x} = 0$ are fixed points.
+Even when a system can be solved analytically to give $t(x)$ or $x(t)$ it is sometimes easier to visualise it's behaviour in *phase space*. This is a plot of $\dot{x}$ by $x$ and can give a better understanding of the stability of the system. Points where $\dot{x} = 0$ are fixed points.
 
 The example provided in the notes (David Marshall Lecture 10) is this
 $$
@@ -669,7 +844,7 @@ It has fixed points at $x_0=0,\ x_0\pm\sqrt{-r}$ for $r<0$.
 
 <img src="./Figs/Bifurcation3.jpg" style='display: block;margin-left: auto;margin-right: auto;' width="90%"/>
 
-This isn't very physical as $\dot{x}$ tends to infinity at large x which is some big bangish infinite energy bullshit. We can fix it with an extra term and get some hysteresis as we vary $r$.
+This isn't very physical as $\dot{x}$ tends to infinity at large x which is some big bang-ish infinite energy bullshit. We can fix it with an extra term and get some hysteresis as we vary $r$.
 
 $$
 \dot{x} = rx + x^3 - x^5
@@ -714,24 +889,13 @@ This is the reverse, we get an unstable spiral which turns into a stable fixed p
 
 <img src="./Figs/Hopf2.jpg" style='display: block;margin-left: auto;margin-right: auto;' width="90%"/>
 
-## The Strange Attractor
-
-The strange attractor is a very weird concept, really it is best described with the example of the lorenz attractor but I'll do that later.
-
-The strange attractor results in a chaotic local system but is globally confined and results from the application of the continuity equation for phase space:
-
-$$
-\frac{\delta\dot{V}}{\delta V} = \frac{\partial\dot{x}}{\partial{x}} + \frac{\partial\dot{y}}{\partial{y}} + \frac{\partial\dot{z}}{\partial{z}} = -C
-$$
-
-Where C is positive (in the case of the Lorenz Attractor $C = \sigma + 1 + b$). This means volumes collapse to a confined space so even a chaotic system will be confined to a limited volume.
 
 ## Aperiodicity and Predictability in Simple Chaotic Systems
 
 The Lorenz attractor is an example of deterministic chaos (one of many in fluids). Deterministic chaotic systems are typically 
 + **Aperiodic in the long term** - don't settle into a fixed point or periodic orbit but may still be confined into a fixed region of space
 + **Sensitive to initial conditions** - small changes in initial conditions will cause large changes in the future.
-+ **Deterministic** - There is no randomness or stochasticity, the weirdness comes from the non-linear equations of motion. 
++ **Deterministic** - There is no randomness or stochasticicity, the weirdness comes from the non-linear equations of motion. 
 
 Toby sums it up by quoting Edward Lorenz himself:
 
@@ -743,13 +907,13 @@ Toby sums it up by quoting Edward Lorenz himself:
 Sometimes it is useful to look at how volumes expand or contract (like we did with the strange attractor) we can do this with Lyapunov Exponents here it their derivation:
 
 $$
-\delta\dot{\underline{x}} \approx J\delta\underline{x}
+\delta\dot{\underline{x}} \approx \mathcal{J}\delta\underline{x}
 $$
 
 This means
 
 $$
-\frac{D}{Dt}||\delta x||^2 = \frac{D}{Dt}(\delta\underline{x}^T\delta\underline{x}) = \delta\underline{\dot{x}}^T\delta\underline{x} + \delta\underline{x}^T\delta\underline{\dot{x}} \approx \delta\underline{x}^T(J+J^T)\delta\underline{x}
+\frac{D}{Dt}||\delta x||^2 = \frac{D}{Dt}(\delta\underline{x}^T\delta\underline{x}) = \delta\underline{\dot{x}}^T\delta\underline{x} + \delta\underline{x}^T\delta\underline{\dot{x}} \approx \delta\underline{x}^T(\mathcal{J}+\mathcal{J}^T)\delta\underline{x}
 $$
 
 So if $\delta\underline{x}$ is aligned to the eigenfunctions of $(J+J^T)/2$ with eigenvalue $\lambda_i$ then:
@@ -760,6 +924,92 @@ $$
 $$
 
 The result is only relevant for short times as it ignores $O(\delta\underline{x}^2)$ terms. The eigenvalues are real as $(J+J^T)/2$ is a symmetric matrix. The eigenvalues $\lambda_i$ are called the local Lyapunov Exponents, if they are large and positive then the system diverges along that eigenvector, large and negative means the system flattens along that vector and small ones mean oscillations can occur.
+
+## The Lorenz attractor
+
+The lorenz system was intended to be a model of Rayleigh-Benard convection (remember that from earlier!) but in a box. It has the equations...
+
+$$
+\begin{aligned}
+\dot{x} &= \sigma(y - x)\\
+\dot{y} &= rx - y - xz\\
+\dot{z} &= xy - bz
+\end{aligned}
+$$
+
+Here $r$ is the Rayleigh number, $\sigma$ is the Prandtl number, and $b$ is the aspect ratio of the box. $x$ is proportional to the strength of the convective moment, $y$ is proportional to the temperature difference between the ascending and descending currents, and $z$ is proportional to the distortion of the vertical temperature profile from linearity. Basically it is a model of Rayleigh convection but not a direct and easy to follow one! Let's analyse it anyway.
+
+### Fixed Points and Stability
+
+Our fixed points are given by
+
+$$
+x - y = 0\\
+x(r-1-z) = 0\\
+x^2 - bz = 0
+$$
+
+Which gives fixed points at...
+
+$$
+\bold{r}_1 = (0, 0, 0),\ \ \bold{r}_{2/3} = (\pm\sqrt{b(r-1)},\pm\sqrt{b(r-1)},r-1)
+$$
+
+We also have the Jacobian:
+$$
+\mathcal{J} = 
+\begin{pmatrix}
+  -\sigma & \sigma  & 0\\
+  r-z     & -1      & -x\\
+  y       &  x      & -b
+\end{pmatrix}
+$$
+
+For $\bold{r}_1$ the eigenvalues are 
+$$
+lambda = -\frac{1}{2}(1+\sigma) \pm \frac{1}{2}\sqrt{1-(2-4r)\sigma + \sigma^2},\ \ \lambda -b
+$$
+
+The $-b$ one shows trajectories converging always to $z=0$ The other set shows the point is stable for $r < 1$ and unstable for $r > 1$. Although it takes a bit more work we can show this is a supercritical pitchfork bifurcation. The whole system starts to look like this:
+
+<img src="./Figs/Strange.jpg"/>
+
+Notice the whole system becomes unstable at $r>r_H$ however they don't get kicked off into infinity they behave like a strange attractor!
+
+### The Strange Attractor
+
+The strange attractor is a very weird concept, it is a chaotic local system but is globally confined and results from the application of the continuity equation for phase space:
+
+$$
+\frac{\delta\dot{V}}{\delta V} = \frac{\partial\dot{x}}{\partial{x}} + \frac{\partial\dot{y}}{\partial{y}} + \frac{\partial\dot{z}}{\partial{z}} = -C
+$$
+
+Where C is positive (in the case of the Lorenz Attractor $C = \sigma + 1 + b$). This means volumes collapse to a confined space so even a chaotic system will be confined to a limited volume. For a lorenz attractor becomes very strange in this regime and looks a bit like this...
+
+<img src="./Figs/Strange2.jpg"/>
+
+### Lyapanov Exponents
+
+Let's look at the Lyapanov exponents for this system. We have 
+$$
+(\mathcal{J} + \mathcal{J}^T) = \begin{pmatrix}
+  -\sigma          & \frac{3}{2}\sigma& 0\\
+  \frac{3}{2}\sigma& -1               & 0\\
+  0                & 0                & -b
+\end{pmatrix}
+$$
+
+If we consider this in the regime $r=28, \sigma=10, \text{and } b=8/3$ Then at point $(0,0,r-2\sigma)$ we have the eigenvalues and eigenvectors.
+
+$$
+\begin{aligned}
+\lambda_1 &= -\frac{8}{3}, &\bold{u}_1 &= (0,0,1)\\
+\lambda_2 &= \frac{-11+3\sqrt{109}}{2}, &\bold{u}_2 &= \bigg(\frac{-3+\sqrt{109}}{10},1,0\bigg)\\
+\lambda_3 &= \frac{-11+3\sqrt{109}}{2}, &\bold{u}_3 &= \bigg(\frac{-3-\sqrt{109}}{10},1,0\bigg)
+\end{aligned}
+$$
+
+Which suggests a slow decay in the $z$ axis and fast growth and decay in the $x-y$ plane.
 
 # Ideal Fluid Examples
 An ideal fluid is a fluid is inviscid ($\nu = 0$) and of uniform density ($\nabla\rho=0$ and $\nabla\cdot\underline{u}=0$) In this limit we have
@@ -777,5 +1027,6 @@ A hydraulic jumps are produced when a fast moving region encounters a slow movin
 ## Bath Plug Vortex
 
 <!-- TODO: IDEAL FLUID EXAMPLE LECTURE 5 or 6 @20m-->
+
 
 
