@@ -957,7 +957,11 @@ $$
 
 We also have the Jacobian:
 $$
+<<<<<<< HEAD
 \mathcal{J} = 
+=======
+J = 
+>>>>>>> 639d0cb029fb89cc69160e3b96b2ef8da23dcb2d
 \begin{pmatrix}
   -\sigma & \sigma  & 0\\
   r-z     & -1      & -x\\
@@ -991,9 +995,14 @@ Where C is positive (in the case of the Lorenz Attractor $C = \sigma + 1 + b$). 
 ### Lyapanov Exponents
 
 Let's look at the Lyapanov exponents for this system. We have 
+<<<<<<< HEAD
 
 $$
 (\mathcal{J} + \mathcal{J}^T) = \begin{pmatrix}
+=======
+$$
+(J + J^T) = \begin{pmatrix}
+>>>>>>> 639d0cb029fb89cc69160e3b96b2ef8da23dcb2d
   -\sigma          & \frac{3}{2}\sigma& 0\\
   \frac{3}{2}\sigma& -1               & 0\\
   0                & 0                & -b
