@@ -991,6 +991,7 @@ Where C is positive (in the case of the Lorenz Attractor $C = \sigma + 1 + b$). 
 ### Lyapanov Exponents
 
 Let's look at the Lyapanov exponents for this system. We have 
+
 $$
 (\mathcal{J} + \mathcal{J}^T) = \begin{pmatrix}
   -\sigma          & \frac{3}{2}\sigma& 0\\
