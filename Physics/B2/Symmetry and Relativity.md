@@ -53,7 +53,14 @@
     - [Putting them together](#putting-them-together)
   - [Fields of a uniformly moving point charge](#fields-of-a-uniformly-moving-point-charge)
   - [Electromagnetic Potential as a 4-Vector](#electromagnetic-potential-as-a-4-vector)
-  - [4-Current](#4-current)
+    - [4-Current](#4-current)
+    - [Putting it into practice.](#putting-it-into-practice)
+      - [Retarded potentials](#retarded-potentials)
+      - [Potential of An Arbitrarily Moving Point Charge.](#potential-of-an-arbitrarily-moving-point-charge)
+      - [Field of An Arbitrarily Moving Point Charge (Accelerated Charge)](#field-of-an-arbitrarily-moving-point-charge-accelerated-charge)
+        - [Radiated Power and Lamour's formula.](#radiated-power-and-lamours-formula)
+        - [Dipole Oscillations](#dipole-oscillations)
+        - [The Half Wave Electric Dipole Antenna](#the-half-wave-electric-dipole-antenna)
 - [Lagrangians](#lagrangians)
   - [The Classical Lagrangian](#the-classical-lagrangian)
   - [Relativistic Lagrangian Density](#relativistic-lagrangian-density)
@@ -70,7 +77,7 @@ $$
 A_{j_1...j_q}^{i_1...i_p}\big[\underline{b}\big]
 $$
 
-The upper and lower indices refer to components of the tensor these are **contravariant** or **covariant** respectively. A tensor with only contravariant or covariant indices is contravariant or covariant itself, a tensor with both is mixed. The **valence** $(p,q)$ is the number of contravariant and covariant indices. A *rank-r* tensor requires r indices to label one component in the array $r=p+q$
+The upper and lower indices refer to components of the tensor these are **contravariant** or **covariant** respectively. A tensor with only contravariant or covariant indices is contravariant or covariant itself, a tensor with both is mixed. The **valence** $(p,q)$ is the number of contravariant and covariant indices. A *rank-r* tensor requires r indices to label one component in the array $r=p+q$ A tensor is defined by being conserved under a particular transformation but we'll look at that in GR.
 
 ## WTF is contravariant and covariance.
 
@@ -107,7 +114,7 @@ $$
 
 
 + Sums of equal valence are done entry by entry 
-  + $A^{\mu\nu} + B^{\mu\nu}  C^{\mu\nu}$
+  + $A^{\mu\nu} + B^{\mu\nu} = C^{\mu\nu}$
 + Scalar multiples are also simple 
   + $\alpha A^{\mu\nu} = (\alpha A)^{\mu\nu}$
 + Products are done like this. For rank-1 tensors it will behave like a matrix product.
@@ -312,7 +319,7 @@ Spacetime diagrams are useful for visualising a situation for a spacetime diagra
 + Lines of simultaneity are parallel to the x-axis, their intersection with t define their position in time.
 + Lines of locality (I'm not sure what they're actually called but I think that works) are parallel with the t-axis.
 + A worldline is the trajectory of a physical body each segment is causally connected with the previous segment.
-+ A lorenx "boost" pushes the x and t axes closer to the null line. Time like and space like vectors will always be that way. 
++ A lorenz "boost" pushes the x and t axes closer to the null line. Time like and space like vectors will always be that way. 
 
 
 ## I Am a 4-Vector and I'm Your Friend
@@ -400,7 +407,7 @@ Which is kind of  cool.
 
 ### Proper Time and Proper length
 
-It's useful when coordinates can be transformed depending on your rest frame to define some proper intervals. By that I mean when length and time can contract and dilate we need to know what we're talking about when we say 2m away or 10 minutes ago. Here Proper Time and Proper Length are useful they are defined in the rest frame of the object. Thus the proper length of a spaceship is the length of the spaceship in it's own restframe. Similarly the half-life of a muon is defined in that muons rest frame, it's proper time. A nice mathematical way to state this is:
+It's useful when coordinates can be transformed depending on your rest frame to define some proper intervals. By that I mean when length and time can contract and dilate we need to know what we're talking about when we say 2m away or 10 minutes ago. Here Proper Time and Proper Length are useful they are defined in the rest frame of the object. Thus the proper length of a spaceship is the length of the spaceship in it's own rest frame. Similarly the half-life of a muon is defined in that muons rest frame, it's proper time. A nice mathematical way to state this is:
 
 $$
 \frac{dt}{d\tau} = \gamma
@@ -691,7 +698,7 @@ $$
 So for linear motion rate of change of rapidity with respect to proper time is the proper acceleration divided by c in all frames.
 
 #### Hyperbolic Motion
-This is sometimes known as the "relativistic rocket" it refers to constant accelration in the objects rest frame $\frac{da_0}{d\tau}=0\implies v=a_0t$. If the rocket starts from rest in the lab frame we have:
+This is sometimes known as the "relativistic rocket" it refers to constant acceleration in the objects rest frame $\frac{da_0}{d\tau}=0\implies v=a_0t$. If the rocket starts from rest in the lab frame we have:
 
 $$
 \begin{aligned}
@@ -744,7 +751,7 @@ When it comes to momentum there is a very simple rule, **isolate and square** be
 $$
  P = P_1 + P_2
 $$
-The simple method is to isolate the thing whose final momentum you don't care about and square both sides. This means the thing you dont care about can be evaluated in the rest frame and the important stuff is all thats left. A good example of this is in [Particle Decay](#particle-decay)
+The simple method is to isolate the thing whose final momentum you don't care about and square both sides. This means the thing you dont care about can be evaluated in the rest frame and the important stuff is all that's left. A good example of this is in [Particle Decay](#particle-decay)
 
 #### Conservation of Energy and Momentum
 We no longer have the three momentum as a conserved quantity. Which can be shown using the spacetime diagram below which shows the worldlines of two particles mutually repelling each other:
@@ -753,10 +760,10 @@ We no longer have the three momentum as a conserved quantity. Which can be shown
 
 In frame $S$ momentum is clearly conserved as L and R have equal and opposite velocities. However in frame $S^\prime$ lines of simultaneity shift with a lorenz boost and 3-momentum is no longer conserved (at $t^\prime_1$ velocities are close to opposite whereas at $t^\prime_2$ magnitudes are quite different)
 
-Luckily we have a new conserved quantity to make up for the loss of 3-momentum, 4-Momentum! The quanties $\gamma m\underline{u}$ and $\gamma mc$ are conserved so total $P$ of a system is conserved in all components.
+Luckily we have a new conserved quantity to make up for the loss of 3-momentum, 4-Momentum! The quantities $\gamma m\underline{u}$ and $\gamma mc$ are conserved so total $P$ of a system is conserved in all components.
 ##### Center of momentum frame
 
-The center of momentum frame is the frame where 3-momentum is 0 so $P = (m_0c, \underline{0})$ it is analagous to the rest frame of the system.
+The center of momentum frame is the frame where 3-momentum is 0 so $P = (m_0c, \underline{0})$ it is analogous to the rest frame of the system.
 
 #### Particle Decay
 
@@ -1031,7 +1038,7 @@ $$
 \Box^2\phi = -\frac{\rho}{\epsilon_0}
 $$
 
-## 4-Current
+### 4-Current
 
 If we define a new 4-Vector we can write all of maxwell's equations neatly. This vector is the 4-Current and looks like this
 
@@ -1042,9 +1049,184 @@ $$
 This gives us maxwells equations simply as
 $$
 \begin{aligned}
-\Box^2A &= \frac{-1}{c^2\epsilon_0}J &\text{with } \Box\cdot A = 0
+&\Box^2A = \frac{-1}{c^2\epsilon_0}J &= -\mu_0J\\
+&\text{with}&\Box\cdot A = 0
 \end{aligned}
 $$
+
+### Putting it into practice.
+
+#### Retarded potentials
+
+Now we have the complicated equation:
+
+$$
+\Box^2A = -\mu_0J\\
+\bigg(-\frac{1}{c^2}\frac{\partial^2}{\partial t^2} + \nabla^2\bigg)A^\nu = -\mu_0 J^\nu
+$$
+
+Which is clearly a wave equation and takes a bit of work to solve. There's an awful lot of work done with fourier transforms and complex analysis that I don't like the look of but we don't need to know basically we end up with this.
+
+$$
+A(t,\bold{r}) = \frac{1}{4\pi\epsilon_0 c^2}\int\frac{J(t-r_{sf}/c,\bold{r}_s)}{r_{sf}}d\bold{r}_s\\
+r_{sf} = |\bold{r}-\bold{r_s}|
+$$
+
+Where the integral is over the source points $\bold{r}_s$ notice that the time component of $J$ is offset by the distance divided  by $c$. Basically this is because fields take time to propagate (in fact they do it at the speed of light) and that's what retarded potentials are.
+
+#### Potential of An Arbitrarily Moving Point Charge.
+
+Let's try and use this on an arbitrary point charge! It's easy to see the potential in it's own instantaneous rest frame would be...
+
+$$
+A_0 = \bigg(\frac{q}{4\pi\epsilon_0c}\frac{1}{r_{sf}}, \bold{0}\bigg)
+$$
+
+If we try out some scalar products it turns out we can write $r_{sf}$ like this in the rest frame...
+$$
+r_{sf} = -\frac{\bold{X}_{sf}\cdot \bold{U}_s}{c}
+$$
+It turns out that generally we can write A as...
+$$
+A = \frac{q}{4\pi\epsilon_0}\frac{\bold{U}_s/c}{-\bold{X}_{sf}\cdot \bold{U}_s}
+$$
+
+> I don't think a more detailed derivation is on syllabus
+
+#### Field of An Arbitrarily Moving Point Charge (Accelerated Charge)
+
+> The derivation of this isn't on syllabus only a 'qualitative understanding'
+
+We start from knowing the arbitrary potential $A$ (see above) then we need to use the tensor...
+
+$$
+\mathbb{F}^{\mu\nu} = \partial^\mu A^\nu - \partial^\nu A^\mu
+$$
+
+This takes a long time to figure out but we get...
+
+$$
+\mathbb{F}^{\mu\nu} = \frac{qc}{4\pi\epsilon_0}\frac{R^\mu\tilde{U}^\nu - R^\nu\tilde{U}^\mu}{(R\cdot U)^3}\\
+\text{where}\\
+\begin{aligned}
+    
+\tilde{U}^\nu &= U^\nu - \frac{1}{c^2}(sa^\nu - U^\nu(\bold{R}\cdot\bold{a}))\\
+R &= (r, \bold{r})\\
+U &= \gamma(c, \bold{u})\\
+s &= g_{\mu\nu}R^\mu U^\nu = -c\gamma(r - \frac{\bold{r}\cdot\bold{u}}{c})\\
+a &= \gamma(\dot{\gamma}c,\dot{\gamma}\bold{u} + \gamma\bold{a})\text{ (4-Acceleration)}
+\end{aligned}
+$$
+
+Putting this all together you get the field of an accelerated charge...
+
+$$
+\begin{aligned}
+  \bold{E} &= \frac{q}{4\pi\epsilon_0\kappa^2}\bigg(\frac{\bold{n} - \bold{v}r/c}{\gamma^2r^2}+ \frac{\bold{n}\times[(\bold{n} - \bold{v}/c)\times\bold{a}]}{c^2r}\bigg)\\
+  \bold{B} &= \bold{n} \times \bold{E}/c\\
+  \bold{n} &= \bold{r}/r\\
+  \kappa &= 1 - \frac{v_r}{c} = 1 - \frac{\bold{n}\cdot\bold{v}}{c} 
+\end{aligned}
+$$
+
+Which is a bit of a mess to memorize but what can you do?
+
+##### Radiated Power and Lamour's formula.
+
+Let's try and calculate radiated power of a point charge. The radiative part of $\bold{E}$ in the rest frame is given by...
+
+$$
+\bold{E}_\text{rad} = \frac{q}{4\pi\epsilon_0c^2}\frac{\bold{n}\times(\bold{n}\times\bold{a})}{r}
+$$
+
+This has a Poynting vector
+
+$$
+\bold{N} = \frac{1}{\mu_0}\bold{E}\times\bold{B} = \epsilon_0 c E_\text{rad}^2\bold{n}
+$$
+
+Radiated power $P_L$ is the integral of this over a sphere which is...
+$$
+P_L = \frac{q^2a_0^2}{6\pi\epsilon_0c^3}
+$$
+
+We can argue though that power is lorenz invariant by saying the 4-momentum of the radiation is...
+
+$$
+dP = (d\varepsilon/c, \bold{0})\\
+\varepsilon = \text{energy}
+$$
+
+This means $d\varepsilon$ transforms as $d\varepsilon = \gamma d\varepsilon_0$ which means $P_L = \frac{d\varepsilon}{dt}$ is conserved as $dt$ transforms similarly! This is easier to see if we write **Larmours formula**...
+
+$$
+P_L = \frac{q^2}{6\pi\epsilon_0c^3}A_\mu A^\mu
+$$
+
+Clearly here radiated power is a conserved quantity. We can finally write this one more way...
+
+$$
+P_L = \frac{q^2}{6\pi\epsilon_0c^3}\bigg(a^2 - \frac{(\bold{v}\times\bold{a})^2}{c^2}\bigg)
+$$
+
+and the rate at which four momentum is carried away can be written as well.
+$$
+\frac{dP}{d\tau} = \frac{P_L\bold{U}}{c^2} = \frac{q^2}{6\pi\epsilon_0c^5}(A_\mu A^\mu)\bold{U}
+$$
+
+##### Dipole Oscillations
+
+Let's start with the general potential
+
+$$
+\bold{A} = \frac{q}{4\pi\epsilon_0c^2}\frac{(c,\bold{v})}{(r_{sf} - \bold{r}_{sf}\cdot\bold{v}/c)}
+$$
+
+If the wavelength is large compared to the size of the dipole then we have $|\bold{v}| << c$ and we can approximate this as...
+$$
+\bold{A} \approx \frac{1}{4\pi\epsilon_0c^2}\frac{(qc,\bold{\dot{d}}[t-r_{sf}/c])}{r_{sf}}
+$$
+
+Where $\bold{\dot{d}} = q\bold{v}$, here $\bold{d}$ is the dipole vector. So for a wave we can say...
+$$
+\bold{d} = qx_0sin(\omega t - kr_{sf})
+$$
+
+Where $x_0$ is the maximum of the oscillating dipole.
+
+Finally we can make the far field approximation and say that $r_{sf}\approx r$ as the movement of the source is very small in comparison to the distance an observer would be from it. So we have...
+
+$$
+\bold{A} \approx \frac{qw\bold{x_0}cos(\omega t - kr)}{4\pi\epsilon c^2 r}
+$$
+
+This gives us $\bold{E}$ and $\bold{B}$
+
+$$
+\bold{E} = \frac{\omega^2qx_0}{4\pi\epsilon_0 c^2}\frac{\sin\theta}{r}sin(kr - \omega t)\bold{\hat{\theta}}
+$$
+
+##### The Half Wave Electric Dipole Antenna
+
+For an antenna $wqx_0 = wqL = IL$ where $I$ is current and $L$ is a very short wire. Then we use $d(q\omega x_0) = I(z)dz$ and get...
+
+$$
+dE = \frac{I}{2\epsilon_0 c}\frac{dz}{\lambda}\frac{\sin\theta}{r}\cos(kr-\omega t)
+$$
+
+For a half wave antenna we need to only do the integral where $I = I_0\cos(kz)$ 
+
+$$
+\int^{x_0/2}_{-x_0/2} Idz = \int^{\lambda/4}_{-\lambda/4} Idz = I_0\frac{\lambda}{\pi}
+$$
+
+Which gives...
+
+$$
+E = \frac{I_0}{4\pi\epsilon_0 c}\frac{\sin\theta}{r}\cos(kr-\omega t)
+$$
+
+This maximizes power output for the antenna.
 
 # Lagrangians
 
