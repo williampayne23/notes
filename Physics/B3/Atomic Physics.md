@@ -62,6 +62,20 @@
     - [Selection Rules](#selection-rules-1)
       - [With no change in electronic states](#with-no-change-in-electronic-states)
       - [Transitions with a change of electronic state](#transitions-with-a-change-of-electronic-state)
+- [Transitions and Lasers](#transitions-and-lasers)
+  - [The Light-Atom interaction.](#the-light-atom-interaction)
+    - [Remember Time-Dependent Perturbation Theory?](#remember-time-dependent-perturbation-theory)
+    - [The interaction](#the-interaction)
+    - [Rabi Oscillations](#rabi-oscillations)
+  - [Two Level Systems](#two-level-systems)
+    - [Einsteins Rates](#einsteins-rates)
+  - [Line Broadening](#line-broadening)
+    - [Einstein Coefficients and Line Broadening](#einstein-coefficients-and-line-broadening)
+    - [Homogenous Broadening](#homogenous-broadening)
+      - [Lifetime Broadening](#lifetime-broadening)
+      - [Collision or Pressure Broadening](#collision-or-pressure-broadening)
+    - [Inhomogeneous Broadening](#inhomogeneous-broadening)
+      - [Doppler Broadening](#doppler-broadening)
 
 # Moving on from Hydrogen
 ## Hydrogen, the simple Hamiltonian
@@ -452,7 +466,11 @@ Where for hydrogen molecules:
 $$
 \beta_{nl} = \frac{\mu_0Z^4g_s\mu_b^2}{4\pi}\frac{1}{n^3a_0^3l(l+1/2)(l+1)}
 $$
-For single electron atoms (alkalis) j has twofold degeneracy $j =l\pm 1/2$ so energy levels are split in two.  
+For single electron atoms (alkalis) j has twofold degeneracy $j =l\pm 1/2$ so energy levels are split in two. For the two electron a 
+tom the whole picture (plus some spoilers on magnetic fields) can be seen below.
+
+ <img src="./Figs/SOSplitting.png"/>
+
 ## LS-Coupling
 
 In these notes we assume LS-Coupling because it's super convenient and I like it. In LS coupling $\underline{J}= \underline{L} +\underline{S}$ which in vector model terms means that $\underline{L}$ and $\underline{S}$ couple to precess around $\underline{J}$ which makes $L,S,J,$ and $M_J$ good quantum numbers but $M_L$ and $M_S$ obviously not.
@@ -519,6 +537,8 @@ $$
     2J+1\ \text{ if }\ J<I
 \end{gathered}
 $$
+
+<img src="./Figs/HFSplitting.png" style="background:white">
 
 #### Finding I
 
@@ -906,7 +926,11 @@ These terms are
 $$
 T_n = -\frac{\hbar^2}{2\mu}\nabla^2_R\\
 T_e = -\sum^N_i\frac{\hbar^2}{2m_e}\nabla^2_{r_i}\\
-V(\underline{r}_i,\underline{R}) = \underbrace{\sum_j^2\sum_i^N\bigg(-\frac{Z_je^2}{4\pi\epsilon_0|\underline{r}_i - \underline{R}_j|}\bigg)}_\text{electron-nuclear interaction} + \underbrace{\sum_{i<j>}^N\frac{e^2}{4\pi\epsilon_0|\underline{r}_i - \underline{r}_j|}}_\text{electron-electron repulsion} + \underbrace{\frac{Z_1Z_2e^2}{4\pi\epsilon_0|\underline{R}|}}_\text{internuclear repulsion}
+\begin{aligned}
+V(\underline{r}_i,\underline{R}) &= \underbrace{\sum_j^2\sum_i^N\bigg(-\frac{Z_je^2}{4\pi\epsilon_0|\underline{r}_i - \underline{R}_j|}\bigg)}_\text{electron-nuclear interaction} \dots\\
+&+ \underbrace{\sum_{i<j>}^N\frac{e^2}{4\pi\epsilon_0|\underline{r}_i - \underline{r}_j|}}_\text{electron-electron repulsion}\dots \\
+&+ \underbrace{\frac{Z_1Z_2e^2}{4\pi\epsilon_0|\underline{R}|}}_\text{internuclear repulsion}
+\end{aligned}
 $$
 
 Where $\underline{R}_{1,2}$ are the positions of the nuclei relative to center of mass. The origin is on the center of mass. This means that we can write the wavefunction:
@@ -1013,3 +1037,214 @@ g \rightarrow u
 $$
 
 Where $\Sigma^\pm$ is the symmetry of $\Sigma$ states ($\Lambda$ can be $\Sigma, \Pi, \Delta$) and $g$ and $u$ represent symmetric and antisymmetric states in homonuclear (diatomic molecules with two of the same element) case.
+
+# Transitions and Lasers
+
+## The Light-Atom interaction.
+
+### Remember Time-Dependent Perturbation Theory?
+
+No? Well I'm not going to type the whole thing out. Basically if you have a two level system with hamiltonian $\hat{H}_0$ and unperturbed eigenstates $\psi_1(\bold{r})$ and $\psi_2(\bold{r})$ then the system with hamiltonian $\hat{H} = \hat{H}_0 + \hat{V}(t)$ has the wavefunction...
+$$
+\psi(\bold{r},t) = c_1(t)e^{-i\omega_1t}\psi_1(\bold{r}) + c_2(t)e^{-i\omega_2t}\psi_2(\bold{r})
+$$
+
+and after a bit of maths you find that
+
+$$
+\begin{aligned}
+  \dot{c}_1 &= -\frac{i}{\hbar}(c_1V_{11} + c_2V_{12}e^{-i\omega_0t})\\
+  \dot{c}_2 &= -\frac{i}{\hbar}(c_1V_{21}e^{-i\omega_0t} + c_2V_{22})
+\end{aligned}
+$$
+
+Where $\omega_0 = (\omega_2 - \omega_1)$ and $V_{nm} = \big<\psi_n|\hat{V}|\psi_m\big>$.
+
+### The interaction
+
+The electric field of an incoming EM wave can be written as
+
+$$
+\mathcal{E} = \mathcal{E}_0\cos\omega t
+$$
+
+So the perturbation of this is
+
+$$
+\hat{V}(t) = e\bold{\hat{x}}\mathcal{E}_0\cos\omega t
+$$
+
+This gives us the matrix elements for a two level system...
+
+$$
+\begin{aligned}
+  V_{11} &= \big<\psi_1|e\bold{\hat{x}}|\psi_1\big>\mathcal{E}_0\cos\omega t\\
+  V_{11} &= \big<\psi_1|e\bold{\hat{x}}|\psi_1\big>\mathcal{E}_0\cos\omega t\\
+  V_{21} = V_{12}^* = V_{12} &= \big<\psi_1|e\bold{\hat{x}}|\psi_2\big>\mathcal{E}_0\cos\omega t
+\end{aligned}
+$$
+
+We can define the *Rabi frequency* as...
+
+$$
+\Omega = \frac{\mathcal{E}_0}{\hbar}\big<\psi_1|e\bold{\hat{x}}|\psi_2\big>
+$$
+
+This gives us the coeficient rate of changes from perturbation theory as...
+
+$$
+\begin{aligned}
+\dot{c}_1 &= -i\Omega\cos\omega te^{-i\omega_0t}c_2\\
+\dot{c}_2 &= -i\Omega\cos\omega te^{i\omega_0t}c_1
+\end{aligned}
+$$
+
+> The notes now do this in the weak field limit but the syllabus mentions Rabi Oscillations so I'm going to skip to that.
+
+### Rabi Oscillations
+
+We can rewrite these equations using $cos\omega t = \frac{1}{2}(e^{i\omega t} + e^{-i\omega t}$ to get...
+
+$$
+\dot{c}_1 = -\frac{1}{2}i\Omega\big(e^{(\omega-\omega_0)t} + e^{i(\omega+\omega_0)t}\big)c_2
+$$
+
+And something similar for $\dot{c}_2$ When we end up integrating these we can use the rotating wave approximation ($|\omega-\omega_0| << \omega + \omega_0$) which means we can neglect the rapidly oscillating term in $e^{i(\omega+\omega_0)t}$ this gives...
+
+$$
+\dot{c}_1 = -\frac{1}{2}i\Omega e^{+it\delta}c_2\\
+\ \\
+\dot{c}_2 = -\frac{1}{2}i\Omega e^{-it\delta}c_1
+$$
+Where $\delta = \omega-\omega_0$ which cam ne considered the "detuning" of the radiation from the atomic transition.
+
+We can differentiate again to solve the coupled equations...
+
+$$
+\ddot{c}_2 - i\delta\dot{c}_2 + \bigg|\frac{\Omega}{2}\bigg|^2c_2 = 0
+$$
+
+If we start with $\psi(\bold{r}, t) = \psi_1$ then we have...
+
+$$
+|c_2(t)|^2 = \frac{\Omega^2}{\Omega^2 + \delta^2}\sin^2\bigg(\frac{1}{2}t\sqrt{\Omega^2+\delta^2}\bigg)
+$$
+
+Which produces weird Rabi Oscillations which don't fit with the idea of rates (which we look at in the next section) at all! If we imagine these Rabi Oscillations are damped however we can fudge it into something approaching the rate equation solution.
+
+<img src="./Figs/RabiDamped.jpg"/>
+
+## Two Level Systems
+
+We used a two level system above because it is useful to approximate an atom as a two level system because atomic transitions are very narrow in frequency so we can consider two levels in isolation from the rest. For this system let's think of a lower level of energy $E_1$ and an upper of energy $E_2$. The frequency of light emitted if there is a transition from $E_2$ to $E_1$ is $\omega_{21} = (E_2 - E_1)/\hbar$. 
+
+### Einsteins Rates
+
+We can think of three distinct processes through which light can interact with an atom (or two level system)...
+
++ **Spontaneous Emission**: We move from the upper level to the lower level through a decay adn releases a photon of energy $\hbar\omega_{21}$. The rate of this is defined as $n_2A_{21}$ where $n_2$ is the population of the upper level and $A_{21}$ is the characteristic rate of the transition, for a simple closed system of two levels that would give $A_{21} = \tau_2^{-1}$
++ **Absorption**: An atom in the lower level is excited to the upper by a photon of energy $\hbar\omega_{21}$. The rate of this is defined as $n_1B_{12}\rho(\omega_{21})$ where $\rho(\omega_{21})$ is the density of radiation with that frequency. $B_{12}$ is a characteristic rate or the transition.
++ **Stimulated Emission**: When an incident photon of energy $\hbar\omega_{21}$ stimulates an atom in the upper level to decay to the lower by re-emitting a photon of that energy. The rate of this would be $n_2B_{21}\rho(\omega_{21})$ where (you guessed it) $B_{21}$ is a constant characteristic rate of the transition.
+
+The constant characteristic coefficients $A_{21}$, $B_{12}$, and $B_{21}$ are known as *Einstein A and B coefficients* and can descrive transition rates for a two-level system.
+
+<img src="./Figs/EinsteinCoefficents.jpg"/>
+
+As rates are conserved we get...
+
+$$
+n_1B_{12}\rho(\omega_{21}) = n_2A_{21} + n_2B_{21}\rho(\omega_{21})
+$$
+
+We can rearrange this in terms of spectral energy density and make use of the plank distribution for the spectral energy density to get a couple of useful equations. 
+
+$$
+\begin{aligned}
+\rho(\omega_{21}) &= \frac{A_{21}}{B_{21}}\frac{1}{\frac{g_1B_{12}}{g_2B_{21}}e^{\beta\hbar\omega_{21}} - 1}\\
+\text{and}\\
+\rho(\omega_{21}) &= \frac{\hbar}{\pi^2c^3}\frac{\omega_{21}^3}{e^{\beta\hbar\omega_{21} - 1}}\\
+\implies g_1B_{12} &= g_2B_{21}\\
+\&\ \ A_{21} &= \frac{\hbar\omega_{21}^3}{\pi^2c^3}B_{21}
+\end{aligned}
+$$
+
+
+Even though we used a specific form of the spectral energy density these relationships are general! This is because Einstein Coefficients are about the atom not the field. It turns out we can calculate $B_12$
+
+## Line Broadening
+
+So far we've treated our two level system as if it produces monochromatic frequencies, that doesn't really hold up. It actually has some *lineshape* function $g(\omega - \omega_0)$, it's normalised
+$$
+\int_0^\infty g(\omega-\omega_0)d\omega = 1 
+$$
+and centred around $\omega_0$
+
+### Einstein Coefficients and Line Broadening
+
+The rates we used to work out our Einstein coefficients are wrong outside of the monocromatic world. The new ones are...
+
++ Spontaneous Emission - $n_2A_{21}g_A(\omega-\omega_0)d\omega$
++ Absorption - $n_1B_{12}g_B(\omega-\omega_0)\rho(\omega_{21})d\omega$
++ Stimulated Emission - $n_2B_{21}g_{B^\prime}(\omega-\omega_0)\rho(\omega_{21})d\omega$
+
+Note that the lineshapes are all specific to the phenomenon. If we follow the same reasoning we did before we can get a similar relationship.
+$$
+g_1B_{12}g_B(\omega-\omega_0) = g_2B_{21}g_{B^\prime}(\omega-\omega_0)\\
+A_{21}g_A(\omega-\omega_0) = \frac{\hbar\omega_0^3}{\pi^2c^3}B_{21}g_{B^\prime}(\omega-\omega_0)
+$$
+In thermal equilibrium these must hold over all possible functions so we find that $g_A(\omega-\omega_0) = g_B(\omega-\omega_0) = g_{B^\prime}(\omega-\omega_0) = g_H(\omega-\omega_0)$ where $g_H(\omega-\omega_0)$ is the homogenous lineshape...
+
+### Homogenous Broadening
+
+This is a mechanism which effects all atoms in a sample equally. Generally this produces a *Lorentzian lineshape*.
+
+<div style="text-align:center">
+<img src="./Figs/LorentzLineshape.png">
+</div>
+
+#### Lifetime Broadening
+
+This can be seen as a product of the uncertainty principle...
+$$
+\Delta E\Delta t \sim \hbar
+$$
+
+Since $E=\hbar\omega$ and $\Delta t \sim \tau$ (the lifetime of the state) we get...
+$$
+\Delta\omega\tau\sim1\text{ or }\Delta\omega\sim\frac{1}{\tau}
+$$
+If $\tau$ is more accurately the time taken for a population of that state to decay to $1/\mathcal{e}$ of it's initial value we get a lorenzian lineshape for the intensity of a given $\omega$ and the FWHM $\Delta\omega \sim \frac{2}{\tau}$.
+
+<div style="text-align:center">
+<img src="./Figs/LifetimeBroadening.jpg">
+</div>
+
+
+#### Collision or Pressure Broadening
+
+A collision with another atom while the atom is oscillating disrupts the phase of the wave. The number of uninterrupted waves decays exponentially with $\tau_c$ the mean time between collisions so we get another lorentzian lineshape...
+
+<div style="text-align:center">
+<img src="./Figs/PressureBroadening.jpg">
+</div>
+
+### Inhomogeneous Broadening
+
+Inhomogeneous broadening depends on specific properties of the atoms ($\bold{r}, \bold{v}, m\ \dots$). These typically have a *Gaussian Lineshape*.
+
+#### Doppler Broadening
+
+Atoms in a gas have speeds in a Maxwell-Boltsman distribution (as you'll remember from statistical mechanics). The Doppler shift from this is given by
+
+$$
+\omega = \omega_0\bigg(1\pm\frac{v}{c}\bigg)
+$$
+
+So the spread is...
+$$
+\Delta\omega_D \sim\omega_0\frac{v}{c}
+$$
+
+<div style="text-align:center">
+<img src="./Figs/DopplerBroadening.jpg">
+</div>
