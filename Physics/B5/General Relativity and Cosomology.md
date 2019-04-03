@@ -1,18 +1,21 @@
 # B5 General Relativity and Cosmology <!-- omit in toc -->
-- [Curved Spacetime](#curved-spacetime)
-  - [The Maths of Curved spacetime](#the-maths-of-curved-spacetime)
-    - [Transformation laws](#transformation-laws)
-    - [The Covariant Derivative](#the-covariant-derivative)
+- [The Maths of Curved spacetime](#the-maths-of-curved-spacetime)
+  - [Transformation laws](#transformation-laws)
+  - [The Covariant Derivative](#the-covariant-derivative)
+    - [The Curvature Tensor](#the-curvature-tensor)
+    - [Parallel Transport](#parallel-transport)
+    - [The Ricci Tensor](#the-ricci-tensor)
+    - [Bianchi Identities](#bianchi-identities)
   - [Gravity](#gravity)
     - [Gravitational and Inertial Mass](#gravitational-and-inertial-mass)
     - [Equivalence Principles](#equivalence-principles)
     - [The Geodesic Equation](#the-geodesic-equation)
     - [The Metric](#the-metric)
     - [The Newtonian Limit](#the-newtonian-limit)
+  - [The Curvature Tensor](#the-curvature-tensor-1)
 
-# Curved Spacetime
-## The Maths of Curved spacetime
-### Transformation laws
+# The Maths of Curved spacetime
+## Transformation laws
 
 The simplest vector we can write is the differential coordinate $dx^\mu$ if we transform to some primed frame
 
@@ -38,7 +41,7 @@ $$
 
 Any contravariant tensor, covariant tensor, or mixed tensor is transformed by stacking these transformations (in fact this is what defines them as Tensors).
 
-### The Covariant Derivative
+## The Covariant Derivative
 
 Looking at the covariant transformation you can expect it would have a different kind of derivative. You'd be right! Let's try it...
 
@@ -71,6 +74,67 @@ T_{\lambda\kappa;\mu} = \frac{\partial T_{\lambda\kappa}}{\partial x^\mu} - \Gam
 \ \\
 T^\lambda_{\kappa;\mu} = \frac{\partial T^\lambda_\kappa}{\partial x^\mu} + \Gamma^\lambda_{\nu\mu}T^\nu_\kappa - \Gamma^\nu_{\kappa\mu}T^\lambda_\nu\\
 $$
+### The Curvature Tensor
+
+The covariant derivative obeys most of the rules of a normal partial derivative but it doesn't necessarily commute after some algebra we find...
+
+$$
+\begin{aligned}
+V^\mu_{;\sigma;\tau} - V^\mu_{;\tau;\sigma} &= \Big[\partial_\tau\Gamma^\mu_{\lambda\sigma} - \partial_\sigma\Gamma^\mu_{\lambda\tau} + \Gamma^\mu_{\nu\tau}\Gamma^\nu_{\lambda\sigma} - \Gamma^\mu_{\nu\sigma}\Gamma^\nu_{\lambda\tau}\Big]V^\lambda\\
+&= R^\mu_{\lambda\sigma\tau}V^\lambda
+\end{aligned}
+$$
+
+Since the left hand side is a tensor and $V^\lambda$ is a vector we have that $R^\mu_{\lambda\sigma\tau}$ is a valid tensor. We call this the *Riemann curvature tensor*.
+
+Finally we can write a fully covariant Curvature Tensor...
+$$
+R_{\lambda\mu\nu\kappa} = g_{\lambda\sigma}R^\sigma_{\mu\nu\kappa}
+$$
+
+### Parallel Transport
+
+Parallel transport is defined as when the covariant derivative along $x(\tau)$ vanishes so...
+
+$$
+V_{;\lambda} = 0\\\ \\
+\implies \frac{dV_\lambda}{d\tau} = \Gamma^\mu_{\lambda\nu}\frac{dx^\nu}{d\tau}V_\mu\\\ \\ 
+\implies dV_\lambda = \Gamma^\mu_{\lambda\nu}V_\mu dx^\nu 
+$$
+
+If we taylor expand $\Gamma^\mu_{\lambda\nu}$ around some initial value $X^\nu$ we can show that the integral of $dV_\lambda$ around some small loop is given by...
+
+$$
+\Delta V_\lambda = \frac{1}{2}R^\sigma_{\lambda\nu\rho}V_\sigma dx^\rho dx^\nu
+$$
+
+So we get a surface integral sort of like stokes theorem. What's more closed integrals are not zero if there is curvature. You can try this by moving a pencil in  a closed loop around a table and doing the same with a globe (without rotating the pencil). One has the pencil come back in the same rotation and the other doesn't!!
+
+### The Ricci Tensor
+
+The Ricci tensor is a contraction of the curvature tensor...
+$$
+R_{\mu\kappa} = g^{\lambda\nu}R_{\lambda\mu\nu\kappa}
+$$
+
+The Ricci tensor will soon help us write an Einstein's Laplace equation!
+
+There is one more contraction, the Ricci scalar...
+
+$$
+R = R^\mu_\mu = g^{\mu\kappa}R_{\mu\kappa}
+$$
+
+### Bianchi Identities
+
+The Bianchi identities are analagous to $\nabla\cdot(\nabla\times\bold{V})=0$ for other vectors. The derivation is done in freely falling coordinates (and then generalises to all frames) and uses that the curvature tensor is cyclic. We end up with...
+
+$$
+\bigg(R^{\mu\nu} - g^{\mu\nu}\frac{R}{2}\bigg)_{;\mu} = 0
+$$
+
+This result will be very useful
+
 ## Gravity
 
 If General relativity is meant to be an improvement on the Newtonian view of gravity it helps to know what we're improving on. The force due to newtonian gravity is given by...
@@ -235,3 +299,6 @@ Which is comparable to the Newtonian result! All we need is...
 $$
 g_{00} = -\bigg(1+\frac{2\phi}{c^2}\bigg) \implies h_{00} = -\frac{2\phi}{c^2}
 $$
+
+## The Curvature Tensor
+
