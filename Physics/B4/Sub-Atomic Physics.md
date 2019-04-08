@@ -18,8 +18,8 @@
     - [Yukawa Potential Example](#yukawa-potential-example)
     - [More complicated example](#more-complicated-example)
   - [Resonances](#resonances)
+    - [Decays](#decays)
     - [Resonance Scattering](#resonance-scattering)
-    - [Breit-Wigner and Decay Widths](#breit-wigner-and-decay-widths)
 
 # Scattering
 
@@ -118,7 +118,7 @@ $$
 R^{(1)} = \frac{2\pi}{\hbar}|\big<f|\Delta H_0|i\big>|^2\rho(E)
 $$
 
-Where $E_i=E_f=E$ (Fermi's golden rule).
+Where $E_i=E_f=E$ (This rate equation is Fermi's golden rule).
 
 Finally we might want to get some specific answer for $\rho(E)$ this is simply the density of energy states states. The derivation is the same as always so here it is just to knock it into my head one more time...
 
@@ -383,6 +383,102 @@ Which matches experiment pretty well for both $e^- + e^+ \rightarrow \mu^- + \mu
 
 ## Resonances
 
+Currently we've been looking at how originally unpopulated states become populated but how about how an already populated state develops?
+
+### Decays
+
+Imagine we have an unstable state with mean lifetime $\tau$ we can say that the probability to exist at a time $t+dt$ is
+$$
+P(t+dt) = P(t)\bigg(1-\frac{dt}{\tau}\bigg)
+$$
+
+which has the solution
+
+$$
+P(t) = P(0)e^{-\frac{t}{\tau}}
+$$
+
+This is easy to slot into perturbation theory we just need to say
+
+$$
+c_i(t) = e^{-\frac{t}{2\tau}}
+$$
+
+We can now look at the final state again!
+
+$$
+c^{(1)}_f=-\frac{i}{\hbar}\int^t_0\big<f|\Delta H|i\big>e^{i\big(\frac{E_f-E_i}{\hbar} + \frac{i}{2\tau}\big)t^\prime}dt^\prime
+$$
+
+This gives us a complicated transition probability
+
+$$
+P_{i\rightarrow f} = |\big<f|\Delta H|i\big>|^2\frac{\bigg|e^{i\big(\frac{E_f-E_i}{\hbar} + \frac{i}{2\tau}\big)t}-1\bigg|^2}{(E_f-E_i)^2+(\frac{\hbar}{2\tau})^2}
+$$
+
+Since we have that $t\gg\tau$ we can ignore the exponential and say
+$$
+P_{i\rightarrow f} = |\big<f|\Delta H|i\big>|^2\frac{1}{(E_f-E_i)^2+(\frac{\hbar}{2\tau})^2}
+$$
+
+Which is a lorentzian with width $\Gamma=\frac{\hbar}{\tau}$. If we look at decay into a range of states we get
+
+$$
+P = \int |\big<f|\Delta H|i\big>|^2\frac{1}{(E_f-E_i)^2+(\frac{\Gamma}{2})^2}\rho(E_f)dE_f
+$$
+
+The rate of decay can be found as
+
+$$
+R = \frac{dP}{d\tau} = \frac{2\pi}{\hbar}|\big<f|\Delta H|i\big>|^2\rho(E_f)\\\ \\
+\implies \Gamma = \frac{\hbar}{\tau} = \hbar R = 2\pi|\big<f|\Delta H|i\big>|^2\rho(E)
+$$
+
+(Where $E_f=E_i=E$) If we have several final states then this decay width will be specific to that state and we have...
+
+$$
+\begin{aligned}
+\Gamma_f &= 2\pi|\big<f|\Delta H|i\big>|^2\rho(E)\\
+\Gamma &= \sum_f\Gamma_f
+\end{aligned}
+$$
+
+$\Gamma$ is the total width and obeys the $\Gamma=\frac{\hbar}{\tau}$ relationship we had before.
+
 ### Resonance Scattering
 
-### Breit-Wigner and Decay Widths
+Now lets consider the generating of an unstable state from a stable initial state. This sort of problem is very common in particle physics where a stable state scatters into an unstable state and the decays into a new stable state. The unstable middle state is called a resonance. To the first order we have that
+$$
+i\hbar\frac{dc_R^{(1)}(t)}{dt} = \underbrace{\big<R|\Delta H| i\big>e^{i(E_R-E_i)\frac{t}{\hbar}}}_\text{Transition from i to R} - \underbrace{i\bigg(\frac{\Gamma}{2}\bigg)c^{(1)}_R(t)}_\text{Decay of R}
+$$
+
+This can be rearranged and integrated to give
+
+$$
+\big|c^{(1)}_R(t)\big|^2 = \frac{|\big<R|\Delta H|i\big>|^2}{(E_R-E_i)^2 + \Gamma^2/4}
+$$
+
+Since $\Gamma_i = 2\pi|\big<i|\Delta H|R\big>|^2\rho_i(E)$ and  $|\big<R|\Delta H|i\big>|^2=|\big<i|\Delta H|R\big>|^2$ we can write that
+
+$$
+\big|c^{(1)}_R(t)\big|^2 = \frac{1}{2\pi\rho_i(E)}\frac{\Gamma_i}{(E_R-E_i)^2+\Gamma^2/4}
+$$
+
+To get a rate equation we need to divide this by lifetime so a factor of $\tau^{-1} = \Gamma/\hbar$ is included. If we're looking at a specific final state $|f\big>$ we must reduce by a factor $\Gamma_f/\Gamma$. To get a cross section we divide by the incoming flux $j=\hbar k_i/(\mu V)$ finally if we use the density of state and the dispersion relation $E_i=\hbar^2 k_i^2/(2\mu)$ we get...
+$$
+\sigma_{i\rightarrow R\rightarrow f} = \frac{\pi}{k_i^2}\frac{\Gamma_i\Gamma_f}{(E_R-E_i)^2 + \Gamma^2/4}
+$$
+
+This is the **Briet-Wigner** resonance formula, and it describes how a cross section forms around a resonance. If we want to be a bit more thorough we would use a relativistic version of this but that's only needed for wide resonances. Another correction though is the correction for spin degeneracies which is given below...
+
+$$
+\sigma_{i\rightarrow R\rightarrow f} = \frac{\pi}{k_i^2}\frac{2j+1}{(2s_1+1)(2s_2+1)}\frac{\Gamma_i\Gamma_f}{(E_R-E_i)^2 + \Gamma^2/4}
+$$
+
+$j$ is the angular momentum of the resonance and $s_1$ and $s_2$ are the spins of the incoming particles. In practice this allows us to find resonances by plotting cross section by energy (no easy experimental feat) and looking for bumps.
+
+<div style="text-align:center">
+<img src="./Figs/Resonance.jpg" height=300>
+<br/>
+An example of identifying a resonant particle
+</div>
