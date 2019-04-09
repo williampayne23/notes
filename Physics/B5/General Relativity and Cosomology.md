@@ -28,7 +28,9 @@
 - [Linearised Gravity and Radiation](#linearised-gravity-and-radiation)
   - [Gravitational Waves](#gravitational-waves)
     - [Gauge Invariance](#gauge-invariance)
-    - [Vacuum Solution](#vacuum-solution)
+    - [Plane Waves and TT gauge](#plane-waves-and-tt-gauge)
+    - [The Quadrupole Formula](#the-quadrupole-formula)
+    - [Radiation](#radiation)
 
 # The Maths of Curved spacetime
 ## Transformation laws
@@ -736,7 +738,52 @@ $$
 \Box\bar{h}_{\mu\nu} = -\frac{16\pi G}{c^4\mathbb{T}_{\mu\nu}}
 $$
 
-Which gives us gravitational waves.
+Which gives us gravitational waves. It turns out the solution to this has the form...
 
-### Vacuum Solution
+$$
+\bar{h}_{\mu\nu}(\bold{r},t) = \frac{4G}{c^4}\int\frac{T_{\mu\nu}(\bold{r}^\prime,t-R/c)}{R}d^3\bold{r}^\prime
+$$
 
+Which looks very similar to the retarded potential for EM waves!
+
+### Plane Waves and TT gauge
+
+Linear gravitational waves have only two modes of polarization. In the Transverse Traceless (TT) coordinates a plane wave in the $z$ direction has one mode with $h_{yy} = -h_{xx}$ and all other components being zero. The other mode is with $h_{xy}=h_{yx}$ The TT Gauge is only available for plane waves, at this point I'm not confident it would come up in questions so I'm not going to do any maths on it.
+
+### The Quadrupole Formula
+
+The quadrupole formula is
+
+$$
+\bar{h}^{ij} = \frac{2G}{c^6r}\frac{d^2I^{ij}}{dt^{\prime2}}
+$$
+
+Where $I^{ij}$ is the *quadropole moment tensor* and is defined by...
+
+$$
+I^{ij} = \int T^{00}x^{\prime i}x^{\prime j}d^3r^{\prime}
+$$
+
+This leads to a good numerical estimation...
+
+$$
+\frac{d^2I^{ij}}{dt^{\prime 2}} \sim Ma^2c^2\omega^2
+$$
+
+Where $M$ is characteristic mass of the system, $a$ is internal separation and $\omega$ is characteristic frequency. This gives...
+
+$$
+\bar{h}^{ij} \sim \frac{2GMa^2\omega^2}{c^4r} = \bigg(\frac{2.9532}{r_{km}}\bigg)\bigg(\frac{M}{M_\odot}\bigg)\bigg(\frac{a\omega}{c}\bigg)^2
+$$
+
+For LIGO where $r = 1.2\times10^{22}\text{km}$ and $(aw/c)^2 \sim 0.1$ because the system is very relativistic we get $\bar{h}_{ij} = 1.5\times10^{-21}$ which is just about the observed peak amplitude.
+
+### Radiation
+
+The calculation of the gravitational radiation formula is really long and complicated and I'm not overly sure it's on syllabus. (Toby doesn't include it, the Lecture notes do and the Syllabus just says "Simple Treatment of Radiation") The result is..
+
+$$
+L_{GW} = \frac{G}{5c^5}\frac{d^3J^{ij}}{dt^3}\frac{d^3J^{ij}}{dt^3}\\
+J_{ij} = I_{ij} - \frac{1}{3} 
+\delta_{ij}\delta^{mn}I_{mn}
+$$
