@@ -10,6 +10,7 @@
     - [Rank-1](#rank-1)
     - [Rank-0](#rank-0)
   - [The 4-Gradient](#the-4-gradient)
+  - [Symmetry and Polar and Axial Vectors](#symmetry-and-polar-and-axial-vectors)
 - [Newtonian to Relativistic Mechanics](#newtonian-to-relativistic-mechanics)
   - [Newtonian Relativity; the galilean transformation.](#newtonian-relativity-the-galilean-transformation)
   - [Einstein's Postulates](#einsteins-postulates)
@@ -28,6 +29,10 @@
       - [4-Momentum](#4-momentum)
       - [4-Force](#4-force)
       - [4-Wave-Vector (not so catchy)](#4-wave-vector-not-so-catchy)
+    - [Basic Tensors](#basic-tensors)
+      - [Maxwell Field Tensor](#maxwell-field-tensor)
+      - [Orbital Angular Momentum](#orbital-angular-momentum)
+      - [The Stress Energy Tensor](#the-stress-energy-tensor)
   - [Using 4-Vectors](#using-4-vectors)
     - [Applying the 4-Wave-Vector](#applying-the-4-wave-vector)
       - [The Doppler Effect](#the-doppler-effect)
@@ -51,6 +56,7 @@
     - [E fields](#e-fields)
     - [B Fields](#b-fields)
     - [Putting them together](#putting-them-together)
+    - [The Maxwell Field Tensor](#the-maxwell-field-tensor)
   - [Fields of a uniformly moving point charge](#fields-of-a-uniformly-moving-point-charge)
   - [Electromagnetic Potential as a 4-Vector](#electromagnetic-potential-as-a-4-vector)
     - [4-Current](#4-current)
@@ -61,6 +67,11 @@
         - [Radiated Power and Lamour's formula.](#radiated-power-and-lamours-formula)
         - [Dipole Oscillations](#dipole-oscillations)
         - [The Half Wave Electric Dipole Antenna](#the-half-wave-electric-dipole-antenna)
+  - [The Stress Energy Tensor for EM Fields](#the-stress-energy-tensor-for-em-fields)
+  - [Applications](#applications)
+    - [Parallel plate capacitor](#parallel-plate-capacitor)
+    - [Long Straight Solenoid](#long-straight-solenoid)
+    - [Plane Waves](#plane-waves)
 - [Lagrangians](#lagrangians)
   - [The Classical Lagrangian](#the-classical-lagrangian)
   - [Relativistic Lagrangian Density](#relativistic-lagrangian-density)
@@ -196,6 +207,21 @@ We also have a d'Alembert operator which is like a 4-laplacian so people sometim
 $$
 \Box^2 = \partial\cdot\partial = \partial^\mu g_\mu\nu\partial^\nu = \partial_\nu\partial^\nu = \frac{1}{c^2}\frac{\partial^2}{\partial t^2} - \underline{\nabla}^2
 $$
+
+## Symmetry and Polar and Axial Vectors
+
+If you consider the common transformation of parity inversion.
+
+$$
+\mathcal{P}:\bold{x} \mapsto -\bold{x}
+$$
+
+There are two ways a vector can transform and thus two types of vectors
+
++ **Polar** - These vectors reverse their sign under parity inversion examples include, $\bold{x}$, $\bold{v}$, $\bold{E}$, $\bold{j}$, and $\nabla$.
++ **Axial** - These do not reverse their sign under parity inversion. They're often associated with cross product quantities and include $\bold{B}$, $\bold{J}$, and $\bold{m}$
+
+Typically we expect general theories to be unchanged under parity inversion.
 
 # Newtonian to Relativistic Mechanics
 
@@ -578,6 +604,65 @@ $$
 
 Clearly these are equivalent.
 
+### Basic Tensors
+
+#### Maxwell Field Tensor
+
+The Maxwell field tensor $F^{\mu\nu}$ is a way to contain $\bold{E}$ and $\bold{B}$ in one tensor and fully encapsulate their field. Which is written about more in that section.
+
+#### Orbital Angular Momentum
+
+Angular momentum is defined as $\bold{L} = \bold{x}\times\bold{p}$ the relativistic analogue is...
+
+$$
+\mathbb{L}^{\mu\nu} = X^\mu P^\nu - X^\nu P^\mu
+$$
+
+More explicitly this gives...
+
+$$
+\mathbb{L}^{\mu\nu} = \begin{pmatrix}
+  0 & ~ & -\bold{w}/c & ~\\
+  ~ & 0 & L_z & - L_y\\
+  \bold{w}/c & -L_z & 0 & L_x\\
+  ~ & L_y & -L_x & 0
+\end{pmatrix}
+$$
+
+We also can see that...
+$$
+
+\frac{d\mathbb{L}^{\mu\nu}}{d\tau} = U^\mu P^\nu - U^\nu P^\mu + X^\mu F^\nu - X^\nu F^\mu = X^\mu F^\nu - X^\nu F^\mu
+$$
+
+Where we use that $P^\mu = mU^\mu$. Clearly angular momentum is conserved when there are no external forces.
+
+For composite bodies we can define the total orbital angular momentum...
+
+$$
+\mathbb{L}^{\mu\nu} = \sum_i\mathbb{L}^{\mu\nu}_{(i)}\\
+P^\mu = \sum_iP^\mu_{(i)}
+$$
+
+Thus for a given point we have...
+
+$$
+\mathbb{L}^{\mu\nu}(R) = \sum_i\big[\big(X^\mu_{(i)} - R^\mu\big)P^\nu_{(i)} - (X^\nu_{(i)} - R^\nu)P^\mu_{(i)}\big] = \mathbb{L}^{\mu\nu}(0) - R^\mu P^\nu + R^\nu P^\mu
+$$
+
+#### The Stress Energy Tensor
+
+The stress tensor is defined as...
+
+$$
+\mathbb{T}^{\mu\nu} = \begin{pmatrix}
+  u & \bold{N}/c\\
+  \bold{N}/c & \sigma_{ij}
+\end{pmatrix}
+$$
+
+and tells about the energy and pressure distribution in the system. We'll see more of it in electromagnetism.
+
 ## Using 4-Vectors
 
 Now that we have our 4-Vectors it's time to take them for a spin through some simple relativistic kinematics.
@@ -943,6 +1028,29 @@ $$
 }
 $$
 
+### The Maxwell Field Tensor
+
+A nice way to represent this is to consider $E$ and $B$ not as independent fields but as parts od the same Tensor. The Field Tensor can be written as...
+
+$$
+F^{\mu\nu} = \begin{pmatrix}
+  0 & E_x/c & E_y/c & E_z/c\\
+  -E_x/c & 0 & B_z & -B_y\\
+  -E_y/c & -B_z & 0 & B_x\\
+  -E_z/c & B_y & -B_x & 0
+\end{pmatrix}
+$$
+
+This is transformed as you might expect...
+
+$$
+F^{\prime\mu\nu} = \Lambda^\mu_\kappa\Lambda^\nu_\lambda F^{\kappa\lambda}
+$$
+
+Which leads to the result from above!.
+
+
+
 ## Fields of a uniformly moving point charge
 
 If we place a stationary charge in frame $S^\prime$ we get
@@ -1227,6 +1335,128 @@ E = \frac{I_0}{4\pi\epsilon_0 c}\frac{\sin\theta}{r}\cos(kr-\omega t)
 $$
 
 This maximizes power output for the antenna.
+
+## The Stress Energy Tensor for EM Fields
+
+The [stress energy tensor](#the-stress-energy-tensor) from before can be described in EM as...
+
+$$
+\mathbb{T}^{\mu\nu} = \frac{1}{\mu_0}\bigg[-\frac{1}{4}(F_{\alpha\beta}F^{\alpha\beta})g^{\mu\nu} - F^\mu_\gamma F^\gamma\nu\bigg]
+$$
+
+This gives
+
+$$
+\mathbb{T}^{\mu\nu} = \begin{pmatrix}
+  \frac{1}{2\mu_0}(B^2+\frac{E^2}{c^2}) & N_x/c & N_y/c & N_z/c\\
+  N_x/c & ~ & ~ & ~\\
+  N_y/c & ~ & P_{ij} & ~\\
+  N_z/c & ~ & ~ & ~
+\end{pmatrix}\\
+P_{ij} = \frac{1}{\mu_0}\bigg[\frac{1}{2}\delta_{ij}(B^2 + \frac{E^2}{c^2}) - (B_iB_j + \frac{E_iE_j}{c^2})\bigg]
+$$
+
+Which gives a new version of Poynting's theorem...
+
+$$
+\partial_\alpha T^{\alpha\beta} = 0
+$$
+
+We also have an angular momentum rank-3 tensor...
+
+$$
+M^{\alpha\beta\gamma} = \mathbb{T}^{\alpha\beta}x^\gamma - \mathbb{T}^{\alpha\gamma}x^\beta
+$$
+
+Some simple algebra can give the conservation...
+
+$$
+\partial_\alpha M^{\alpha\beta\gamma} = \mathbb{T}^{\gamma\beta} - \mathbb{T}^{\beta\gamma} = 0
+$$
+
+## Applications
+
+### Parallel plate capacitor
+
+For a parallel plate capacitor with area A and gap along $\bold{\hat{x}}$ we have a constant electric field $E\bold{\hat{x}}$. The charge on each plate is...
+
+$$
+Q = A\epsilon_0E
+$$
+
+So the force pulling them together is...
+
+$$
+f = \frac{QE}{2} = \epsilon_0 A\frac{E^2}{2}
+$$
+
+The stress tensor then is
+$$
+\mathbb{T}^{\mu\nu} = \frac{\epsilon_0E^2}{2}\begin{pmatrix}
+  1 & ~  & ~ & ~\\
+  ~ & -1 & ~ & ~\\
+  ~ & ~  & 1 & ~\\
+  ~ & ~  & ~ & 1\\
+\end{pmatrix}
+$$
+
+We get energy density and pressure as we'd expect and an outward pressure due to tension along field lines.
+
+### Long Straight Solenoid
+
+For a long straight solenoid the tensor is...
+
+$$
+\mathbb{T}^{\mu\nu} = \frac{\epsilon_0c^2B^2}{2}\begin{pmatrix}
+  1 & ~  & ~ & ~\\
+  ~ & -1 & ~ & ~\\
+  ~ & ~  & 1 & ~\\
+  ~ & ~  & ~ & 1\\
+\end{pmatrix}
+$$
+
+### Plane Waves
+
+For a plane wave polarized along y we have...
+
+$$
+\bold{E} = (0, E, 0)\cos(\omega t - kx)\\
+\bold{B} = (0, 0, B)\cos(\omega t - kx)\\
+ B = \frac{E}{c} = \frac{kE}{\omega}
+$$
+
+The energy density is...
+$$
+u = B^2 + \frac{E^2}{c^2} = \frac{2E^2}{c^2}
+$$
+
+The poynting vector is...
+
+$$
+\bold{N} = \frac{1}{\mu_0}\bold{E}\times\bold{B} = \bold{\hat{x}}\frac{E^2}{\mu_0c}\cos^2(\omega t - kx)
+$$
+
+The pressure is given by...
+
+$$
+\sigma_{ii} = \frac{1}{2\mu_0}\frac{2E^2}{c^2} - \frac{1}{\mu_0}\bigg(B_x^2 + \frac{E_x^2}{c^2}\bigg) = \begin{pmatrix}
+  \frac{E^2}{\mu_0c^2} & 0 & 0
+\end{pmatrix}
+$$
+
+This gives a stress tensor of...
+
+$$
+\mathbb{T}^{\mu\nu} = \frac{E^2\cos^2(\omega t-kx)}{\mu_0c^2}\begin{pmatrix}
+  1&1&~&~\\
+  1&1&~&~\\
+  ~&~&0&~\\
+  ~&~&~&0\\
+\end{pmatrix}\\
+\mathbb{T} = \frac{E^2\cos^2(\omega t-kx)}{\mu_0c^2\omega^2}K^\mu K^\nu
+$$
+
+Where $K$ is the 4-wave-vector.
 
 # Lagrangians
 
