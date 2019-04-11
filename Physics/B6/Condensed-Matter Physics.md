@@ -15,10 +15,21 @@
       - [The Face Centred Cubic (FCC) Lattice](#the-face-centred-cubic-fcc-lattice)
       - [Bravais Lattice Types](#bravais-lattice-types)
   - [The Reciprocal Lattice](#the-reciprocal-lattice)
-    - [The Reciprocal Lattice as a Fourier Transform.](#the-reciprocal-lattice-as-a-fourier-transform)
+    - [The Reciprocal Lattice as a Fourier Transform (The Structure Factor)](#the-reciprocal-lattice-as-a-fourier-transform-the-structure-factor)
     - [The Reciprocal Lattice as Families of Lattice Planes](#the-reciprocal-lattice-as-families-of-lattice-planes)
       - [Miller Indices](#miller-indices)
     - [Brillouin Zones](#brillouin-zones)
+  - [Crystal Diffraction](#crystal-diffraction)
+    - [Laue and Bragg](#laue-and-bragg)
+      - [Using Fermi's golden rule](#using-fermis-golden-rule)
+      - [Using Diffraction](#using-diffraction)
+      - [Equivalence of Bragg and Laue](#equivalence-of-bragg-and-laue)
+    - [Scattering Amplitudes and Structure Factors](#scattering-amplitudes-and-structure-factors)
+      - [Neutrons](#neutrons)
+      - [X-Rays](#x-rays)
+      - [Comparison of Neutrons and X-Rays](#comparison-of-neutrons-and-x-rays)
+      - [In practice](#in-practice)
+      - [Systemic Absences Example](#systemic-absences-example)
 
 # Structure and Types of Bonding
 
@@ -310,7 +321,7 @@ $$
 \bold{b}_3 = \frac{2\pi\bold{a}_1\times\bold{a}_2}{\bold{a_1}\cdot(\bold{a}_2\times\bold{a}_3)}\\
 $$
 
-### The Reciprocal Lattice as a Fourier Transform.
+### The Reciprocal Lattice as a Fourier Transform (The Structure Factor)
 
 Let the density of atoms be $\rho(\bold{r})$. This is clearly periodic in the lattice vector $\rho(\bold{r}) = \rho(\bold{r} + \bold{R})$. We can get the fourier transform...
 
@@ -334,7 +345,7 @@ $$
 S(\bold{k}) = \int_\text{unit cell}d^3\bold{x}e^{i\bold{k}\cdot(\bold{x})}\rho(\bold{x})
 $$
 
-Where $S(\bold{k})$ is the *Structure Factor*
+Where $S(\bold{k})$ is the **Structure Factor**
 
 ### The Reciprocal Lattice as Families of Lattice Planes
 
@@ -412,3 +423,208 @@ We construct brillouin zones with the Wigner-Seitz construction. The first is bo
 <br/>
 An example of constructing Brillouin Zones
 </div>
+
+## Crystal Diffraction
+
+### Laue and Bragg
+
+#### Using Fermi's golden rule
+
+If we consider a particle coming in to a crystal and experiencing some diffraction then we can consider the crystal as some potential $V(\bold{r})$ and Fermi's golden rule states that the transition rate per unit time for a particle scattering from $\bold{k}$ to $\bold{k}^\prime$
+
+$$
+\Gamma(\bold{k}^\prime, \bold{k}) = \frac{2\pi}{\hbar}|\big<\bold{k}^\prime|V|\bold{k}\big>|^2\delta(E_{\bold{k}^\prime} - E_{\bold{k}})
+$$
+
+The matrix element is...
+
+$$
+\big<\bold{k}^\prime|V|\bold{k}\big> = \int d\bold{r}\frac{e^{-i\bold{k}^\prime\cdot\bold{r}}}{\sqrt{L^3}}V(\bold{r})\frac{e^{i\bold{k}\cdot\bold{r}}}{\sqrt{L^3}} = \frac{1}{L^3}\int d\bold{r}e^{-i(\bold{k} - \bold{k}^\prime)\cdot\bold{r}}V(\bold{r})
+$$
+
+Is actually just a fourier transform of the sample. If we do something similar to what we did with the [Structure factor](#the-reciprocal-lattice-as-a-fourier-transform-the-structure-factor) we can put this integral into the form...
+
+$$
+\big<\bold{k}^\prime|V|\bold{k}\big> = \frac{1}{L^3}\sum_\bold{R}\int_{\text{unit cell}}d\bold{x}e^{-i(\bold{k}^\prime-\bold{k})\cdot(\bold{x}+\bold{R})}V(\bold{x}+\bold{R})
+$$
+
+Since $V(\bold{x}+\bold{R}) = V(\bold{x})$ we can write
+
+$$
+\big<\bold{k}^\prime|V|\bold{k}\big> = \frac{1}{L^3}\bigg[\sum_\bold{R}e^{-i(\bold{k}^\prime-\bold{k})\cdot\bold{R}}\bigg]\bigg[\int_\text{unit cell}d\bold{x}e^{-i(\bold{k}^\prime-\bold{k})\cdot\bold{x}}V(\bold{x})\bigg]
+$$
+
+Since the term with the sum is in the form of the definition of the crystal lattice we have...
+
+$$
+\bold{k}^\prime - \bold{k} = \bold{G}
+$$
+
+The **Laue Condition** which is a statement of conservation of crystal momentum. When the wave leaves the crystal we have...
+
+$$
+|\bold{k}| = |\bold{k}^\prime|
+$$
+
+Which should make a lot of sense.
+
+The result of this is that for any vector $\bold{k}$ which enters the reciprocal lattice there is only diffraction if you can draw a circle around it which intersects a reciprocal lattice point. Like below...
+
+<div style="text-align:center">
+<img src="./Figs/LaueCondition.jpg" height=200>
+<br/>
+An example of an Ewald Sphere
+</div>
+
+#### Using Diffraction
+
+It turns out that the Laue condition is a result of a condition resulting from diffraction from a grating, this is the Bragg description of crystal diffraction. 
+
+<div style="text-align:center">
+<img src="./Figs/Bragg.jpg" height=200>
+<br/>
+Diffraction Diagram
+</div>
+
+It's clear from the above diagram that the extra distance can be given by 
+
+$$
+\text{extra distance} = 2d\sin\theta
+$$
+
+and the wave has been deflected by $2\theta$.
+
+In order to have constructive interference we require
+
+$$
+n\lambda = 2d\sin\theta
+$$
+
+which is **Bragg's Law**.
+
+#### Equivalence of Bragg and Laue
+
+The picture below shows diffraction of a family of lattice planes defined by the reciprocal lattice vector $\bold{G}$. The planes are separated by $d = 2\pi/|\bold{G}|$
+
+<div style="text-align:center">
+<img src="./Figs/LaueAndBragg.jpg" height=200>
+<br/>
+Diffraction off a family of lattice planes
+</div>
+
+It's clear from above that
+
+$$
+\bold{\hat{k}}\cdot\bold{\hat{G}} = \sin\theta = -\bold{\hat{k}\cdot\bold{\hat{G}}}
+$$
+
+If the Laue condition is satisfied and $|\bold{k}| = |\bold{k}^\prime| = 2\pi/\lambda$ we can write the Laue condition as...
+$$
+\frac{2\pi}{\lambda}(\bold{\hat{k}}-\bold{\hat{k}}^\prime) = \bold{G}
+$$
+
+dotted with $\bold{\hat{G}}$ we have...
+
+$$
+\begin{aligned}
+\bold{\hat{G}}\cdot\frac{2\pi}{\lambda}(\bold{\hat{k}}-\bold{\hat{k}}^\prime) &= \bold{\hat{G}}\cdot\bold{G}\\
+\frac{2\pi}{\lambda}(\sin\theta-\sin\theta^\prime) &= |\bold{G}|\\
+\frac{2\pi}{|\bold{G}|}(2\sin\theta) &= \lambda\\
+2d\sin\theta &= \lambda
+\end{aligned}
+$$
+
+This is the Bragg condition (- a factor of n) from the Laue condition. We can get the true condition so long as we remember that $\bold{G} = n\bold{G}$ as any length reciprocal vector could work which adds the factor we need.
+### Scattering Amplitudes and Structure Factors
+
+Remember from [Fermi's golden rule](#using-fermis-golden-rule) that our rate of transition is related to the matrix element...
+
+$$
+\big<\bold{k}^\prime|V|\bold{k}\big> = \frac{1}{L^3}\bigg[\sum_\bold{R}e^{-i(\bold{k}^\prime-\bold{k})\cdot\bold{R}}\bigg]\bigg[\int_\text{unit cell}d\bold{x}e^{-i(\bold{k}^\prime-\bold{k})\cdot\bold{x}}V(\bold{x})\bigg]
+$$
+
+The first bracketed term was relevant for the Laue condition but if that is true we can see the second reduces ti the structure factor for the unit-cell...
+
+$$
+S(\bold{G}) = \int_\text{unit cell}d\bold{x}e^{-i\bold{G}\cdot\bold{x}}V(\bold{x})
+$$
+
+Which we can write as...
+$$
+I_{(hkl)} \propto |S_{(hkl)}|^2
+$$
+
+Now we know the importance of the structure factor let's see how it differs for Neutron and X-Ray diffraction.
+
+#### Neutrons
+
+Since neutrons are uncharged they scatter from nuclei and the potential can be approximated as a delta function...
+
+$$
+V(\bold{x}) = \sum_{\text{Atom }j \text{ in the cell}}f_j\delta(\bold{x}-\bold{x}_j)
+$$
+
+$f_j$ is the *Atomic Form Factor* it represents the strength of scattering from that particular nucleus. For neutrons it's proportional to the "nuclear-scattering-length" $b_j$ so you might see...
+
+$$
+V(\bold{x}) \sim \sum_{\text{Atom }j \text{ in the cell}}b_j\delta(\bold{x}-\bold{x}_j)
+$$
+
+Putting this in the structure factor we get...
+
+$$
+S(\bold{G}) \sim \sum_{\text{Atom }j \text{ in the cell}}b_je^{i\bold{G}\cdot\bold{x}_j}
+$$
+
+#### X-Rays
+
+X-Rays scatter from electrons so we're likely to see 
+$$
+V(\bold{x}) \sim\sum_{\text{Atom }j \text{ in the cell}}Z_jg_j(\bold{x}-\bold{x}_j)
+$$
+
+Where $Z_j$ is the atomic number and $g_j$ is a function approximating the size and distribution of an atom. Taking the transform we get...
+
+$$
+S(\bold{G}) \sim \sum_{\text{Atom }j \text{ in the cell}}f_j(\bold{G})e^{i\bold{G}\cdot\bold{x}_j}
+$$
+
+Where $f_j$ the form factor is roughly proportional to $Z_j$ but also has some dependence on $|\bold{G}|$ as well. We can approximate this as independent of $\bold{G}$ but this would only be really true if $g$ was very short ranged.
+
+#### Comparison of Neutrons and X-Rays
+
++ For X-Rays since $f_j\sim Z_j$ the x-rays scatter very strongly from heavy atoms and weakly from light ones. This makes it very difficult to see elements like Hydrogen in a solid. Also to distinguish atoms close in size.
++ $b_j$ Varies erratically with $Z_j$ So it is easy to distinguish atomic number. Also Hydrogen is very easy to see as it scatters fairly well.
++ For Neutrons scattering doesn't depend on $\bold{G}$ because scattering is very short ranged which isn't the case for X-Rays
++ Neutrons have spin and so scattering off electrons (which is weak but observable) can show us what the electron spin states are. 
+
+#### In practice
+
+In practice we need to write the basis down for the unit cell we're working with and put that into the sum for the Structure Factor.
+
+For primitive lattice vectors we can write...
+
+$$
+S_{(hkl)} = \sum_{\text{Atom }j \text{ in the cell}}f_je^{2\pi i(hx_j+ky_j+lz_j)}
+$$
+
+
+#### Systemic Absences Example
+
+Let's look at an example of calculating the structure factor for a Cs crystal. This has the basis...
+
+|Atom         | Position        |
+|:-----------:|:---------------:|
+|Cs           | $[0,0,0]$       |
+|Cs           | $[a/2,a/2,a/2]$ |
+
+This gives a structure factor of...
+
+$$
+\begin{aligned}
+S_{(hkl)} &= f_{Cs} + f_{Cs}e^{2\pi i(h,k,l)\cdot(1/2,1/2,1/2)}\\
+&=f_{Cs}[1+(-1)^{k+k+l}]
+\end{aligned}
+$$
+
+So the structure factor (and therefore all scattering) vanishes for $h+k+l$ being any odd integer!
