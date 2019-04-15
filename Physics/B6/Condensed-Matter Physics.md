@@ -1,11 +1,18 @@
 # B6 Condensed Matter Physics <!-- omit in toc -->
 
+- [Heat Capacity of Solids](#heat-capacity-of-solids)
+  - [Einstein's Calculation](#einsteins-calculation)
+  - [Born von Karman Boundaries](#born-von-karman-boundaries)
+  - [Debye Model](#debye-model)
 - [Structure and Types of Bonding](#structure-and-types-of-bonding)
   - [Bonding Types](#bonding-types)
     - [Ionic Bonding](#ionic-bonding)
     - [Covalent Bonding](#covalent-bonding)
     - [Molecular Bonding](#molecular-bonding)
     - [Hydrogen Bonding](#hydrogen-bonding)
+  - [One Dimensional Model of Bonding](#one-dimensional-model-of-bonding)
+    - [Thermal Expansion](#thermal-expansion)
+    - [Elasticity](#elasticity)
 - [Crystals](#crystals)
   - [Crystal Structure](#crystal-structure)
     - [Lattices](#lattices)
@@ -30,6 +37,203 @@
       - [Comparison of Neutrons and X-Rays](#comparison-of-neutrons-and-x-rays)
       - [In practice](#in-practice)
       - [Systemic Absences Example](#systemic-absences-example)
+- [Atomic Chains](#atomic-chains)
+  - [The Monatomic Chain](#the-monatomic-chain)
+    - [A dispersion relation](#a-dispersion-relation)
+    - [Counting Normal Modes](#counting-normal-modes)
+    - [Velocities](#velocities)
+    - [Sound Waves](#sound-waves)
+    - [Density of States](#density-of-states)
+    - [Energy and Heat Capacity](#energy-and-heat-capacity)
+  - [Diatomic Chain](#diatomic-chain)
+    - [Optical and Acoustic modes](#optical-and-acoustic-modes)
+
+# Heat Capacity of Solids
+
+Recall that Heat Capacity is given by 
+
+$$
+\boxed{
+C_{(...)} = \bigg(\frac{\partial U}{\partial T}\bigg)_{(...)} 
+}
+$$
+
+A useful rule of thumb is the Law of Dulong-Petit which claims 
+$$
+C = 3Nk_B = 3R
+$$
+
+While not always true this law holds extremely well in room temperatures.
+
+## Einstein's Calculation
+
+Einstein's attempt to find the heat capacity of solids went like this...
+
+In one dimension the eigenstates of a simple harmonic oscillator are
+
+$$
+E_n = \hbar\omega(n+1/2)
+$$
+
+The partition function is then...
+
+$$
+\begin{aligned}
+Z_{1D} &= \sum_{n\geq0}e^{-\beta\hbar\omega(n+1/2)}\\
+&= \frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}\\
+&= \frac{1}{2\sinh(\beta\hbar\omega/2)} 
+\end{aligned}
+$$
+
+If we remember statistical mechanics (which I don't) then the expected energy is
+
+$$
+\big<E\big> = -\frac{1}{Z}\frac{\partial Z}{\partial \beta} = \frac{\hbar\omega}{2}\coth\bigg(\frac{\beta\hbar\omega}{2}\bigg) = \hbar\omega\bigg(n_B(\beta\hbar\omega)+\frac{1}{2}\bigg)
+$$
+
+Where $n_B$ is the Bose occupation factor...
+
+$$
+n_B(x) = \frac{1}{e^x-1}
+$$
+
+This gives us the heat capacity
+
+$$
+C = \frac{\partial\big<E\big>}{\partial T} = k_B(\beta\hbar\omega)^2\frac{e^{\beta\hbar\omega}}{(e^{\beta\hbar\omega} - 1)^2}
+$$
+
+If we generalise to the three dimensional case we have 
+
+$$
+\begin{aligned}
+E_{n_x,n_y,n_z} &= \hbar\omega[(n_x + 1/2) + (n_y + 1/2) + (n_z + 1/2)]\\
+\implies\quad Z_{3D} &= (Z_{1D})^3\\
+\implies \big<E_{3D}\big> &= 3\big<E_{1D}\big>\\
+\implies \quad\quad C &= 3k_B(\beta\hbar\omega)^2\frac{e^{\beta\hbar\omega}}{(e^{\beta\hbar\omega} - 1)^2}
+\end{aligned}
+$$
+
+This is plotted below and clearly tends to the law of Dulong-Petit at high temperatures.
+
+<div style="text-align:center">
+<img src="./Figs/EinsteinCapacity.jpg" height=200>
+<br/>
+Plot of Einstein Heat Capacity agreement with Dulong Petit
+</div>
+
+This model doesn't perfectly fit massively well at high and low temperatures.
+
+<div style="text-align:center">
+<img src="./Figs/EinsteinCapacityAgreement.jpg" height=200>
+<br/>
+Plot of results next to predictions of the model
+</div>
+
+This is likely due to the lack of quantum treatment as this was years before the Shrodinger equation was discovered! Enter Debye to solve this problem with a distinctly quantised solution.
+
+## Born von Karman Boundaries
+
+In this course we'll keep running into these periodic "Born-Von-Karman" boundary conditions. In 1D this is the idea that $f(x) = f(x+L)$ for some $L$ and $f$. As we'll derive we look at the [density of states in the monatomic chain](#counting-normal-modes) this gives us the restriction on values of k to 
+
+$$
+k = \frac{2\pi n}{L}\quad\quad\text{where }n\text{ is an integer}
+$$
+
+For large enough L we can replace the sum over these values with an integral.
+
+$$
+\sum_k \rightarrow \frac{L}{2\pi}\int^\infty_{-\infty}dk
+$$
+
+For higher dimensions we need to consider the discrete values across all dimensions. 
+
+$$
+\bold{k} = \frac{2\pi}{L}\begin{pmatrix}
+  n_1, & n_2, & n_3
+\end{pmatrix}\\
+\implies\sum_k \rightarrow \frac{L^3}{(2\pi)^3}\int^\infty_{-\infty}d\bold{k}
+$$
+
+## Debye Model
+
+Debye uses the result from Born-Von-Karman boundaries to find a different solution for $C$. He decided that oscillation  modes were waves with frequencies $\omega(\bold{k}) = v|\bold{k}|$ with $v$ the velocity of sound. For each $\bold{k}$ he expected three possible modes one for each direction of motion. He wrote a calculation for $\big<E\big>$
+$$
+\begin{aligned}
+\big<E\big> &= 3\sum_\bold{k}\hbar\omega(\bold{k})\bigg(n_B(\beta\hbar\omega(\bold{k})) + \frac{1}{2}\bigg)\\
+&= 3\frac{L^3}{(2\pi)^3}\int d\bold{k}\,\hbar\omega(\bold{k})\bigg(n_B(\beta\hbar\omega(\bold{k})) + \frac{1}{2}\bigg)
+\end{aligned}
+$$
+
+Turning this into a spherical integral and using $k=\omega/v$ we can get...
+
+$$
+\begin{aligned}
+\big<E\big> &= 3\frac{4\pi L^3}{(2\pi)^3}\int_0^\infty d\omega\,\omega^2\frac{1}{v^3}\hbar\omega \bigg(n_B(\beta\hbar\omega) + \frac{1}{2}\bigg)\\
+&= \int_0^\infty d\omega\,g(\omega)\hbar\omega \bigg(n_B(\beta\hbar\omega) + \frac{1}{2}\bigg)\\
+\text{where}\quad\quad g(\omega) &=N \bigg(\frac{12\pi\omega^2}{(2\pi)^3nv^3}\bigg) = N\frac{9\omega^2}{\omega_d^3}\\
+\text{and}\quad\quad\quad\quad\! \omega_d &= 6\pi^2nv^3
+\end{aligned}
+$$
+
+Where $\omega_d$ is the *Debye frequency*
+
+After a "nasty" integral we get
+
+$$
+\big<E\big> = 9N\frac{(k_BT)^4\pi^4}{(\hbar\omega_d)^315} + T\quad\text{(some independent constant)}
+$$
+
+This gives...
+
+$$
+C = Nk_B\frac{(k_BT)^3}{(\hbar\omega_d)^3}\frac{12\pi^4}{5}\sim T^3
+$$
+
+The $T^3$ relationship matches the deviation we saw at from the Einstein calculation. If we define the *Debye Temperature* as $\hbar\omega_d = k_BT_\text{debye}$ we get...
+
+$$
+C = Nk_B\frac{T^3}{T_\text{debye}^3}\frac{12\pi^4}{5}
+$$
+
+
+This doesn't match at all at high temperatures though! We need to use something called Debye's interpolation. Basically this is the decision not to consider sound waves above some maximum frequency $\omega_\text{max}$.
+
+$$
+3N = \int^{\omega_\text{max}}_0d\omega\,g(\omega)
+$$
+
+This makes energy (dropping the constant contribution)
+
+$$
+\big<E\big> = \int^{\omega_\text{max}}_0d\omega\,g(\omega)\hbar\omega n_B(\beta\hbar\omega)
+$$
+
+In the high temperature limit we have
+
+$$
+n_B = \frac{1}{e^{\beta\hbar\omega}-1}\rightarrow\frac{k_BT}{\hbar\omega}\\\ \\
+\implies \big<E\big> = k_BT\int_0^{\omega_\text{max}}d\omega g(\omega) = 3k_BNT
+$$
+
+Which agrees with Dulong-Petit!
+
+If we do the first integral for $3N$ we find that $\omega_\text{max} = \omega_d$!
+
+This fits experiment much more closely.
+
+<div style="text-align:center">
+<img src="./Figs/Debye.jpg" height=200>
+<br/>
+Comparison of Debye Theory and Experiment.
+</div>
+
+Although there are still some issues with it.
+
++ The random inclusion of a maximum frequency isn't very rigorous.
++ Assuming sound waves follow $\omega=vk$ doesn't hold at higher $k$.
++ Experimentally it is very accurate but not exact.
++ At very low temperatures metals have a linear term on top of the $T^3$ one and this should dominate. 
 
 # Structure and Types of Bonding
 
@@ -140,6 +344,49 @@ This means that the force due to the bond $\bold{F} = -\nabla U \propto r^{-7}$ 
 ### Hydrogen Bonding
 
 Non-Examinable
+
+## One Dimensional Model of Bonding
+
+If we consider the potential of two nearby atoms we can approximate it by taylor expanding it around the equilibrium position...
+
+$$
+  V(x) = V(x_{eq}) + \frac{\kappa}{2}(x-x_{eq})^2 + \frac{\kappa_3}{3!}(x-x_{eq})^3 + \dots 
+$$
+
+Here we've ignored the linear term because if there was one there'd be no $x_{eq}$ this let's us approximate $V(x)$ as a quadratic around $x_{eq}$.
+
+<div style="text-align:center">
+<img src="./Figs/ThermalExpansion.jpg" height=200>
+<br/>
+Our one dimensional model
+</div>
+
+### Thermal Expansion
+
+As the potential is likely to be asymmetric in reality, we can see that as T increases we get $x_{max}$ increasing more and more whilst $x_{min}$ is asymptotic this will mean the average distance will increase and the system will expand.
+
+### Elasticity
+
+If we apply a force to this quadratic potential we expect to find
+
+$$
+-\kappa\delta x = F
+$$
+
+As this is a hooke potential. The usual description of compressibilty is...
+
+$$
+\beta = -\frac{1}{V}\frac{\partial V}{\partial P}
+$$
+
+If we choose $T=S=0$ for simplicity we get 
+
+$$
+\beta = \frac{1}{\kappa x_{eq}} = 
+\frac{1}{\kappa a}
+$$
+
+Since $x_eq$ is the characteristic distance between atoms we call it $a$ the lattice constant. We'll learn more about lattices now!
 
 # Crystals
 
@@ -623,8 +870,197 @@ This gives a structure factor of...
 $$
 \begin{aligned}
 S_{(hkl)} &= f_{Cs} + f_{Cs}e^{2\pi i(h,k,l)\cdot(1/2,1/2,1/2)}\\
-&=f_{Cs}[1+(-1)^{k+k+l}]
+&=f_{Cs}[1+(-1)^{h+k+l}]
 \end{aligned}
 $$
 
 So the structure factor (and therefore all scattering) vanishes for $h+k+l$ being any odd integer!
+
+# Atomic Chains
+
+In this section we want to look at the models of vibration in a solid by looking at the simple case of one dimensional chains. We'll look at normal modes and phonons.
+
+## The Monatomic Chain
+
+<div style="text-align:center">
+<img src="./Figs/MonatomicChain.jpg" >
+<br/>
+The set up for a monatomic chain.
+</div>
+
+With a monatomic chain like above we can let $x_n$ be the position of the $n^\text{th}$ atom and $x_n^{eq} = na$ is the equilibrium position. We end up with a $\delta x_n$ displacement value.
+
+$$
+x_n = x_n^{eq} + \delta x_n
+$$
+
+Using NII we can say that
+
+$$
+\begin{aligned}
+m\delta\ddot{x}_n &= \kappa(\delta x_{n+1} - \delta x_n) - \kappa(\delta x_n - \delta x_{n-1})\\
+&= \kappa(\delta x_{n+1}+ \delta x_{n-1} - 2\delta x_n)
+\end{aligned}
+$$
+
+
+As we expect oscillatory motion a good guess initially is...
+
+$$
+\delta x_n = Ae^{i(\omega t - kna)}
+$$
+
+Since our lattice is periodic in $a$ we expect the reciprocal space to be periodic in $2\pi/a$ and it's clear from above that $k\mapsto k+2\pi/a$ doesn't effect the solution at all.
+
+### A dispersion relation
+
+Substituting this solution in we get the dispersion relation...
+
+$$
+\omega = 2\omega_0\bigg|\sin\frac{ka}{2}\bigg|,\quad\quad\omega_0 = \sqrt{\frac{\kappa}{m}}
+$$
+
+This is $2\pi/a$ periodic again which means the first Brillouin zone has boundaries $[-\pi/a,\; \pi/a]$ 
+
+### Counting Normal Modes
+
+Say we have $N$ masses in this chain forming a circle this would give $x_n = x_{n+N}$ which produces an interesting result...
+
+$$
+\begin{aligned}
+  Ae^{i(\omega t - kna)} &= Ae^{i(\omega t - k(n+N)a)}\\
+  \implies e^{ikNa} &= 1\\
+  k &= \frac{2\pi p}{Na}\quad\quad\text{where } p \text{ is an integer}
+\end{aligned}
+$$
+
+So $k$ is no longer continuous but separated by discrete amounts $\frac{2\pi}{Na}$ this gives...
+
+$$
+\text{Total \# modes} = \frac{\text{Range of }k}{\text{Spcaing between discrete } k}= \frac{2\pi/a}{2\pi/Na} = N
+$$
+
+### Velocities
+
+It's clear that phase and group velocities are...
+
+$$
+v_p = \frac{\omega}{k} = \frac{2\omega_0}{k}\bigg|\sin\frac{ka}{2}\bigg|,\quad v_g = \frac{d\omega}{dk} = a\omega_0\bigg|\cos\frac{ka}{2}\bigg|
+$$
+
+To get $v_g$ it's easier to differentiate $\omega^2$ to avoid the modulus. 
+
+### Sound Waves
+
+Sound waves are waves with very long wavelength, which means we can find their velocity by finding the limit as $k\rightarrow0$.
+$$
+c_s = \lim_{k\rightarrow0}v_g = a\omega_0 = a\sqrt\frac{\kappa}{m}
+$$
+
+Since density is $\rho = m/a$ and compressibility is $\beta_s = 1/\kappa a$ we can write
+
+$$
+c_s = a \sqrt{\frac{1/(\beta_sa)}{\rho a}} = \frac{1}{\sqrt{\rho\beta_s}}
+$$
+
+Which is a good general relationship for speed of sound.
+
+### Density of States
+
+We know the separation of k states from before is $2\pi/Na$, since we have 2 states for each k (a positive and negative direction) we get...
+$$
+g(k)dk = 2\frac{Na}{2\pi}dk = \frac{Na}{\pi}dk
+$$
+
+Alternatively we can integrate across negative and positive k and ignore the factor of 2.
+
+For $\omega$ we get...
+
+$$
+g(\omega) = g(k)\frac{dk}{d\omega} = \frac{2N}{\pi}\frac{1}{\sqrt{(2\omega_0)^2-\omega^2}}
+$$
+
+### Energy and Heat Capacity
+
+If we assume the vibrations of our monatomic chain can be modelled as phonons which obey Bose-Einstein Statistics then we get...
+
+$$
+U = \int\,d\omega\bar{n}_ig(\omega)\hbar\omega = \frac{2N}{\pi}\int^{2\omega_0}_0d\omega\frac{1}{\sqrt{(2\omega_0)^2-\omega^2}}\frac{\hbar\omega}{e^{\beta\hbar\omega} - 1}
+$$
+
+This gives
+
+$$
+C_V =\frac{\partial U}{\partial T} = -\frac{\beta}{T}\frac{\partial U}{\partial \beta} = \frac{\beta}{T}\frac{2N}{\pi}\int^{2\omega_0}_0d\omega\frac{(\hbar\omega)^2}{\sqrt{(2\omega_0)^2 - \omega^2}}\frac{e^{\beta\hbar\omega}}{(e^{\beta\hbar\omega}-1)^2}
+$$
+
+We can non-denationalise this with $x = \beta\hbar\omega$ so
+
+$$
+C_V = \frac{2Nk_B}{\pi}\int^{2x_0}_0dx\frac{1}{\sqrt{(2x_0)^2 - x^2}}\frac{x^2e^x}{(e^x-1)^2}
+$$
+In the high temperature limit $x,x_0\ll1$ so tge second fraction becomes $\sim1$ and the heat capacity becomes $C_V = Nk_B = R$ the law of Dulong-Petit in 1D.
+
+## Diatomic Chain
+
+<div style="text-align:center">
+<img src="./Figs/DiatomicChain.jpg">
+<br/>
+The set up for a diatomic chain.
+</div>
+
+For a diatomic chain we can write similar force equations and use trial solutions...
+
+$$
+\delta x_n = A_xe^{i(\omega t - kna)}\\
+\delta y_n = A_ye^{i(\omega t - kna)}
+$$
+
+To get a matrix equation...
+
+$$
+\begin{pmatrix}
+  2\kappa - m_1\omega^2 & -\kappa(1 + e^{ika})\\
+  -\kappa(1+e^{-ika}) & 2\kappa - m_2\omega^2
+\end{pmatrix}\begin{pmatrix}
+  A_x\\A_y
+\end{pmatrix} = 0
+$$
+
+This implies the determinant of the leftmost matrix is $0$ which gives the dispersion relation...
+
+$$
+\omega_\pm^2 = \kappa\bigg(\frac{1}{m_1} + \frac{1}{m_2}\bigg)\pm\kappa\bigg(\frac{1}{m_1^2} + \frac{1}{m_2^2} + \frac{2}{m_1m_2}\cos ka\bigg)^{1/2}
+$$
+
+### Optical and Acoustic modes
+
+But wait! There are two modes for each $k$?! That's $2N$ normal modes for $N$ unit cells! These two modes are known as...
+
++ **Acoustic** - This is amode which has linear dispersion as $k\rightarrow0$, which is the case for sound waves. In acoustic modes masses oscillate together in the long wavelength limit corresponding to a eigenvector of $(A_x,\;A_y) = (1,\; 1)$ at $k=0$ this makes $\omega_-$ the acoustic one.
++ **Optical** - This is any mode with constant dispersion as $k\rightarrow0$, it's called this because these phonons have zero energy at $k=0$ which means they can interact with light. In optical masses oscillate anti-phase so  $(A_x,\;A_y) = (1,\; -1)$ at $k=0$. This makes them higher in energy and they clearly correspond to $\omega_+$
+
+<div style="text-align:center">
+<img src="./Figs/AcousticOptical.jpg" height=200>
+<br/>
+The acoustic and optical dispersion relations in reduced zone scheme
+</div>
+
+We can also show this by unfolding into the second Brillouin zone.
+
+<div style="text-align:center">
+<img src="./Figs/AcousticOpticalExtended.jpg" height=200>
+<br/>
+The acoustic and optical dispersion relations in extended scheme
+</div>
+
+As you'd expect this reduces to the monatomic case as $m_1\rightarrow m_2$.
+
+<div style="text-align:center">
+<img src="./Figs/DiatomicToMonatomic.jpg" height=200>
+<br/>
+When the masses are equal the diatomic picture looks like the monatomic one
+</div>
+
+
+
