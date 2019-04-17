@@ -919,4 +919,4 @@ Which means that the ideal moderator (reduces energy quickly) will have $M=m$ so
 | :----------------------------------------------: | :------------------: | :------------------: | :---------: | :--------: | :--------: |
 | number of collisions to get from $2$MeV to $1$eV |          16          |          29          |     86      |    114     |    2172    |
 
-However we also have to minimise cross-section for neutron capture, for light water this is quite high and slows reactions enough that only enriched uranium works with this moderator. Heavy water has about $1/80$ the cross section and so can be used with natural uranium samples.
+However we also have to minimise cross-section for neutron capture, for light water this is quite high and slows reactions enough that only enriched uranium works with this moderator. Heavy water has about $1/80$ the cross section and so can be used 

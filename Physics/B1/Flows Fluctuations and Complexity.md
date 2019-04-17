@@ -67,11 +67,19 @@
   - [Lyapunov Exponents](#lyapunov-exponents)
   - [The Lorenz attractor](#the-lorenz-attractor)
     - [Fixed Points and Stability](#fixed-points-and-stability)
+- [\mathcal{J} =](#mathcalj)
     - [The Strange Attractor](#the-strange-attractor)
     - [Lyapanov Exponents](#lyapanov-exponents)
 - [Ideal Fluid Examples](#ideal-fluid-examples)
   - [Hydraulic Jumps](#hydraulic-jumps)
   - [Bath Plug Vortex](#bath-plug-vortex)
+- [Biophysics](#biophysics)
+  - [Stochastic Processes](#stochastic-processes)
+    - [Brownian Motion](#brownian-motion)
+      - [Equation of Motion](#equation-of-motion)
+  - [Diffusion](#diffusion)
+    - [The Diffusion Equation](#the-diffusion-equation)
+    - [Random Walks](#random-walks)
 
 # Flows
 A fluid is a gas or a liquid whose molecules can slide past each other (unlike a solid whose molecules are regularly bound) a gas is compressible whereas a liquid can be considered mostly incompressible.
@@ -995,14 +1003,9 @@ Where C is positive (in the case of the Lorenz Attractor $C = \sigma + 1 + b$). 
 ### Lyapanov Exponents
 
 Let's look at the Lyapanov exponents for this system. We have 
-<<<<<<< HEAD
 
 $$
 (\mathcal{J} + \mathcal{J}^T) = \begin{pmatrix}
-=======
-$$
-(J + J^T) = \begin{pmatrix}
->>>>>>> 639d0cb029fb89cc69160e3b96b2ef8da23dcb2d
   -\sigma          & \frac{3}{2}\sigma& 0\\
   \frac{3}{2}\sigma& -1               & 0\\
   0                & 0                & -b
@@ -1040,3 +1043,128 @@ A hydraulic jumps are produced when a fast moving region encounters a slow movin
 
 
 
+# Biophysics
+
+## Stochastic Processes
+
+These are processes which include some random variable. It is sometimes hard to distinguish these from low or high order chaotic systems. 
++ Low order chaotic systems exhibit exponential error growth whilst a stochastic variable have random errors which accumulate slowly over time. 
++ Low order chaos will typically occupy a small phase space where stochastic processes are space filling.
++ Lorenz systems have the weird property that if you plot successive local maxima in z you get almost a well defined curve, which is not true for stochastic processes.
+
+In practice high order chaos is very hard to distinguish from stochastic ones, stochastic equations might be considered a parametrisation of high order chaos. 
+
+### Brownian Motion
+
+Brownian motion describes the motion of a particle in a fluid, typically this is essentially random due to the chaotic nature of the collisions between molecules. Kinetic theory tells us that the particles will have a KE of...
+
+$$
+\frac{m \big<v^2\big>}{2} = \frac{2k_BT}{2}
+$$
+
+The Reynolds number for a small pollen grain of radius $a\approx10\mu\text{m}$ and density $\rho_\text{pollen}\approx1500\text{kg}\,\text{m}^{-3}$ is about $R\sim10^{-3}$ so we can guess the pollen would experience viscous flow and linear drag.
+
+#### Equation of Motion
+
+The equation of motion i the *Langevin Equation* we have...
+
+$$
+m\ddot{x} = -\alpha\dot{x} + F(t)
+$$
+
+In one dimension where $F(t)$ is a stochastic force with $\big<F\big> = 0$.
+
+If we multiply by $x$ and use 
+$$
+\frac{d}{dt}(x\dot{x}) = x\ddot{x} + \dot{x}^2
+$$
+We can rewrite the Langevin Equation as 
+
+$$
+m\frac{d}{dt}(x\dot{x}) = m\dot{x}^2 - \alpha x\dot{x} + xF(t)
+$$
+
+If we take the average over time we have...
+
+$$
+\begin{aligned}
+m\frac{d}{dt}\big<(x\dot{x})\big> &= m\big<\dot{x}^2\big> - \alpha\big<x\dot{x}\big> + \big<x\big>\big<F\big>\\
+m\big<\frac{d}{dt}(x\dot{x})\big> &= m\big<\dot{x}^2\big> - \alpha\big<x\dot{x}\big>,\quad\quad\quad\quad\quad\because \big<F\big>=0\\
+\end{aligned}
+$$
+
+If we remember the energy relation from above we have
+
+$$
+\begin{aligned}
+\big<v^2\big> &= \big<\dot{x}^2\big> = \frac{k_BT}{m}\\\ \\
+\implies\quad\quad m\big<\frac{d}{dt}(x\dot{x})\big> &= m\frac{k_BT}{m} - \alpha\big<x\dot{x}\big>\\\ \\
+\implies\bigg(\frac{d}{dt}+\frac{\alpha}{m}\bigg)\big<x\dot{x}\big>&=\frac{k_BT}{m}\\\ \\
+\implies\quad\quad\quad\quad\quad\big<x\dot{x}\big> &= \frac{k_BT}{\alpha}(1-e^{-\alpha t/m})
+\text{as}\quad\frac{d}{dt}\big<x^2\big> &= 2 \big<x\dot{x}\big>\\\ \\
+\implies\quad\quad\quad\quad\quad\big<x^2\big> &= \frac{2k_BT}{\alpha}\bigg[t-\frac{m}{\alpha}\bigg(1-e^{-\alpha t/m}\bigg)\bigg]
+\end{aligned}
+$$
+
+For short times $t\ll m/\alpha$ and in long times $t\gg m/\alpha$ so we have
+
+$$
+\big<x^2\big>\approx\begin{cases}
+  \frac{k_BT}{m}t^2\quad\quad\text{short times}\\
+  \frac{2k_BT}{\alpha}t\quad\quad\text{long times}
+\end{cases}
+$$
+
+This is a *fluctuation dissipation theorem* and from stokes law we have $\alpha = 6\pi\mu a$ where $\mu$ is dynamic viscosity of the fluid and $a$ is size.
+
+## Diffusion
+
+Many biological systems make use of diffusion as a passive method to transport within gasses and fluids.
+
+### The Diffusion Equation
+
+If we imagine at a time $t$ we have a given number density $n(\bold{r}, t)$, if we look at the number density in the same place at a time $\delta t$ we can expect particles will arrive at $\bold{r}$ from elsewhere and particles from $\bold{r}$ will go elsewhere we can write this as...
+
+$$
+n(\bold{r}, t+\delta t) = \big<n(\bold{r}-\delta\bold{r}, t)\big>
+$$
+
+Where the average is an ensemble average over all individual particle displacements. If $\delta t$ is small enough that $\delta\bold{r}$ is less than the variation in n we have...
+
+$$
+|\delta\bold{r}|\ll\bigg(\frac{1}{n}|\nabla n|\bigg)^-1
+$$
+
+Then we can taylor expand our first equation to get...
+
+$$
+n(\bold{r}, t+\delta t) = \bigg<n(\bold{r},t) + \delta\bold{r}\cdot\nabla n + \frac{\delta\bold{r}^2}{2}\nabla^2n + \dots\bigg>\approx n(\bold{r},t) + \frac{\delta\bold{r}^2}{2}\nabla^2n
+$$
+
+Since we can assume $\big<\delta\bold{r}\big>=0$ for an isotropic distribution. If we rearrange and take the limit as $\delta t\rightarrow0$ we get...
+$$
+\begin{aligned}
+&\lim_{\delta t\rightarrow0}\frac{n(\bold{r}, t+\delta t) - n(\bold{r},t)}{\delta t} = \lim_{\delta t\rightarrow0} \frac{\big<\delta\bold{r}^2\big>}{2\delta t}\nabla^2n\\\ \\
+\implies&\frac{\partial n}{\partial t} = D\nabla^2n\quad
+\text{where}\quad\quad D = \lim_{\delta t\rightarrow0}\frac{\big<\delta\bold{r}^2\big>}{2\delta t}
+\end{aligned}
+$$
+
+### Random Walks
+
+A random walk is a set of steps where each step is uncorrelated from the next. A diffusion equation is kind of the evolution equation of a particle undergoing a random walk. If we take the spacial fourier transform of the diffusion equation
+
+$$
+\frac{\partial\tilde{n}}{\partial t} = -Dk^2\tilde{n} \implies \tilde{n}(\bold{k},t) = \tilde{n}(\bold{k}, 0)e^{-k^2Dt}\\
+\begin{aligned}  
+\implies n(\bold{r}, t) &= \frac{1}{(2\pi)^3}\int d^3\bold{r}^\prime e^{-i\bold{k}\cdot\bold{r}^\prime}n(\bold{r}^\prime, 0)\int d^3\bold{k}e^{i\bold{k}\cdot\bold{r}}e^{-k^2Dt}\\
+&= \int d^3\bold{r}^\prime n(\bold{r}^\prime, 0)\frac{1}{(4\pi Dt)^{3/2}}e^{-\frac{(\bold{r}-\bold{r}^\prime)^2}{4Dt}}\\
+&= \frac{N}{(4\pi Dt)^{3/2}}e^{-\frac{(\bold{r}-\bold{r}^\prime)^2}{4Dt}} = Nf(\bold{r}, t)
+\end{aligned}
+$$
+
+Here we used the fact that $\int d^3\bold{r} n(\bold{r}, t) = N$
+
+So the final result is $N$ multiplied by the Green's function $f(\bold{r}, t)$ which represents the probability of the particle undergoing the walk being in the interval $[\bold{r}+d\bold{r}]$ at time $t$
+
+> I copied toby for this and I'm not sure about the $\bold{r}^\prime$ in the final expression as that should have been integrated out. It makes the whole integral is $N$ thing suspect as well :(
