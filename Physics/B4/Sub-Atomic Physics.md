@@ -14,12 +14,29 @@
   - [Application of first order scattering theory](#application-of-first-order-scattering-theory)
     - [The Yukawa Potential](#the-yukawa-potential)
     - [Virtual exchange particles](#virtual-exchange-particles)
+    - [The Form Factor](#the-form-factor)
   - [Feynman Diagrams and Feynman's Rules](#feynman-diagrams-and-feynmans-rules)
     - [Yukawa Potential Example](#yukawa-potential-example)
     - [More complicated example](#more-complicated-example)
   - [Resonances](#resonances)
     - [Decays](#decays)
     - [Resonance Scattering](#resonance-scattering)
+- [Nuclear Physics](#nuclear-physics)
+  - [Nuclear Structure](#nuclear-structure)
+    - [Saxon Woods](#saxon-woods)
+    - [Radius](#radius)
+  - [Nuclear Mass](#nuclear-mass)
+    - [Deriving the Asymmetry Term](#deriving-the-asymmetry-term)
+  - [Decays and Radiation](#decays-and-radiation)
+    - [The $N\!\!-\!\!Z$ plane](#the-n-z-plane)
+    - [Q Values](#q-values)
+    - [Radioactive Decay Law](#radioactive-decay-law)
+    - [Alpha Decay](#alpha-decay)
+    - [Weak Decays](#weak-decays)
+    - [Fermi Theory of Beta Decay](#fermi-theory-of-beta-decay)
+    - [Fission and Fusion](#fission-and-fusion)
+      - [Fusion](#fusion)
+      - [Fission](#fission)
 
 # Scattering
 
@@ -261,6 +278,35 @@ For a yukawa potential we have $m=\frac{\hbar\mu}{c}$ and clearly $P\cdot P = \f
 <img src="./Figs/Yukawa.jpg">
 </div>
 
+### The Form Factor
+
+Now that we've seen what scattering looks like off a point coulomb potential let's look at what we see off a distribution. Here we have
+
+$$
+\Delta H(\bold{r}) = \int \frac{Z_1Z_2e^2}{4\pi\epsilon_0}\frac{1}{|\bold{r}-\bold{r}^\prime|}\rho(\bold{r}^\prime)d^3\bold{r}^\prime
+$$
+
+Which is a convolution of the coulomb potential with the density function $\rho(\bold{r})$ since the matrix element is like a fourier transform we'd expect the integral to evaluate into a point like term and a term dependant on $\rho(\bold{r})$ if we do the integral and define $\bold{x} = \bold{r} - \bold{r}^\prime$ we get...
+
+$$
+\big<\bold{k}^\prime|\Delta H|\bold{k}\big> = \underbrace{\frac{Z_1Z_2e^2}{4\pi\epsilon_0}\int\frac{e^{-i\bold{x}(\bold{k}^\prime-\bold{k})}}{|\bold{x}|}d^3\bold{x}}_\text{Point-like matrix element} \times \underbrace{\int e^{-i\bold{r}^\prime(\bold{k}^\prime-\bold{k})}\rho(\bold{r}^\prime)d^3\bold{r}^\prime}_{\text{form factor }F(q)}
+$$
+
+Typically the form factor becomes irrelevant $F(q)\rightarrow1$ if $\rho(\bold{r})\rightarrow\delta(\bold{r})$ or $q\rightarrow0$.
+
+|              |                          $\rho(r)$                          |          $F(q)$           |
+| :----------: | :---------------------------------------------------------: | :-----------------------: |
+| Point Source |                         $\delta(r)$                         |             1             |
+| Exponential  |            $\frac{1}{8\pi a^3}e^{-\frac{r}{a}}$             | $\frac{1}{(1+q^2+a^2)^2}$ |
+|   Gaussian   | $\bigg(\frac{1}{2\pi a^2}\bigg)^{3/2}e^{-\frac{r^2}{2a^2}}$ |  $e^{-\frac{q^2a^2}{2}}$  |
+
+<div style="text-align:center">
+<img src="./Figs/FormFactors.jpg">
+<br/>
+Form factors for exponential (left) and gaussian (right) distributions
+</div>
+
+
 ## Feynman Diagrams and Feynman's Rules
 
 To get better at dealing with scattering we need to
@@ -482,3 +528,395 @@ $j$ is the angular momentum of the resonance and $s_1$ and $s_2$ are the spins o
 <br/>
 An example of identifying a resonant particle
 </div>
+
+# Nuclear Physics
+
+## Nuclear Structure
+
+### Saxon Woods
+
+Scattering off nuclei quickly revealed the [Form Factor](#the-form-factor) was not $1$ which means the distribution is finite. It turns out it matches the **Saxon-Woods potential**.
+
+$$
+\rho(r) = \frac{\rho_0}{1+e^\frac{r-a}{d}}
+$$
+
+Where $a$ is the radius of the nucleus and $d$ is thickness of the edge region.
+
+<div style="text-align:center">
+<img src="./Figs/SaxonWoods.jpg" height=200>
+<br/>
+The Saxon-Woods Potential
+</div>
+
+An example of this is given below...
+
+<div style="text-align:center">
+<img src="./Figs/SaxonWoodsExample.jpg" height=200>
+<br/>
+If you derive charge distribution from differential cross section for Nickel-58 it appears to be a Saxon-Woods potential.
+</div>
+
+### Radius
+
+For a nucleus consisting of $A$ nucleons we can experimentally see that
+
+$$
+a = r_0A^{1/3},\quad\quad r_0\approx1.2\,\text{fm}
+$$
+
+This tells us some things about nuclear force...
+
++ The fact that $a$ is proportional to $A^{1/3}$ means $V\propto A$ so each nucleon makes an equal contribution to volume. This means we only have to consider nearest neighbour interactions between nucleons.
++ There must be some repulsive force separating the nucleons (Pauli Exclusion).
++ The inter-nuclear force must be very strong at small distances to overcome coulomb repulsion between protons but vanishingly small at $\sim2r_0$ as there is no effect on the electrons. This implies there are massive exchange particles.
+
+## Nuclear Mass
+
+Nuclear mass is made up of three parts, the mass of the neutrons, the mass of the protons, and the binding energy.
+
+$$
+M(Z, A) = Zm_p + (A-Z)m_n - \frac{B}{c^2}
+$$
+
+It turns out $B$ is given by five distinct terms...
+
+$$
+B = \underbrace{a_VA}_\text{Volume} - \underbrace{a_SA^{2/3}}_\text{Surface}-\underbrace{a_C\frac{Z^2}{A^{1/3}}}_\text{Coulomb} - \underbrace{a_A\frac{(N-Z)^2}{A}}_\text{Asymmetry} \pm \underbrace{\delta(N,Z)}_\text{Pairing}
+$$
+
+Where $a_V, a_S, a_C, a_A,$ and $\delta$ are all constants. Each of these terms have vague explanations below...
+
++ **Volume and Surface** - These are a result of treating the strong attraction as bonds in a liquid and the nucleus as a liquid drop.
++ **Coulomb** - This is a consideration of energy from coulomb repulsion. This favours a neutral atom.
++ **Asymmetry** - This is a result of pauli exclusion not allowing two protons or two neutrons from being in the same state but a proton and neutron can be because they are distinct. This favours an atom where $A=2Z$.
++ **Pairing** - This is due to the spin states of the nucleon, they tend to couple pairwise ($p\!-\!p$ or $n\!-\!n$) into more stable configurations. This means that nucleons with an even number of nucleons will be bound more tightly so even-even ($N\!-\!Z$) atoms will have $+\delta$, odd-even nuclei have $0$, and odd-odd have $-\delta$
+
+The constants here are determined by experiment which is why this is called the Semi Experimental Mass Formula (SEMF). They're given below.
+
+<div style="text-align:center">
+<img src="./Figs/SEMFConstants.jpg">
+<br/>
+SEMF Constants
+</div>
+
+### Deriving the Asymmetry Term
+
+If we consider the nucleons to be a fermionic gas then we have
+
+$$
+\big<E\big> = \int_0^{E_F}dE\;g(E)E = \frac{3}{5}NE_F\\
+\text{where}\quad\quad E_F = \frac{\hbar^2}{2mr_0^2}\bigg(\frac{9\pi}{8}\bigg)^{2/3}
+$$
+
+Where $N\approx Z$ we get
+
+$$
+\big<E\big> = \big<E_N\big> + \big<E_Z\big> = \frac{3}{5}E_F\frac{N^{5/3} + Z^{5/3}}{(A/2)^{2/3}}
+$$
+
+If we let $\delta = (Z-N)/A$ so $N = A(1-\delta)/2$ and $Z = A(1+\delta)/2$ we can taylor expand for small $\delta$ and collect like terms to get...
+$$
+E_\text{Asymmetry} = \frac{1}{3}E_F\frac{(N-Z)^2}{A}
+$$
+
+This evaluates pretty wrong for the coefficient but gives us the form.
+
+## Decays and Radiation
+
+### The $N\!\!-\!\!Z$ plane
+
+If we look at the $N\!\!-\!\!Z$ plane we observe natural isotopes initially follow the line $Z=N$ then tend toward the neutron rich side. 
+
+<div style="text-align:center">
+<img src="./Figs/NZPlane.jpg" height=200>
+<br/>
+The N-Z Plane
+</div>
+
+If we maximise the binding energy with respect to $Z$ for a given $A$ we can solve to explain this relation...
+
+$$
+\frac{N}{X} = 1 + \frac{a_C}{2a_A}A^{2/3}
+$$
+
+This is the *Valley of Stability* in the $N\!\!-\!\!Z$ plane.
+
+### Q Values
+
+Because nuclei are only stable on the Valley of Stability we expect nuclei to decay toward this maximum in binding energy. The available energy to decay is given by the Q-Value...
+
+$$
+Q = M(Z,A)c^2  - \underbrace{\sum M(Z^\prime, A^\prime)c^2}_\text{Sum of masses of products}
+$$
+
+If $Q>0$ the decay is energetically possible.
+
+### Radioactive Decay Law
+
+For a species with number $N$  decaying at  rate $\Gamma$ we have
+
+$$
+\begin{aligned}
+\frac{dN}{dt} &= -\Gamma N\\\ \\
+\implies N(t) &= N_0 e^{-\Gamma t}
+\end{aligned}
+$$
+
+We also have that 
+$$
+\text{Probability of decay in }[t, t+dt] = P(t)dt = -\frac{1}{N_0}\frac{dN}{dt}dt = \Gamma e^{-\Gamma t}dt
+$$
+
+Which implies the mean lifetime is...
+
+$$
+\tau = \frac{\int_0^\infty tP(t)dt}{\int_0^\infty P(t)dt} = \frac{1}{\Gamma}
+$$
+
+For a set of coupled species $\bold{N} = (A, B, C)^T$ we can define  rate matrix $R$
+
+$$
+\frac{d\bold{N}}{dt} = R\bold{N}
+\implies \bold{N} = \bold{N}(0)e^{Rt}
+$$
+
+### Alpha Decay
+
+Alpha decay involves the ejection of a $\ ^4_2\text{He}$ nucleus ($\alpha$ particle) which can be written as
+
+$$
+\ ^A_Z\text{X} \rightarrow \ ^{A-4}_{Z-2}\text{Y} +\ ^4_2\text{He}
+$$
+
+For this to occur it has to tunnel through the potential barrier present due to the nuclear and electrostatic potentials. We know from 1D tunnelling that the probability of tunnelling is given by 
+
+$$
+\Gamma_\text{Tunnelling} = \Gamma_0e^{-2\int k(r)dr} = \Gamma_0e^{-2G}
+$$
+
+Where G is the *Gamow Factor*
+
+$$
+G = \int k(r)dr = \sqrt{\frac{2m}{\hbar^2}}\int\sqrt{V(r)-Q}dr
+$$
+
+If we model the potential as...
+
+$$
+V(r) = \begin{cases}
+  \text{constant} & \text{for } r\lt R_a\\
+  Z_1Z_2\frac{\hbar c\alpha_{EM}}{r} & \text{for } r > R_a
+\end{cases}
+$$
+
+We have the *Gamow factor*
+
+$$
+G \approx\sqrt{\frac{2m}{\hbar^2}}\sqrt{Z_1Z_2\hbar c\alpha_{EM}}\int^{R_b}_{R_a}r^{-1/2}\,dr\approx\frac{Z_1Z_2e^2\sqrt{2m}}{2\pi\epsilon_0\sqrt{Q}}
+$$
+
+Here we've integrated between two values...
+
+$$
+\begin{aligned}
+  &R_a \approx r_0A^{1/3}&\text{Approximate radius of the nucleus}\\
+  &R_b = \frac{Z_1Z_2\hbar c\alpha_{EM}}{Q}&\text{Point at which the particle is free}
+\end{aligned}
+$$
+
+Then we neglect the lower bound contribution because $R_a/R_b \sim Q \ll 1$ This gives us the log rate...
+
+$$
+\log\Gamma = A - \frac{BZ}{\sqrt{Q}}
+$$
+
+Where $Z$ is the atomic number of the decay product, $Q$ is the final energy and $A$ and $B$ are constants.
+
+### Weak Decays
+
+There are three decays which result from the weak interaction
+
+1. $\beta^-$ decay - Neutron rich isotopes reduce $N$ by emitting an electron and anti-electron neutrino
+$$
+\boxed{\ ^A_Z\text{X} \rightarrow\ ^A_{Z+1}\text{Y}+e^- + \bar{\nu}_e}
+$$
+2. $\beta^+$ decay -An isotope with too many protons can emit a positron and a electron neutrino in order to replace a proton with a neutron.
+$$
+\boxed{\ ^A_Z\text{X} \rightarrow\ ^A_{Z-1}\text{Y}+e^+ + \nu_e}
+$$
+3. Electron capture - An isotope with too many protons can absorb an electron to do a reversed $\beta^-$ decay
+$$
+\boxed{\ ^A_Z\text{X} + e^-\rightarrow\ ^A_{Z-1}\text{Y} + \nu_e}
+$$
+
+Both $\beta^+$ decay and electron capture result in the same changes and so are competing processes. When considering what process is dominant we have that $Q$ for electron capture is highest but it requires a substantial overlap of the wavefunctions.
+
+### Fermi Theory of Beta Decay
+
+If we apply Fermi's golden rule to beta decay we have
+
++ The four-body interactions occur at a single point (vertex) which we can associate a fermi coupling constant to $G_F\approx 1.17\times10^-5\,\text{GeV}^{-2}$
++ By doing this we assume incoming and outgoing spin states are irrelevant
++ The wave functions of the electron and anti-neutrino are plane waves...
+  $$
+  \psi_e(\bold{x}) = e^{i\bold{p}_e\cdot\bold{x}/\hbar},\quad\quad\psi_\nu(\bold{x}) = e^{i\bold{p}_\nu\cdot\bold{x}/\hbar} 
+  $$
+  Which ignores the coulomb interaction between the electron and nucleus but is a good approximation.
++ the nucleus is very massive in comparison the the electron and the neutrino (Pretty much always true) which gives
+  $$
+  E_e + E_\nu = Q
+  $$
+
+We have initial and final states of
+
+$$
+|\Psi_i\big> = |\psi_i\big>,\quad\quad|\Psi_f\big> = |\psi_f\big> \times |\psi_e\big> \times |\psi_\nu\big>
+$$
+
+Where the initial state is the parent nucleus and the final state is the product state of the daughter nucleus, electron, and anti-neutrino. The transition matrix element is
+
+$$
+\big<\Psi_f|H|\Psi_i\big> = G_F\int\psi_e^*\psi_\nu^*\psi_f^*\psi_i\,d^3\bold{x}
+$$
+
+As $\bold{p}\cdot\bold{x}\ll1$ on scales of the nucleus we have
+
+$$
+\big<\Psi_f|H|\Psi_i\big> = G_F\int\psi_f^*\psi_i d^3\,\bold{x} \equiv G_FM_\text{nuclear}
+$$
+
+The transition probability is 
+
+$$
+R(p_e)dp_e = \frac{2\pi}{\hbar}|\big<\Psi_f|H|\Psi_i\big>|^2\rho(p_e)dp_e
+$$
+
+We have the density of states
+
+$$
+dN(p) = \rho(p)dp = \frac{V4\pi p^2dp}{(2\pi\hbar)^3}
+$$
+
+> I'm not sure how useful it is
+
+Putting this in and using Fermi's golden rule $dE_f=dQ=dE_\nu$
+
+$$
+\Gamma(p_e)dp_e = \frac{G_F^2|M_\text{nucl}|^2}{2\pi^3\hbar^7c^3}F(Z_D,p_e)p_e^2(Q-E_e)^2dp_e
+$$
+
+Where $F(Z_D,p_e)$ is the *Fermi Factor* and describes the electromagnetic interaction between the electron and daughter nucleus.
+
+### Fission and Fusion
+
+Since we want to maximise binding energy it's clear from below that there is a region where fusion is favourable on the left and where fission is favourable on the right...
+
+<div style="text-align:center">
+<img src="./Figs/BindingEnergyPerNucleon.jpg" height=200>
+<br/>
+Binding Energy per Nucleon plotted against A
+</div>
+
+#### Fusion
+
+Fusion is the process by which two small nuclei come close enough to coalesce into a larger one. However to do that they need to overcome their coulomb repulsion. For example the simplest $p\!-\!p$ process:
+$$
+p + p \rightarrow D + e^+ + \nu_e
+$$
+Has energy barrier
+$$
+E_\text{Barrier} \approx \frac{\hbar c \alpha_{EM}}{2\text{ fm}}\approx0.7\text{ MeV}
+$$
+
+For each proton to have half of this energy we require $T\approx4\times10^9\,\text{K}$ which is unusual even in stars, there the fusion occurs due to tunnelling and the higher-energy tail of the Boltzman velocity distribution.
+
+In *tokamaks* (attempted fusion reactors) we have a reaction between deuterium (extracted from seawater) and tritium ($t_{1/2}\approx$ 12 years, artificially produced).
+$$
+\ ^2_1\text{D} + \ ^3_1\text{T}\rightarrow\ ^4\text{He} + n
+$$
+
+The temperature of these is typically $\sim 10^8\text{K}$ enough to produce some fusion but it's usually hard to contain.
+
+#### Fission
+
+Fission is the splitting of a nucleus into two daughter nuclei. This happens when nuclei are so massive that the barrier provided by the coulomb interaction is small. As the nuclei are pulled apart the coulomb contribution becomes smaller and smaller but the surface area becomes larger and so the maximum energy barrier is the point where the nuclei have just separated.
+
+<div style="text-align:center">
+<img src="./Figs/Fission.jpg" height=200>
+<br/>
+Maximum barrier potential is where the nuclei have just seperated.
+</div>
+
+This is called spontaneous fission and decay rates for this are very small for $\ ^{238}\text{U}$ the probability is about $5\times 10^{-7}$ these rates increase massively for induced fission. Induced fission requires a particle (usually a neutron as this is not affected by the coulomb barrier) to collide with the nucleus and push a part of it over the barrier. For $\ ^{238}\text{U}$ they neutrons must have energy approaching $1 \text{MeV}$ otherwise we get a gamma decay
+
+$$
+\ ^{238}\text{U} + n \rightarrow \ ^{239}\text{U}^* \rightarrow \ ^{239}\text{U} + \gamma
+$$
+
+However for $\ ^{235}\text{U}$ its a different story. Even for thermal neutrons ($E\sim0.1\text{eV}$) we have
+
+$$
+\ ^{235}\text{U} + \underbrace{n}_\text{thermal} \rightarrow \ ^{236}\text{U}^*\begin{cases}
+  84\%\rightarrow\text{Fission}\\
+  16\%\rightarrow\ ^{236}\text{U} + \gamma
+\end{cases}
+$$
+
+For the case of fission we have
+
+$$
+\ ^{235}\text{U} + \underbrace{n}_\text{thermal} \rightarrow \ ^{236}\text{U} \rightarrow \ ^{140}\text{X} + \,^{93}\text{Y} + 3n + \gamma
+$$
+
+The daughter nuclei are neutron rich so we expect them to undergo beta decay to reach the valley of stability. The initial daughter nuclei would lie close to the line through the origin of the $N-Z$ plot and $\ ^{235}\text{U}$. This gives...
+
+$$
+\frac{N}{Z} \approx \frac{235-92}{92}\approx 1.55
+$$
+
+This gives us approximate guesses for the daughter nuclei of... $\ ^{140}\text{Kr}$ and $\ ^{93}\text{Ba}$. This means we expect the final products by beta decay to be $\ ^{140}_{58}\text{Ce}$ and $\ ^{93}_{41}\text{Nb}$. So the total energy released can be found by the difference in binding energy between the original nucleus and the decay products.
+
+$$
+\frac{\Delta E}{c^2} = M(235, 92) - M(140, 58) - M(93, 41) - 2m_n\approx200\text{MeV}
+$$
+
+The neutrons go on to catalyse more reactions.
+
+<div style="text-align:center">
+<img src="./Figs/Fission2.jpg" height=200>
+<br/>
+Mass distribution of products from fission reaction described above.
+</div>
+
+The neutrons produced by this reaction are typically a bit too fast and get captured by by $^{238}\text{U}$ in the sample before they can catalyse a $^{235}\text{U}$ reaction. Moderators are used to slow the neutrons down to thermal speeds so they are less likely to capture and more likely to catalyse. If we look at the energy loss of the neutron moderator collisions we see
+
+$$
+v^\prime_\text{lab} = \begin{pmatrix}
+  v_{CM}+v_\text{rel}\cos\theta\\
+  v_\text{rel}\sin\theta
+\end{pmatrix}\\
+\text{where}\quad v_{CM} = \frac{v_\text{lab}m}{m+M}\\
+\text{and}\quad v_\text{rel} = \frac{v_\text{lab}M}{m+M}
+$$
+
+Where $v_\text{lab}$ is initial velocity. This is derived by evaluating the equation in center of mass frame and transforming back.
+We can see that
+
+$$
+\bigg<\frac{E^\prime}{E}\bigg> = \bigg<\frac{v^{\prime2}_\text{lab}}{v^2_\text{lab}}\bigg> = \frac{v^2_{CM} + v^2_\text{rel} + 2v_{CM}v_\text{rel}\big<\cos\theta\big>}{(v_{CM} + v_\text{rel})^2}
+$$
+
+If the center-of-mass system is isotropic we have $\big<\cos\theta\big>=0$ so...
+
+$$
+\bigg<\frac{E^\prime}{E}\bigg> = \frac{v^2_{CM} + v^2_\text{rel}}{(v_{CM} + v_\text{rel})^2}
+$$
+
+Which means that the ideal moderator (reduces energy quickly) will have $M=m$ so lot's of nuclei with masses similar to a neutron such as Hydrogen. Here are some common materials which do this...
+
+|                                                  | $\text{H}_2\text{O}$ | $\text{D}_2\text{O}$ | $\text{Be}$ | $\text{C}$ | $\text{U}$ |
+| :----------------------------------------------: | :------------------: | :------------------: | :---------: | :--------: | :--------: |
+| number of collisions to get from $2$MeV to $1$eV |          16          |          29          |     86      |    114     |    2172    |
+
+However we also have to minimise cross-section for neutron capture, for light water this is quite high and slows reactions enough that only enriched uranium works with this moderator. Heavy water has about $1/80$ the cross section and so can be used with natural uranium samples.
