@@ -76,6 +76,13 @@
   - [The Classical Lagrangian](#the-classical-lagrangian)
   - [Relativistic Lagrangian Density](#relativistic-lagrangian-density)
   - [Motion of a Charged Particle in an Electromagnetic Field](#motion-of-a-charged-particle-in-an-electromagnetic-field)
+- [Spinor Fields](#spinor-fields)
+  - [What are Spinors](#what-are-spinors)
+  - [2-Spinors and 4-Vectors](#2-spinors-and-4-vectors)
+  - [Transforming Spinors](#transforming-spinors)
+  - [Chirality](#chirality)
+  - [A Worked Example](#a-worked-example)
+  - [The Klein-Gordan Equation](#the-klein-gordan-equation)
 
 # Linear Algebra Returns
 
@@ -1552,3 +1559,162 @@ $$
 $$
 
 So we can get the lorenz force using the Lagrangian!
+
+# Spinor Fields
+
+Spinor Fields are a bit of a tacked on extra to the syllabus (in fact Toby covers them directly but the lecture notes only have a bit about the Klein-Gordan Equation which is marked off syllabus) but they come up in a few papers.
+
+One important tool for spinors is the Pauli matrices 
+
+$$
+\sigma^x = \begin{pmatrix}
+  0 & 1\\
+  1 & 0
+\end{pmatrix},\quad
+\sigma^y = \begin{pmatrix}
+  0 & -i\\
+  i & 0
+\end{pmatrix},\quad
+\sigma^z = \begin{pmatrix}
+  1 & 0\\
+  0 & 1
+\end{pmatrix}\\\ \\
+\bold{\sigma} = (\sigma^x, \sigma^y, \sigma^z)\quad\quad(\sigma^j)^2 = I
+$$
+
+## What are Spinors
+
+Spinors are tensor-like objects which represent tensors a 4-Vector (Rank-1 Tensor) can be described by a 2-spinor (a 2x2 matrix) 
+
+<div style="text-align:center">
+<img src="./Figs/Spinors.jpg" height=200>
+<br/>
+An example of rank-1 spinors, they have 3-spacial coordinates and a coordinate to define flagpole rotation
+</div>
+
+A general rank-1 spinor is
+
+$$
+\bold{s} = (a,b)^T = se^{i\alpha/2}\begin{pmatrix}
+  \cos(\theta/2)e^{-i\phi/2}\\
+  \sin(\theta/2)e^{i\phi/2}
+\end{pmatrix}
+$$
+
+We can construct the whole position and orientation of the "flagpole" from these parameters.
+
+$$
+\begin{aligned}
+  
+r &= s^2 = |a|^2 + |b|^2\\
+\bold{r} &= \begin{pmatrix}
+  r\sin\theta\cos\phi\\
+  r\sin\theta\sin\phi\\
+  r\cos\theta
+\end{pmatrix} = \begin{pmatrix}
+  ab^* + a^*b\\
+  i(ab^* - a^*b)\\
+  |a|^2 - |b|^2
+\end{pmatrix} = \big<\bold{s}|\bold{\sigma}|\bold{s}\big>
+\end{aligned}
+$$
+
+## 2-Spinors and 4-Vectors
+
+Imagine we made the matrix $M$ from a spinor $\bold{s}$.
+
+$$
+M = \bold{s}\bold{s}^\dagger = \begin{pmatrix}
+  |a|^2 & \b^*\\
+  a^*b  & |b|^2
+\end{pmatrix}
+$$
+
+We can see from the definition for $M$ that $M=M^\dagger$ so $M$ is hermitian. This means we can write it as...
+
+$$
+M = \begin{pmatrix}
+  t+z   & x-iy\\
+  x+iy  & t-z \\
+\end{pmatrix}
+$$
+
+If we equate these two we can describe a 4-Vector $U^\mu$ in terms of the spinor we constructed the matrix out of.
+
+$$
+U^\mu = \begin{pmatrix}
+  t\\
+  x\\
+  y\\
+  z
+\end{pmatrix} = \frac{1}{2}\begin{pmatrix}
+  |a|^2 + |b|^2\\
+  ab^* + a^*b\\
+  i(ab^* - a^*b)\\
+  |a|^2 - |b|^2
+\end{pmatrix} = \frac{1}{2}\big<\bold{s}|\sigma^\mu|\bold{s}\big> = \frac{1}{2}\bold{s}^\dagger\sigma^\mu\bold{s}
+$$
+
+Where $\sigma^\mu = (I, \bold{\sigma})$
+
+## Transforming Spinors
+
+To transform a spinor we multiply it by some 2x2 matrix $\Lambda$ so we have...
+
+$$
+\bold{s}^\prime = \Lambda\bold{s}
+$$
+
+The general form of this matrix is...
+
+$$
+\Lambda = \exp(i\bold{\sigma}\cdot\bold{\theta}/2 - \bold\sigma\cdot\bold\rho/2)
+$$
+
+Where $\rho$ is the rapidity for a lorenz transformation and $\theta$ is the angle of the rotation. Taylor expanded we have...
+
+$$
+\begin{aligned}
+e^{i(\theta/2)\sigma^\mu} &= \cos(\theta/2)I + i\sin(\theta/2)\sigma^\mu\quad\quad\quad\text{Rotation}\\
+e^{-(\rho/2)\sigma^\mu} &= \cosh(\rho/2)I - i\sinh(\rho/2)\sigma^\mu\quad\quad\text{Lorenz Boost}
+\end{aligned}
+$$
+
+## Chirality
+
+There is something analogous to covariance and contravariant in spinors. A contraspinor will contract into a contravariant vector and a cospinor will contract to a covariant vector. We have that
+
+$$
+\begin{aligned}
+  \text{Contraspinor:}&\;\bold{s}^\prime_R = \Lambda\bold{s}_R\\
+  \text{Cospinor:}&\;\bold{s}^\prime_L = (\Lambda^\dagger)^{-1}\bold{s}_L
+\end{aligned}
+$$
+
+If we think of $\Lambda$ as a rotation then the chirality is what decides the direction they rotate.
+
+## A Worked Example
+
+Toby has a pretty useful worked example that is easy to follow if you've read all the above.
+
+## The Klein-Gordan Equation
+
+The Schrödinger equation was guessed from $E=\frac{p^2}{2m}$ we can guess an analogous relativistic equationf from the corresponding invariant.
+
+$$
+E = p^2c^2 + m^2c^4
+$$
+
+We need to turn this quantum by replacing observables with operators so $E\rightarrow i\hbar\partial_t$ and $p_i\rightarrow -i\hbar\partial_i$ so for some wave-function $\psi(\bold{x}, t)$ we have...
+
+$$
+-\hbar^2\partial^2_t\psi = -c^2\hbar^2\nabla^2\psi + m^2c^4\psi
+$$
+
+This can be written in a nice covariant way!!
+
+$$
+\bigg(-\partial^\mu\partial_\mu + \frac{m^2c^2}{\hbar^2}\bigg)\psi = 0
+$$
+
+The *Klein-Gordan Equation*! Sometimes we write $\mu=mc/\hbar$. This is  pretty passable quantum relativistic equation although it has some issues which are mentioned in B4.
