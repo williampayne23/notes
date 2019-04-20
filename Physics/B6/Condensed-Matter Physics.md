@@ -1,18 +1,27 @@
 # B6 Condensed Matter Physics <!-- omit in toc -->
 
-- [Heat Capacity of Solids](#heat-capacity-of-solids)
-  - [Einstein's Calculation](#einsteins-calculation)
-  - [Born von Karman Boundaries](#born-von-karman-boundaries)
-  - [Debye Model](#debye-model)
-- [Structure and Types of Bonding](#structure-and-types-of-bonding)
+- [Introduction to Condensed Matter](#introduction-to-condensed-matter)
   - [Bonding Types](#bonding-types)
-    - [Ionic Bonding](#ionic-bonding)
-    - [Covalent Bonding](#covalent-bonding)
-    - [Molecular Bonding](#molecular-bonding)
-    - [Hydrogen Bonding](#hydrogen-bonding)
-  - [One Dimensional Model of Bonding](#one-dimensional-model-of-bonding)
-    - [Thermal Expansion](#thermal-expansion)
-    - [Elasticity](#elasticity)
+    - [List of Types](#list-of-types)
+      - [Ionic Bonding](#ionic-bonding)
+      - [Covalent Bonding](#covalent-bonding)
+      - [Molecular Bonding](#molecular-bonding)
+      - [Hydrogen Bonding](#hydrogen-bonding)
+    - [One Dimensional Model of Bonding](#one-dimensional-model-of-bonding)
+      - [Thermal Expansion](#thermal-expansion)
+      - [Elasticity](#elasticity)
+  - [Heat Capacity of Solids](#heat-capacity-of-solids)
+    - [Einstein's Calculation](#einsteins-calculation)
+    - [Born von Karman Boundaries](#born-von-karman-boundaries)
+    - [Debye Model](#debye-model)
+  - [Electrons in Metals](#electrons-in-metals)
+    - [Drude Theory](#drude-theory)
+      - [In Electromagnetic Fields](#in-electromagnetic-fields)
+    - [Free Electron (Sommerfield) Theory](#free-electron-sommerfield-theory)
+      - [Conductivity and Ohms Law](#conductivity-and-ohms-law)
+      - [Mean Free Path](#mean-free-path)
+      - [Density of States](#density-of-states)
+      - [Heat Capacity](#heat-capacity)
 - [Crystals](#crystals)
   - [Crystal Structure](#crystal-structure)
     - [Lattices](#lattices)
@@ -43,12 +52,178 @@
     - [Counting Normal Modes](#counting-normal-modes)
     - [Velocities](#velocities)
     - [Sound Waves](#sound-waves)
-    - [Density of States](#density-of-states)
+    - [Density of States](#density-of-states-1)
     - [Energy and Heat Capacity](#energy-and-heat-capacity)
   - [Diatomic Chain](#diatomic-chain)
     - [Optical and Acoustic modes](#optical-and-acoustic-modes)
+- [Electrons in Solids](#electrons-in-solids)
+  - [The Tight Binding Chain](#the-tight-binding-chain)
+    - [Filling bands](#filling-bands)
+    - [Two Orbitals per Atom (or Diatomic Case)](#two-orbitals-per-atom-or-diatomic-case)
+      - [Band Gaps](#band-gaps)
+    - [Insulators, Conductors, and Semiconductors](#insulators-conductors-and-semiconductors)
+  - [Nearly Free Electrons](#nearly-free-electrons)
+    - [Degenerate Perturbation Theory](#degenerate-perturbation-theory)
+      - [Simple Case: $k$ is at The Brillouin Boundary](#simple-case-k-is-at-the-brillouin-boundary)
+      - [Complicated Case: $k$ Not Quite on the Boundary](#complicated-case-k-not-quite-on-the-boundary)
+      - [Higher Dimensions](#higher-dimensions)
 
-# Heat Capacity of Solids
+# Introduction to Condensed Matter
+
+## Bonding Types
+
+### List of Types
+
+There are 5 kinds of bonding covered in this course. Here is a table of them...
+
+
+|      Type of Bonding      | Description                                                                                                                      | Typical Atoms                                                                                     | Typical Properties                                                                                                                                                         |
+| :-----------------------: | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|           Ionic           | An electron is transferred from one atom to another and the resulting ions attract each other                                    | Binary compounds made of constituents with very different electronegativity. I.e Group I and VII. | <ul><li>Hard, very brittle</li> <li>High melting temp</li> <li>Electrical Insulators</li> <li>Water soluble</li> </ul>                                                     |
+|         Covalent          | An electron is shared equally between two atoms forming a bond. The electron energy is lowered by delocalising the wavefunction. | Solids of only one element or compounds of similar electronegativities.                           | <ul> <li>Very Hard</li> <li>High melting point</li> <li>Electrical insulators or semiconductors</li> </ul>                                                                 |
+|          Metalic          | Electrons are delocalised throughout the solid, acting as a bonding agent between the ions.                                      | Metals found on the left and middle of the Periodic table                                         | <ul> <li>Ductile and malleable due to the non-directional nature of the bond</li> <li>Lower melting temperature</li> <li>Good electrical and thermal conductors</li> </ul> |
+| Molecular (Van-der-Waals) | There is no electron transfer. Instead the dipole moments of constituents align causing an attraction between the molecules.     | Noble gas solids, or solids made of slightly polar molecules.                                     | <ul> <li>Soft and weak (like Megan)</li> <li>Low melting temperature</li> <li>Electrical Insulators</li> </ul>                                                             |
+|         Hydrogen          | Involves a $H^+$ ion bound to one atom but still attracted to the other.                                                         | Organic and biological materials.                                                                 | <ul> <li>Weak bond (but stronger than molecular)</li> <li>Important for maintaining the shape of DNA and proteins</li> </ul>                                               |
+
+#### Ionic Bonding
+
+In ionic bonds an electron is transferred from one atom to another and the resulting ions are attracted to one another. To describe this we need three terms...
+
++ *Ionisation energy* the energy cost to ionise the atom which forms positive ion.
++ *Electron Affinity* the energy released by the formation of the negative ion.
++ *Cohesive Energy* the energy released on forming the bond.
+
+The change in energy is then...
+
+$$
+\Delta E = \text{Electron Affinity} + \text{Cohesive Energy} - \text{Ionisation Energy}
+$$
+
+We require that this is positive for the bond to form (i.e that energy will be released) Electron Affinity and Ionisation Energy have to be experimentally calculated but we can approximate cohesive energy using the coulomb attraction...
+$$
+\text{Cohesive Energy} \approx \frac{e^2}{4\pi\epsilon_0R}
+$$
+
+This actually leads to an **overestimation of $\Delta E$** as it ignores the interaction of the electron clouds when the atoms get very close.
+
+<div style="text-align:center">
+<img src="./Figs/Ionic.jpg">
+</div>
+
+#### Covalent Bonding
+
+Covalent bonding is when an electron is shared between two similar atoms. We can imagine this electron having the Hamiltonian...
+
+$$
+H = T + V_1 + V_2\\\ \\
+T = \frac{\bold{p}^2}{2m_e}\\\ \\
+V_i = \frac{e^2}{4\pi\epsilon_0|\bold{r}-\bold{R}_i|}
+$$
+
+For a state of the form
+$$
+|\psi\big> = \phi_1|1\big> + \phi_2|2\big>
+$$
+
+Where $|1\big>$ and $|2\big>$ are the states an electron localised in each nucleus. This gives...
+
+$$
+H = \begin{pmatrix}
+    E_0 + V_c   & -t\\
+    -t^*        & E_0 + V_c
+\end{pmatrix}
+$$
+
+Where
+$$
+\begin{aligned}
+E_0 &= \big<1|T + V_1|1\big> = \big<2|T + V_2|2\big>\\
+V_c &= \big<1|V_2|1\big> = \big<2|V_1|2\big>\\
+t &= \big<1| H | 2\big>
+\end{aligned} 
+$$
+
+$E_0$ is the hydrogenic energy of an electron in a single nucleus, $V_c$ is the *cross-term* energy associated with an electron in orbital $|1\big>$ feel the attraction of the other nucleus and vice versa, t is the *hopping term*, the energy associated with moving between orbitals. The solution of this hamiltonian is...
+$$
+E_\pm = E_0 + V_c \pm |t|
+$$
+
+Since we expect a cancellation of the coulomb attraction from an atom outside of it we can ignore $V_c$ so long as the atoms are sufficiently far apart. So we have...
+
+$$
+E_\pm \approx E_0 \pm |t|
+$$
+
+So for the lower energy eigenstate it's energetically favourable to form a bond. The eigendtates are...
+
+$$
+|\psi_\pm\big> = \frac{1}{\sqrt{2}}(|1\big>\pm|2\big>) 
+$$
+
+They correspond to more and less separated atoms respectively.
+
+#### Molecular Bonding
+
+*Van-der-Waals bonding* is a result of electric dipoles of two molecules aligning to attract one another. For two atoms separated by $r = |\bold{r}|$ where the first has a dipole moment $\bold{p}_1$. Then the second feels an electric field...
+$$
+\bold{E} = \frac{|\bold{p}_1|^2}{4\pi\epsilon_0}\frac{\hat{\bold{r}}}{r^3}
+$$
+
+The second atom then has polarisation $\bold{p}_2 = \chi_e\bold{E}$ as a result. The PE due to this interaction then is...
+$$
+U(r) = -\bold{p}_2\cdot\bold{E} = -\frac{|\bold{p}_1|^2\chi_e}{(4\pi\epsilon_0)^2}\frac{1}{r^6}
+$$
+
+This means that the force due to the bond $\bold{F} = -\nabla U \propto r^{-7}$ this quickly drops off with seperation which is why this is such a weak form of bonding.
+
+#### Hydrogen Bonding
+
+Non-Examinable
+
+### One Dimensional Model of Bonding
+
+If we consider the potential of two nearby atoms we can approximate it by taylor expanding it around the equilibrium position...
+
+$$
+  V(x) = V(x_{eq}) + \frac{\kappa}{2}(x-x_{eq})^2 + \frac{\kappa_3}{3!}(x-x_{eq})^3 + \dots 
+$$
+
+Here we've ignored the linear term because if there was one there'd be no $x_{eq}$ this let's us approximate $V(x)$ as a quadratic around $x_{eq}$.
+
+<div style="text-align:center">
+<img src="./Figs/ThermalExpansion.jpg" height=200>
+<br/>
+Our one dimensional model
+</div>
+
+#### Thermal Expansion
+
+As the potential is likely to be asymmetric in reality, we can see that as T increases we get $x_{max}$ increasing more and more whilst $x_{min}$ is asymptotic this will mean the average distance will increase and the system will expand.
+
+#### Elasticity
+
+If we apply a force to this quadratic potential we expect to find
+
+$$
+-\kappa\delta x = F
+$$
+
+As this is a hooke potential. The usual description of compressibilty is...
+
+$$
+\beta = -\frac{1}{V}\frac{\partial V}{\partial P}
+$$
+
+If we choose $T=S=0$ for simplicity we get 
+
+$$
+\beta = \frac{1}{\kappa x_{eq}} = 
+\frac{1}{\kappa a}
+$$
+
+Since $x_eq$ is the characteristic distance between atoms we call it $a$ the lattice constant. We'll learn more about lattices now!
+
+## Heat Capacity of Solids
 
 Recall that Heat Capacity is given by 
 
@@ -65,7 +240,7 @@ $$
 
 While not always true this law holds extremely well in room temperatures.
 
-## Einstein's Calculation
+### Einstein's Calculation
 
 Einstein's attempt to find the heat capacity of solids went like this...
 
@@ -132,7 +307,7 @@ Plot of results next to predictions of the model
 
 This is likely due to the lack of quantum treatment as this was years before the Shrodinger equation was discovered! Enter Debye to solve this problem with a distinctly quantised solution.
 
-## Born von Karman Boundaries
+### Born von Karman Boundaries
 
 In this course we'll keep running into these periodic "Born-Von-Karman" boundary conditions. In 1D this is the idea that $f(x) = f(x+L)$ for some $L$ and $f$. As we'll derive we look at the [density of states in the monatomic chain](#counting-normal-modes) this gives us the restriction on values of k to 
 
@@ -155,7 +330,7 @@ $$
 \implies\sum_k \rightarrow \frac{L^3}{(2\pi)^3}\int^\infty_{-\infty}d\bold{k}
 $$
 
-## Debye Model
+### Debye Model
 
 Debye uses the result from Born-Von-Karman boundaries to find a different solution for $C$. He decided that oscillation  modes were waves with frequencies $\omega(\bold{k}) = v|\bold{k}|$ with $v$ the velocity of sound. For each $\bold{k}$ he expected three possible modes one for each direction of motion. He wrote a calculation for $\big<E\big>$
 $$
@@ -235,158 +410,183 @@ Although there are still some issues with it.
 + Experimentally it is very accurate but not exact.
 + At very low temperatures metals have a linear term on top of the $T^3$ one and this should dominate. 
 
-# Structure and Types of Bonding
+## Electrons in Metals
 
-## Bonding Types
+### Drude Theory
 
-There are 5 kinds of bonding covered in this course. Here is a table of them...
+Drude theory models electrons as objects obeying kinetic theory making the following assumptions...
 
+1. Electrons have a scattering time $\tau$. The probability of scattering within a time interval $dt$ is $dt/\tau$
+2. Once scattering occurs we assume the electron goes to the momentum $\bold{p}=0$
+3. Inbetween events electrons are charge $e$ particles which respons to the $\bold{E}$ and $\bold{B}$ fields.
 
-|      Type of Bonding      | Description                                                                                                                      | Typical Atoms                                                                                     | Typical Properties                                                                                                                                                         |
-| :-----------------------: | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|           Ionic           | An electron is transferred from one atom to another and the resulting ions attract each other                                    | Binary compounds made of constituents with very different electronegativity. I.e Group I and VII. | <ul><li>Hard, very brittle</li> <li>High melting temp</li> <li>Electrical Insulators</li> <li>Water soluble</li> </ul>                                                     |
-|         Covalent          | An electron is shared equally between two atoms forming a bond. The electron energy is lowered by delocalising the wavefunction. | Solids of only one element or compounds of similar electronegativities.                           | <ul> <li>Very Hard</li> <li>High melting point</li> <li>Electrical insulators or semiconductors</li> </ul>                                                                 |
-|          Metalic          | Electrons are delocalised throughout the solid, acting as a bonding agent between the ions.                                      | Metals found on the left and middle of the Periodic table                                         | <ul> <li>Ductile and malleable due to the non-directional nature of the bond</li> <li>Lower melting temperature</li> <li>Good electrical and thermal conductors</li> </ul> |
-| Molecular (Van-der-Waals) | There is no electron transfer. Instead the dipole moments of constituents align causing an attraction between the molecules.     | Noble gas solids, or solids made of slightly polar molecules.                                     | <ul> <li>Soft and weak (like Megan)</li> <li>Low melting temperature</li> <li>Electrical Insulators</li> </ul>                                                             |
-|         Hydrogen          | Involves a $H^+$ ion bound to one atom but still attracted to the other.                                                         | Organic and biological materials.                                                                 | <ul> <li>Weak bond (but stronger than molecular)</li> <li>Important for maintaining the shape of DNA and proteins</li> </ul>                                               |
-
-### Ionic Bonding
-
-In ionic bonds an electron is transferred from one atom to another and the resulting ions are attracted to one another. To describe this we need three terms...
-
-+ *Ionisation energy* the energy cost to ionise the atom which forms positive ion.
-+ *Electron Affinity* the energy released by the formation of the negative ion.
-+ *Cohesive Energy* the energy released on forming the bond.
-
-The change in energy is then...
+If we consider an electron with momentum $\bold{p}(t)$ let's ask what momentum it will have at $t + dt$. We actually have two cases scattering with probability $dt/\tau$ which would lead to $\bold{p}=0$ and motion under the fields with probability $1-dt/\tau$ that the motion would be described by $d\bold{p}/dt=\bold{F}$. Putting these together we have an expected value...
 
 $$
-\Delta E = \text{Electron Affinity} + \text{Cohesive Energy} - \text{Ionisation Energy}
+\big<\bold{p}(t+dt)\big> = \bigg(1-\frac{dt}{\tau}\bigg)(\bold{p} + \bold{F}dt) + \frac{dt}{\tau}\bold{0}\\
+\implies \frac{d\bold{p}}{dt} = \bold{F} - \frac{\bold{p}}{\tau}
 $$
 
-We require that this is positive for the bond to form (i.e that energy will be released) Electron Affinity and Ionisation Energy have to be experimentally calculated but we can approximate cohesive energy using the coulomb attraction...
-$$
-\text{Cohesive Energy} \approx \frac{e^2}{4\pi\epsilon_0R}
-$$
+The scattering term is kind of like a drag force on the electron.
 
-This actually leads to an **overestimation of $\Delta E$** as it ignores the interaction of the electron clouds when the atoms get very close.
+#### In Electromagnetic Fields
 
-<div style="text-align:center">
-<img src="./Figs/Ionic.jpg">
-</div>
-
-### Covalent Bonding
-
-Covalent bonding is when an electron is shared between two similar atoms. We can imagine this electron having the Hamiltonian...
+Here we have
 
 $$
-H = T + V_1 + V_2\\\ \\
-T = \frac{\bold{p}^2}{2m_e}\\\ \\
-V_i = \frac{e^2}{4\pi\epsilon_0|\bold{r}-\bold{R}_i|}
+\frac{d\bold{p}}{dt} = -e(\bold{E} + \bold{v}\times\bold{B}) - \frac{\bold{p}}{\tau}
 $$
 
-For a state of the form
-$$
-|\psi\big> = \phi_1|1\big> + \phi_2|2\big>
-$$
-
-Where $|1\big>$ and $|2\big>$ are the states an electron localised in each nucleus. This gives...
+In steady state we have $d\bold{p}/dt = 0$ so 
 
 $$
-H = \begin{pmatrix}
-    E_0 + V_c   & -t\\
-    -t^*        & E_0 + V_c
+0 = -e\bold{E} + \frac{\bold{j}\times\bold{B}}{n} - \frac{m}{ne\tau}\bold{j}
+$$
+
+Using the definitions $\bold{p} = m\bold{v}$ and $\bold{j} = -ne\bold{v}$. If we write this like the inverse of Ohms Law ($\bold{E} = \tilde{\rho}\bold{j}$) we have...
+
+$$
+\bold{E} = \tilde{\rho}\bold{j} = \bigg(\frac{1}{ne}\bold{j}\times\bold{B} + \frac{m}{ne^2\tau}\bold{j}\bigg)
+$$
+
+If we align $\bold{B}$ with the $z$ axis we have
+
+$$
+\tilde{\rho} = \begin{pmatrix}
+  \frac{m}{ne^2\tau} & \frac{B}{ne} & 0\\
+  -\frac{B}{ne} & \frac{m}{ne^2\tau} & 0\\
+  0 & 0 & \frac{m}{ne^2\tau}
 \end{pmatrix}
 $$
 
-Where
-$$
-\begin{aligned}
-E_0 &= \big<1|T + V_1|1\big> = \big<2|T + V_2|2\big>\\
-V_c &= \big<1|V_2|1\big> = \big<2|V_1|2\big>\\
-t &= \big<1| H | 2\big>
-\end{aligned} 
-$$
+### Free Electron (Sommerfield) Theory
 
-$E_0$ is the hydrogenic energy of an electron in a single nucleus, $V_c$ is the *cross-term* energy associated with an electron in orbital $|1\big>$ feel the attraction of the other nucleus and vice versa, t is the *hopping term*, the energy associated with moving between orbitals. The solution of this hamiltonian is...
-$$
-E_\pm = E_0 + V_c \pm |t|
-$$
-
-Since we expect a cancellation of the coulomb attraction from an atom outside of it we can ignore $V_c$ so long as the atoms are sufficiently far apart. So we have...
+Given a system of free electrons with chemical potential $\mu$ the probability of an Eigenstate with energy $E$ being occupied is given by the fermi occupation number.
 
 $$
-E_\pm \approx E_0 \pm |t|
+n_F(\beta(E-\mu)) = \frac{1}{e^{\beta(E-\mu)} + 1}
 $$
 
-So for the lower energy eigenstate it's energetically favourable to form a bond. The eigendtates are...
-
-$$
-|\psi_\pm\big> = \frac{1}{\sqrt{2}}(|1\big>\pm|2\big>) 
-$$
-
-They correspond to more and less separated atoms respectively.
-
-### Molecular Bonding
-
-*Van-der-Waals bonding* is a result of electric dipoles of two molecules aligning to attract one another. For two atoms separated by $r = |\bold{r}|$ where the first has a dipole moment $\bold{p}_1$. Then the second feels an electric field...
-$$
-\bold{E} = \frac{|\bold{p}_1|^2}{4\pi\epsilon_0}\frac{\hat{\bold{r}}}{r^3}
-$$
-
-The second atom then has polarisation $\bold{p}_2 = \chi_e\bold{E}$ as a result. The PE due to this interaction then is...
-$$
-U(r) = -\bold{p}_2\cdot\bold{E} = -\frac{|\bold{p}_1|^2\chi_e}{(4\pi\epsilon_0)^2}\frac{1}{r^6}
-$$
-
-This means that the force due to the bond $\bold{F} = -\nabla U \propto r^{-7}$ this quickly drops off with seperation which is why this is such a weak form of bonding.
-
-### Hydrogen Bonding
-
-Non-Examinable
-
-## One Dimensional Model of Bonding
-
-If we consider the potential of two nearby atoms we can approximate it by taylor expanding it around the equilibrium position...
-
-$$
-  V(x) = V(x_{eq}) + \frac{\kappa}{2}(x-x_{eq})^2 + \frac{\kappa_3}{3!}(x-x_{eq})^3 + \dots 
-$$
-
-Here we've ignored the linear term because if there was one there'd be no $x_{eq}$ this let's us approximate $V(x)$ as a quadratic around $x_{eq}$.
+At low temperature this looks like a step function where all states below a certain energy $E_F$ are filled and all others are empty.This stacking up is due to the electrons being under the fermi exclusion principle.
 
 <div style="text-align:center">
-<img src="./Figs/ThermalExpansion.jpg" height=200>
+<img src="./Figs/FermiOccupation.jpg" height=200>
 <br/>
-Our one dimensional model
+Fermi occupation
 </div>
 
-### Thermal Expansion
-
-As the potential is likely to be asymmetric in reality, we can see that as T increases we get $x_{max}$ increasing more and more whilst $x_{min}$ is asymptotic this will mean the average distance will increase and the system will expand.
-
-### Elasticity
-
-If we apply a force to this quadratic potential we expect to find
+If our electrons are in a cubic box with length L ($V = L^3$) and we have energy $\varepsilon(\bold{k}) = \frac{\hbar^2|\bold{k}|^2}{2m}$, we can see that...
 
 $$
--\kappa\delta x = F
+N = 2\sum_\bold{k}n_F(\beta(\varepsilon(\bold{k})-\mu)) = 2\frac{V}{(2\pi)^3}\int d\bold{k}n_F(\beta(\varepsilon(\bold{k})-\mu))
 $$
 
-As this is a hooke potential. The usual description of compressibilty is...
+Here the $2$ accounts for possible spin states and the chemical potential can be determined as a function of temperature for a given $N$. We also turn the sum into an integral by using [Born Von Karman conditions](#born-von-karman-boundaries).
+
+We can define the *Fermi Energy* $E_F$ (sometimes the *Fermi Level*) as the chemical potential at $T=0$. The states that are filled then are called the *Fermi Sea* and the *Fermi Temperature* and *Fermi Wavevector* are defined below from $E_F$.
 
 $$
-\beta = -\frac{1}{V}\frac{\partial V}{\partial P}
+T_F = \frac{E_F}{K_b}\quad\quad\text{Definition of the Fermi Temperature}\\
+E_F = \frac{\hbar^2 k_F^2}{2m}\quad\quad\text{Definition of the Fermi Wavevector}
 $$
 
-If we choose $T=S=0$ for simplicity we get 
+The *Fermi Momentum* ($p_F = \hbar k_F$) and *Fermi Velocity* ($v_F = \hbar k_F/m$) are also sometimes used. 
+
+> Remember $E_F$ is not energy of the highest occupied state but energy halfway between the highest occupied and lowest unoccupied state.
+
+At $T=0$ $n_F$ becomes a step function so we have...
 
 $$
-\beta = \frac{1}{\kappa x_{eq}} = 
-\frac{1}{\kappa a}
+N = 2\frac{V}{(2\pi)^3}\int^{|\bold{k}|<k_F}d\bold{k} = 2\frac{V}{(2\pi)^3}\int^{k_F}_0 4\pi k^2 dk = 2\frac{V}{(2\pi)^3}(\frac{4}{3}\pi k_F^3)\\
+\implies k_F = (3\pi^2 n)^{1/3}
 $$
 
-Since $x_eq$ is the characteristic distance between atoms we call it $a$ the lattice constant. We'll learn more about lattices now!
+Where $n = N/V$ this is an integral over the *Fermi Sphere* the shape of filled states at $T=0$ the surface of this (which divides filled and unfilled states) is the *Fermi Surface*. From above we can derive
+
+$$
+E_F = \frac{\hbar^2(3\pi^2n)^{2/3}}{2m}
+$$
+
+If we calculate this for copper we get $E_F = 7\text{eV}$ and $T_F = 80,000\text{K}$! It's worth noting that $T_F\gg T$ for any temperature near room temperature for all metals.
+
+Because the temperature is so large the *Fermi Sea* is deep so perturbations barely move electrons above the surface and lower states close to $\bold{k} = 0$ are hard to move as there are no empty states nearby to move to.
+
+#### Conductivity and Ohms Law
+
+If we use [Drude Theory](#drude-theory) to create a relaxation equation to account for scattering of electrons but divide through by $\hbar$ we can have a $\bold{k}$ relaxation equation for the fermi surface
+
+$$
+\frac{d\bold{k}}{dt} = -\frac{\bold{k}}{\tau} - \frac{e}{\hbar}\bold{E}
+$$
+
+Here we're thinking in terms of the Electric field only. In steady state we get.
+
+$$
+\bold{k} = -\frac{e\tau}{\hbar}\bold{E}
+$$
+
+Which means we can define drift velocity...
+
+$$
+\bold{v}_d = \frac{\hbar\bold{k}}{m} = -\frac{e\tau}{m}\bold{E}
+$$
+
+This means we can determine conductivity in terms of the scattering time by using ohms law
+
+$$
+\bold{j} = \sigma\bold{E} = -ne\bold{v}_d \implies \sigma = \frac{ne^2\tau}{m}
+$$
+
+#### Mean Free Path
+
+Since the scattering only happens in states close to $E_F$ so can say scattering time scale $\tau=\lambda/v_F$ this gives...
+
+$$
+\lambda = \frac{m\sigma v_F}{ne^2}
+$$
+
+Which allows us to measure mean free path from conductivity. It becomes clear $\lambda \gg a \sim n^{-1/3}$ where $a$ is the spacing between atoms so Sommerfield theory can be applied here.
+
+#### Density of States
+
+You know occupation number statistics well enough to know that
+
+$$
+U = V\int_0^\infty g(\varepsilon)n_F(\beta(\varepsilon - \mu))d\varepsilon
+$$
+
+Is not much of a surprise. We've changed variables from above to integrate over $\varepsilon$ rather than $\bold{k}$ and everything within the integral is **per unit volume**. The density of states per unit volume can be derived from the one for $k$ quite easily
+$$
+g(\varepsilon)d\varepsilon = \frac{2}{(2\pi)^3}4\pi k^2dk = \frac{(2m)^{3/2}}{2\pi^2\hbar^3}\varepsilon^{1/2}d\varepsilon
+$$
+
+If we use the definition of $E_F$ we have
+
+$$
+g(\varepsilon) = \frac{3n}{2E_F}\bigg(\frac{\varepsilon}{E_F}\bigg)^{1/2}
+$$
+
+#### Heat Capacity
+
+If we look at the figure from before
+
+<div style="text-align:center">
+<img src="./Figs/FermiOccupation.jpg" height=200>
+<br/>
+Fermi Occupation Again
+</div>
+
+We can see that a small increase in temperature above $T=0$ causes the step function to smear so that electrons within about $k_BT$ from the fermi surface can be excited. These electrons are excited above the surface by around $k_BT$ again so we have to first order...
+$$
+E(T) = E(T=0) + (\gamma/2)\times\underbrace{Vg(E_F)(k_BT)}_\text{\# electrons excited}\times\underbrace{k_BT}_\text{Energy excited by} + \dots
+$$
+
+Here $\gamma$ is a experimental constant which isn't included in the approximate argument but can be calculated (it's about $\pi^2/3$). This gives an approximate value for heat capacity...
+
+$$
+C = \gamma \bigg(\frac{3Nk_B}{2}\bigg)\bigg(\frac{T}{T_F}\bigg)
+$$
+
 
 # Crystals
 
@@ -1062,5 +1262,281 @@ As you'd expect this reduces to the monatomic case as $m_1\rightarrow m_2$.
 When the masses are equal the diatomic picture looks like the monatomic one
 </div>
 
+# Electrons in Solids
 
+## The Tight Binding Chain
 
+Consider $N$ adjacent atoms with a single orbital spaced by $a$ let $|n\big>$ be the state of an electron in the orbital of the $n^\text{th}$ atom. The energy of being in an orbital is $E_0$ and the hopping energy is $t$ so
+
+$$
+\begin{aligned}
+\big<n|H|n\big> &= E_0\\
+\big<n\pm1|H|n\big> & = -t
+\end{aligned}
+$$
+
+We also assume the states are orthogonal ($\big<n|m\big>=\delta_{nm}$). We want solutions of the form
+
+$$
+|\psi\big> = \sum_n\phi_n|n\big>
+$$
+
+Putting this arbitrary state through the shrodinger equation we get...
+
+$$
+H|\psi\big> = E|\psi\big>\\
+\implies E_0\phi_n - t\phi_{n-1} - t\phi_{n+1} = E\phi_n
+$$
+
+Inserting the Ansatz $\phi_n=e^{i(\omega t - kna)}$ we get
+
+$$
+E(k) = E_0 - 2t\cos(ka)
+$$
+
+<div style="text-align:center">
+<img src="./Figs/TightBinding.jpg" height=200>
+<br/>
+Tight Binding Energy Dispersion
+</div>
+
+This relation has one *band*, that is a single connected curve in the dispersion relation.
+
+Close to the bottom this looks like
+
+$$
+E(k) = \text{constant} + ta^2k^2
+$$
+
+We can define the effective mass $m^*$ so this section looks like free electrons with a larger effective mass.
+
+$$
+E(k) = \text{constant} + \frac{\hbar^2k^2}{2m^*},\quad\quad m^*=\frac{\hbar^2}{2ta^2}
+$$
+
+### Filling bands
+
+If we imagine this picture is made by $N$ atoms donating one electron each (a valence one maybe). Since there are $N$ states and elctrons are fermions you'd think they would fill the band. This isn't quite true, ince electrons can have positive or negative spin the band is half filled and you get a fermi-surface.
+
+<div style="text-align:center">
+<img src="./Figs/FermiBand.jpg" height=200>
+<br/>
+Half filled band for 1 valence elctron. Left shows filled states of the fermi sea. Right shows slightly perturbed sea allowing current to run.
+</div>
+
+On the other hand if the atoms supplied 2 electrons we would have completely filled states and perturbations would do nothing as there is nowhere to go. This means **filled bands carry no current**.
+
+### Two Orbitals per Atom (or Diatomic Case)
+
+In the diatomic or two orbital case we have $E_0^A$ and $E_0^B$ instead of $E_0$ as there are two distinct eigenstates with different enrgies. We also have $t$ hopping from A to B states but not A to A states as tese aren't adjacent. This gives a 2D matrix solution instead.
+
+$$
+\begin{pmatrix}
+  E_0^A - E & -t(1+e^{ika})\\
+  -t(1+e^{ika}) & E_0^B - E
+\end{pmatrix}\begin{pmatrix}
+  A\\
+  B
+\end{pmatrix} = 0
+$$
+
+Which has eigenvalues...
+
+$$
+E_\pm(k) = \frac{1}{2}\bigg[E_0^A + E_0^B \pm \bigg((E_0^A - E_0^B)^2 8t^2(1+\cos ka)\bigg)^{1/2}\bigg]
+$$
+
+So now we have two bands seperated by a band gap which depends on $t$ (note that if $t=0$ we recover $E_0^A$ and $E_0^B$). The two bands become obvious in the dispersion graph.
+
+<div style="text-align:center">
+<img src="./Figs/TightBinding2.jpg" height=200>
+<br/>
+Diatomic Tight Binding Dispersion in One Dimension Plotted on Reduced and Extended zone scheme 
+</div>
+
+#### Band Gaps
+
+It's interesting to note that if these atoms are monovalent we expect the lower band to be filled. This means that a weak electric field can't overcome the bandgap and no current can flow. This means for small enough electric fields (and temperatures) we see insulating behavior.
+
+### Insulators, Conductors, and Semiconductors
+
+We can now see the distinction between insulators, conductors, and semiconductors. Conductors have a hald filled band or overlapping bands such that electrons can easily be peturbed. Semiconductors have a smalll gap between the filled valence band and the open conducting band which can be overcome. Insulators have only a filled band or a very large gap between the filled valence band and the next which means electrons cannot be peturbed even by a large field because there's no where to go.
+
+## Nearly Free Electrons
+
+If we start with completely free electrons with the Hamiltonian
+
+$$
+H_0 = \frac{\bold{p}^2}{2m}
+$$
+
+Which gives plane waves eigenstates $|\bold{k}\big>$ with energies...
+$$
+\varepsilon_0(\bold{k}) = \frac{\hbar^2|\bold{k}|^2}{2m}
+$$
+
+If we think about a weak peturbation to this potential
+
+$$
+H = H_0 + V(\bold{r})
+$$
+
+Which is periodic so $V(\bold{r}) = V(\bold{r}+\bold{R})$ where $\bold{R}$ is a lattice vector then we have
+
+$$
+\big<\bold{k}^\prime|V|\bold{k}\big> = \frac{1}{L^3}\int d\bold{r}e^{i(\bold{k}-\bold{k}^\prime)\cdot\bold{r}}V(\bold{r}) = V_{\bold{k}^\prime-\bold{k}}
+$$
+
+This is zero unless $\bold{k}^\prime - \bold{k}$ is a lattice vector. If we apply perturbation theory to the first order we have
+
+$$
+\varepsilon(\bold{k}) = \varepsilon_0(\bold{k}) + \big<\bold{k}|V|\bold{k}\big> = \varepsilon_0(\bold{k}) + V_0
+$$
+
+Which is just a constant enrgy shift. To the second order we have
+
+$$
+\varepsilon(\bold{k}) = \varepsilon_0(\bold{k}) + V_0 + \sum_{\bold{k}^\prime = \bold{k} + \bold{G}}\frac{|\big<\bold{k}^\prime|V|\bold{k}\big>|^2}{\varepsilon_0(\bold{k}) - \varepsilon_0(\bold{k}^\prime)}
+$$
+
+Where in the sum $\bold{G}=\!\!\!\!\!/\;0$. This sum breaks down in the *degenerate* case because $\varepsilon_0(\bold{k})=\varepsilon_0(\bold{k}^\prime)$ and the sum diverges. To account for this we need degenerate perturubation theory.
+
+### Degenerate Perturbation Theory
+
+We need to look at what happens when
+
+$$
+\varepsilon_0(\bold{k}) = \varepsilon_0(\bold{k}^\prime)\\
+\bold{k}^\prime = \bold{k} + \bold{G}
+$$
+
+In the one dimensional case we have
+
+$$
+\varepsilon_0(k) \sim k^2 \implies k^\prime = -k = \pi n/a
+$$
+
+Which means the $k$ solutions are precisely on the Brillouin Zone boundaries. In fact our requirements are met for a point on a Brillouin Zone boundary by another similar point in 3 dimensional space as well as 1 dimensional. Degenerate perturbation theory requires us to diagonalise the degenerate part of the H matrix first then apply normal perturbation theory.
+
+We have (taking $V_0=0$)
+
+$$
+\begin{aligned}
+\big<\bold{k} | H | \bold{k}\big> &= \varepsilon_0(\bold{k})\\
+\big<\bold{k}^\prime | H | \bold{k}^\prime\big> &= \varepsilon_0(\bold{k}^\prime) = \varepsilon_0(\bold{k} + \bold{G})\\
+\big<\bold{k} | H | \bold{k}^\prime\big> &= V_{\bold{k}-\bold{k}^\prime} \;= V_\bold{G}^*\\
+\big<\bold{k}^\prime | H | \bold{k}\big> &= V_{\bold{k}^\prime-\bold{k}} \;= V_\bold{G}\\
+\end{aligned}
+$$
+
+We can write any state in this space as
+
+$$
+|\Psi\big> = \alpha|\bold{k}\big> + \beta|\bold{k}^\prime\big> = \alpha|\bold{k}\big> + \beta|\bold{k} + \bold{G}\big>
+$$
+
+So we have
+
+$$
+\begin{pmatrix}
+  \varepsilon_0(\bold{k}) & V_\bold{G}^*\\  
+  V_\bold{G}              & \varepsilon_0(\bold{k}+\bold{G})\\
+\end{pmatrix}\begin{pmatrix}
+  \alpha\\
+  \beta
+\end{pmatrix} = E\begin{pmatrix}
+  \alpha\\
+  \beta
+\end{pmatrix}
+$$
+
+We need to diagonalise this so we find the eigenvalues using the equation
+
+$$
+\bigg(\varepsilon_0(\bold{k}) - E\bigg)\bigg(\varepsilon_0(\bold{k}+\bold{G}) - E\bigg) - |V_\bold{G}|^2 = 0
+$$
+
+there is a simple and more complex case
+
+#### Simple Case: $k$ is at The Brillouin Boundary
+
+In this case $\varepsilon_0(\bold{k}) = \varepsilon_0(\bold{k} + \bold{G})$ so we get...
+
+$$
+\bigg(\varepsilon_0(\bold{k}) - E\bigg)^2 = |V_\bold{G}|^2
+\implies E_\pm = \varepsilon_0(\bold{k}) \pm |V_\bold{G}|
+$$
+
+This gives a gap at the boundary where the eigenstates form linear combinations with energies split by $\pm|V_\bold{G}|$
+
+In one dimesnsion we find
+
+$$
+|\psi_\pm\big> = \frac{1}{\sqrt{2}}(|k\big> \pm |k^\prime\big>)
+$$
+
+Since we can write the original plane wave unnormallised eigenstates as 
+
+$$
+\begin{aligned}
+\psi_k &= e^{ikx} \,= e^{ix\pi/a}\\
+\psi_{k^\prime} &= e^{ik^\prime x} = e^{-ix\pi/a}
+\end{aligned}
+$$
+
+We find
+
+$$
+\psi_+ = cos(x\pi/a)\\
+\psi_- = sin(x\pi/a)
+$$
+
+<div style="text-align:center">
+<img src="./Figs/NearlyFree1.jpg" height=200>
+<img src="./Figs/NearlyFree2.jpg" height=200>
+<br/>
+Image of Energy plots and Probability Density Functions
+</div>
+
+#### Complicated Case: $k$ Not Quite on the Boundary
+
+Let's consider $k = n\pi/a + \delta$ and $k^\prime = -n\pi/a + \delta$ the vector it scatters to. We have for initial energy
+
+$$
+\varepsilon_0(n\pi/a+\delta) = \frac{\hbar^2}{2m}[(n\pi/a)^2 + 2n\pi\delta/a + \delta^2]\\
+\varepsilon_0(-n\pi/a+\delta) = \frac{\hbar^2}{2m}[(n\pi/a)^2 - 2n\pi\delta/a + \delta^2]
+$$
+
+The characteristic eigenvalue equation is then solved to give
+
+$$
+E_\pm = \frac{\hbar^2}{2m}\bigg[\bigg(\frac{n\pi}{a}\bigg)^2 + \delta^2\bigg] \pm \sqrt{\bigg(\frac{\hbar^2}{2m}\frac{2n\pi\delta}{a}\bigg)^2 + |V_G|^2}
+$$
+
+Expanding for small $\delta$ we have
+
+$$
+E_\pm = \frac{\hbar^2}{2m}\bigg(\frac{n\pi}{a}\bigg)^2 \pm |V_G| + \frac{\hbar^2\delta^2}{2m}\bigg[1\pm\frac{\hbar^2}{m}\big(\frac{n\pi}{a}\big)^2\frac{1}{|V_G|}\bigg]
+$$
+
+Which we can rewrite as 
+
+$$
+E_\pm = E_\pm(\delta=0) + \frac{\hbar^2\delta^2}{2m^*_\pm}
+$$
+
+Where we define effective masses
+
+$$
+m^*_\pm = \frac{m}{\bigg[1\pm\frac{\hbar^2}{m}\bigg(\frac{n\pi}{a}\bigg)^2\frac{1}{|V_G|}\bigg]}
+$$
+
+<div style="text-align:center">
+<img src="./Figs/NearlyFreeBands.jpg" height=200>
+<br/>
+Energy Dispersion relation bands for nearly free electrons visible in reduced scheme. 
+</div>
+
+#### Higher Dimensions
+
+The reason we saw so many bands in the above image is because in the multidimensional case there is not just one but many different $\bold{k}$ states that are degenerate with each other near the boundary.
