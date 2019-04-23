@@ -37,6 +37,20 @@
     - [Fission and Fusion](#fission-and-fusion)
       - [Fusion](#fusion)
       - [Fission](#fission)
+- [The Quark Model](#the-quark-model)
+  - [Isospin](#isospin)
+  - [Other symmetries](#other-symmetries)
+    - [Parity](#parity)
+    - [Charge Conjucation](#charge-conjucation)
+  - [Mesons](#mesons)
+  - [Strangeness and heavier mesons](#strangeness-and-heavier-mesons)
+  - [Meson Multiplets](#meson-multiplets)
+  - [Baryons](#baryons)
+  - [Quark Colour](#quark-colour)
+    - [Evidence of quark colour](#evidence-of-quark-colour)
+  - [Quarkonium](#quarkonium)
+    - [Charmonium](#charmonium)
+  - [Deep Inelastic Scattering](#deep-inelastic-scattering)
 
 # Scattering
 
@@ -919,4 +933,296 @@ Which means that the ideal moderator (reduces energy quickly) will have $M=m$ so
 | :----------------------------------------------: | :------------------: | :------------------: | :---------: | :--------: | :--------: |
 | number of collisions to get from $2$MeV to $1$eV |          16          |          29          |     86      |    114     |    2172    |
 
-However we also have to minimise cross-section for neutron capture, for light water this is quite high and slows reactions enough that only enriched uranium works with this moderator. Heavy water has about $1/80$ the cross section and so can be used 
+However we also have to minimise cross-section for neutron capture, for light water this is quite high and slows reactions enough that only enriched uranium works with this moderator. Heavy water has about $1/80$ the cross section and so can be used instead.
+
+# The Quark Model
+
+One interesting behaviour observed in experiment is that protons and neutrons are not distinguished by the strong force. This implied to physicists that these are two states of a single nucleon they described this with a new quantum number **Isospin**
+
+## Isospin
+
+This behaves a lot like spin but doesn't have any relation to angular momentum. It can be described with $I$ and $I_3$ like spin and has the properties
+
+$$
+I_\pm = I_1 \pm iI_2,\quad \quad [I_i, I_j] = i\epsilon_{ijk}I_k\\
+I_\pm|I,I_3\big> = \sqrt{(I\mp I_3)(I\pm I_3 + 1)} |I, I_3\pm1\big>
+$$
+
+We can define the pions and delta baryons (extra particles discovered before making isospin) as well as the nucleons in terms of Isospin
+
+| Particle | $\vert I, I_3\big>$ |
+| :------: | :-----------------: |
+| p | $\vert \frac{1}{2}, \frac{1}{2}\big>$ |
+| n | $\vert \frac{1}{2}, -\frac{1}{2}\big>$ |
+| $\pi^+$ | $\vert 1, 1\big>$ |
+| $\pi^0$ | $\vert 1, 0\big>$ |
+| $\pi^-$ | $\vert 1, -1\big>$ |
+| $\Delta^{++}$ | $\vert \frac{3}{2}, \frac{3}{2}\big>$ |
+| $\Delta^{+}$ | $\vert \frac{3}{2}, \frac{1}{2}\big>$ |
+| $\Delta^{0}$ | $\vert \frac{3}{2}, -\frac{1}{2}\big>$ |
+| $\Delta^{-}$ | $\vert \frac{3}{2}, -\frac{3}{2}\big>$ |
+
+The strong force conserves isospin and in his example Toby shows how this can be used to work out branching ratios.
+
+## Other symmetries
+
+Other relevant symmetries include
+
+### Parity
+
+This is familiar we have 
+
+$$
+\mathcal{P}: \bold{x} \mapsto -\bold{x}
+$$
+
+
+With polar vectors inverting under parity and axial vectors not. A *pseudoscalar* is a scalar normally but changes sign under parity. Fermions and antifermions have opposite parity. We know for a state of angular momentum $l$ that...
+
+$$
+\mathcal{P}|n,l,m_l\big> = (-1)^l|n,l,m_l\big>
+$$
+
+and for combined states
+
+$$
+P_{ab} = P_aP_b(-1)^L
+$$
+
+The strong and EM interactions conserve parity but the weak does not!
+
+### Charge Conjucation
+
+Suppose a particle is $a$ and the anticparticle is $\bar{a}$ we have the charge conjugation operator $\mathcal{C}$ which acts so that
+
+$$
+\mathcal{C}: a\mapsto\bar{a}
+$$
+
+Only neutral particles can be eigenstates as charge is inverted in the conjugation. The values must be $\pm1$ as doing it twice should return to the initial state. For a state with well defined $J$, $L$, and $S$ we have...
+
+$$
+\mathcal{C}|a, \bar{a}, J, L, S\big> = (-1)^{L+S}|a, \bar{a}, J, L, S\big>
+$$
+
+The conventional notation to describe a particle is this...
+
+<div style="text-align:center">
+<img src="./Figs/ParticleNotation.jpg" height=200>
+<br/>
+Convetional particle notation
+</div>
+
+
+## Mesons
+
+The existence of isospin taught us there is some structure which we hadn't considered within the particles we've found so far just like nuclei are combinations of nucleons. We say that these constituents are *quarks* and they combine to form *hadrons*. Quarks are spin-$\frac{1}{2}$ particles and obey fermi-dirac statistics. **Mesons** are hadrons formed of a quark and anti-quark which is why they have integer spins. Since $P_q = 1$ and $P_{\bar{q}} = -1$ we have
+
+$$
+P_\text{meson} = (-1)^{L+1}
+$$
+
+The pions we talked about earlier are made up of two quarks, up and down.
+
+<div style="text-align:center">
+<img src="./Figs/updown.jpg" width=80%>
+<br/>
+The up and down quarks
+</div>
+
+Combinations of these is what gives us our isospin states for pions.
+
+<div style="text-align:center">
+<img src="./Figs/pions.jpg" width=80%>
+<br/>
+The pions
+</div>
+
+However the pions aren't the only mesons we see!
+
+## Strangeness and heavier mesons
+
+When we raise scattering experimental energy to higher energies $500\text{MeV}/c^2$ we see more mesons (higher and we see more baryons which we'll look at later). These particles are identical in strong interactions but decay on weak time scales they can be described by a new quantum number *Strangeness* and which is conserved in strong interactions but not in weak ones. This also introduces a new *strange* quark:
+
+<div style="text-align:center">
+<img src="./Figs/strange.jpg" width=80%>
+<br/>
+The strange quark
+</div>
+
+The strange mesons are the kaons $K^+$, $K^-$, $K^0$, and $\bar{K}^0$ (with the weird property that the $K^0$ meson is distinct from it's antiparticle).
+
+## Meson Multiplets
+
+With three quarks we have $3\otimes3=9$ combinations which means we can organise our mesons into sets of 9. We have different pictures for particles with different $J^P$. Below is $J^P=0^-$
+
+<div style="text-align:center">
+<img src="./Figs/nonet1.jpg" height=200>
+<br/>
+The lower energy nonet
+</div>
+
+And here is $J^P=1^-$
+
+<div style="text-align:center">
+<img src="./Figs/nonet2.jpg" height=200>
+<br/>
+The higher energy nonet
+</div>
+
+The second nonet being of higher energy decays quickly into the first ($\sim10^{-24}\text{s}$)
+
+## Baryons
+
+Baryons (like $p$, $n$, and the Delta Baryons) are made up of three quarks and have half integer spins. This means we expect the parity to be
+
+$$
+P_\text{baryon} = (-1)^L
+$$
+
+Since quarks are spin $\frac{1}{2}$ the spin is $\frac{1}{2}\otimes\frac{1}{2}\otimes\frac{1}{2}$ so either $\frac{1}{2}$ or $\frac{3}{2}$. Putting this together for the lowest energy $L=0$ baryons we expect to have $J^P=\frac{1}{2}^+$ or $\frac{3}{2}^+$. For $J^P=\frac{1}{2}^+$ we have the octet...
+
+<div style="text-align:center">
+<img src="./Figs/octet.jpg" height=200>
+<br/>
+The baryon octet
+</div>
+
+For $J^P=\frac{3}{2}^+$ we have a decuplet...
+
+<div style="text-align:center">
+<img src="./Figs/decuplet.jpg" height=200>
+<br/>
+The baryon decuplet
+</div>
+
+These strongly decay to $J^P=\frac{1}{2}^+$ baryons except for $\Omega^-$ because strangeness has to change so it has to decay weakly.
+
+## Quark Colour
+
+For our baryons the state is currently 
+
+$$
+\psi = \psi_\text{space} \times \psi_\text{spin} \times \psi_\text{flavour} 
+$$
+
+Here flavour refers to the type of quark and it's conserved. All three of these wavefunctions are symmetric which violates the pauli principle. We introduce another part of the wavefunction the colour one with three colours (red, green, and blue) which is related to the charge of the strong force. The antisymmetric wavefunction is
+
+$$
+\psi_\text{colour} = \frac{1}{\sqrt{6}}(rgb-rbg+brg-bgr+gbr-grb)
+$$
+
+This is the colour singlet state, all real particles have colour singlet states. Incidentally the real singlet state for mesons is 
+
+$$
+\psi^\text{meson}_\text{colour} = \frac{1}{\sqrt{3}}(r\bar{r} + g\bar{g} + b\bar{g})
+$$
+
+For quarks the decuplet is made of 10 symmetric flavour functions combined with 4 symmetric spin wave functions. The octet is made similarly, I don't think it matters how this works out tbh but colour is important.
+
+An interesting result of this is that all hadrons are colourless, in fact we can't observe coloured objects (i.e quarks) on their own, if you pull them apart the build up in potential energy creates quark anti-quark pairs.
+
+<div style="text-align:center">
+<img src="./Figs/quarkcolour.jpg" height=200>
+<br/>
+A diagram of how quarks resist being pulled apart
+</div>
+
+### Evidence of quark colour
+
+Experimental evidence of quark colour comes from looking at the cross sections for positron electron collisions.
+
+$$
+e^+ + e^- \rightarrow \mu^+ + \mu^-\\
+e^+ + e^- \rightarrow \text{hadrons}
+$$
+
+The feynman diagrams for these are shown below...
+
+<div style="text-align:center">
+<img src="./Figs/colourFeynman.jpg" height=200>
+<br/>
+The Feynman diagrams
+</div>
+
+
+For the muon process we have the vertex factor $\pm1g_\text{EM}$ for the hadrons (quarks) the factor is $\pm Q_qg_\text{EM}$ where $Q_q$ are the charges of the quarks relative to the proton. The density of states is about the same so we have a ratio of cross sections $R$ given by...
+
+$$
+R = \frac{\sigma(e^+ + e^- \rightarrow \text{hadrons})}{\sigma(e^+ + e^- \rightarrow \mu^+ + \mu^-)} = \frac{3\times g_\text{EM}^2\sum_iQ_i^2}{1\times g_\text{EM}^2} = 3\sum_iQ_i^2
+$$
+
+Where the sum is over the available $q\bar{q}$ states for the given energy. The factor of three takes into account different colour combinations we could have. By looking at the experimental data we observe 
+
+| Energy Range | R     |
+| :----------: | :---: |
+| $2-5\,\text{GeV}$| $2$ |
+| $5-10\,\text{GeV}$| $\frac{10}{3}$ |
+| $10-20\,\text{GeV}$| $\frac{11}{3}$ |
+
+Each of these correspnd to different quark content. The first is up, down, and strange. The second and third correspond to charm and bottom respectively. There is also a sixth top quark but that doesn't occur because it's too massive for this interaction. From the values of R we can see...
+
+|   $Q$   |       |  $1$  |  $2$  |  $3$  |
+| :-----: | :---: | :---: | :---: | :---: |
+| $Q=2/3$ |       | $u$   | $c$   | $t$   |
+| $Q=-1/3$|       | $d$   | $s$   | $b$   |
+
+
+We have three families of quarks, all in pairs of charges.
+
+## Quarkonium
+
+What does quark matter look like though. We have an equation for the storng force...
+
+$$
+V(r) = -\frac{4}{3}\frac{\hbar c\alpha_s}{r} + kr
+$$
+
+Which gives us the hamiltonian for the system
+
+$$
+\bigg(\frac{\bold{p}^2}{2\mu} + V\bigg)|\psi\big> = E|\psi\big>
+$$
+
+Where $\mu$ is the reduced mas of the $q\bar{q}$ system because quarks can't exist alone. The first term of our potential behaves like a coulomb potential and the second grows as $r\rightarrow\infty$ which confines the quarks together. In the case of $c\bar{c}$ *charmonium* and $b\bar{b}$ *bottomonium* states we have a typical seperation which is usually smaller than $r_0=1/\sqrt{k}$, this means we can ignore the linear term and we have a hydrogenic energy. 
+
+$$
+E_n = -\frac{1}{2}\bigg(\frac{4}{3}\alpha_Sc\bigg)\frac{1}{n^2}
+$$
+So the total energy is given by
+
+$$
+E_{q\bar{q}} = E_n + 2m_qc^2
+$$
+
+### Charmonium
+
+For charmonium the mess of states are 
+
+| Name | $n^{2S+1}L_J$ | $J^P$ |
+| :---: | :----------: | :---: |
+| $\nu_c$ | $1^1S_0$   | $0^-$ | 
+| $J/\psi$| $1^3S_1$   | $1^-$ | 
+| $h_c$ | $1^1L_1$   | $1^+$ | 
+| $\psi^\prime$ | $2^3S_1$   | $1^-$ | 
+
+The first state discovered was the $J/\psi$ state which has the same symmetries as a photon $J^P=1^-$ which meant it could be created from electron positron collision via an intermidiate photon.
+
+$$
+e^+ + e^- \rightarrow \gamma^* \rightarrow J/\psi
+$$
+
+Measurement of this state allowed physicists to put a scale on the predictions above.
+
+Charmonium can decay in a few ways
+
++ They may decay into $D$ mesons if they are massive enough $\gt 2m_D,\quad m_D\approx1865\,\text{MeV}/c^2$.
++ If the state is not massive enough it may decay through anihilation of the quarks. One way to do that is electromagnetically producing an intermediate photon which then creates a new quark antiquark pair.
++ Another way is via a supressed version of the strong interaction. The resulting state here doesn not contain any charm quarks so the intermediate state is only gluons. This has very low decay rate.
+Basically this means that $c\bar{c}$ states with $m\lt m_D$ are long lived and visible as naro resonances close to $3$GeV.
+
+## Deep Inelastic Scattering
+
+To probe the quark structure of the hadrons we need a saattering experiment with wavelengths of the order of protons size to affect only the quark structure, ($\sim$GeV). The scattering of a single quark produces two coloured states the quark on it's own and the two 'spectator' quarks who've lost their friend. The result is something called a hadron jet. Quarks on their own (or any coloured objects) will form other hadrons around them in order to become colourless, these will all travel in a similar direction to each other producing a jet.
+
+> The syllabus here asks for phenomenology so this is all I'm putting.
